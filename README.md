@@ -1,0 +1,2 @@
+# Sitemap
+OXID Sitemap module.
