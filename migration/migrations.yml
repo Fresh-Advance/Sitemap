@@ -1,0 +1,4 @@
+table_storage:
+  table_name: oxmigrations_fa_sitemap
+migrations_paths:
+  'FreshAdvance\Sitemap\Migrations': data
