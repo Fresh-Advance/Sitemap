@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        public: false
+        autowire: true
+
+    FreshAdvance\Sitemap\Core\Registry:
+        class: OxidEsales\Eshop\Core\Registry
+        public: true
