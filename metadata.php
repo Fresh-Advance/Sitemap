@@ -17,7 +17,7 @@ $sMetadataVersion = '2.1';
  */
 $aModule = [
     'id'          => \FreshAdvance\Sitemap\Module::MODULE_ID,
-    'title'       => 'Invoice',
+    'title'       => 'Sitemap',
     'description'  => [
         'en' => 'Sitemap module for OXID eShop.',
     ],
