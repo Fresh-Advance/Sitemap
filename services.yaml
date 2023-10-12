@@ -1,3 +1,6 @@
+imports:
+  - { resource: src/Repository/services.yaml }
+
 services:
     _defaults:
         public: false

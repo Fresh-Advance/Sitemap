@@ -25,7 +25,6 @@ final class Version20231011192842 extends AbstractMigration
                 modified VARCHAR(30),
                 frequency VARCHAR(10),
                 priority FLOAT,
-                updated TINYINT(1),
                 added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 PRIMARY KEY (id),
                 UNIQUE KEY unique_object (object_id, object_type),
