@@ -4,6 +4,7 @@ namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
 
 use FreshAdvance\Sitemap\DataStructure\Url;
 use FreshAdvance\Sitemap\Repository\UrlRepository;
+use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 class UrlRepositoryTest extends IntegrationTestCase
@@ -41,6 +42,6 @@ class UrlRepositoryTest extends IntegrationTestCase
 
     protected function getSut(): UrlRepository
     {
-        return $this->get(UrlRepository::class);
+        return $this->get(UrlRepositoryInterface::class);
     }
 }

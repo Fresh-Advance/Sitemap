@@ -6,7 +6,7 @@ use Doctrine\DBAL\Result;
 use FreshAdvance\Sitemap\DataStructure\Url;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
-class UrlRepository
+class UrlRepository implements UrlRepositoryInterface
 {
     public function __construct(
         protected QueryBuilderFactoryInterface $queryBuilderFactory

@@ -4,4 +4,5 @@ services:
     public: false
     autowire: true
 
-  FreshAdvance\Sitemap\Repository\UrlRepository: ~
+  FreshAdvance\Sitemap\Repository\UrlRepositoryInterface:
+    class: FreshAdvance\Sitemap\Repository\UrlRepository
