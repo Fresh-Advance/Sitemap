@@ -10,8 +10,7 @@ class UrlRepository implements UrlRepositoryInterface
 {
     public function __construct(
         protected QueryBuilderFactoryInterface $queryBuilderFactory
-    )
-    {
+    ) {
     }
 
     public function addUrl(string $objectId, string $objectType, Url $urlData): void
@@ -53,13 +52,15 @@ class UrlRepository implements UrlRepositoryInterface
 
         /** @var Result $result */
         $result = $queryBuilder->execute();
+
+        /** @var false|array<string, int|string|bool> $data */
         $data = $result->fetchAssociative();
         if (is_array($data)) {
             return new Url(
-                location: $data['location'],
-                lastModified: $data['modified'],
-                changeFrequency: $data['frequency'],
-                priority: $data['priority'],
+                location: (string)$data['location'],
+                lastModified: (string)$data['modified'],
+                changeFrequency: (string)$data['frequency'],
+                priority: (float)$data['priority'],
             );
         }
 
