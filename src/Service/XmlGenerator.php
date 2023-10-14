@@ -42,7 +42,7 @@ class XmlGenerator implements XmlGeneratorInterface
                 implode("", $urlBlocks),
                 "urlset",
                 [
-                    "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9"
+                    "xmlns" => "https://www.sitemaps.org/schemas/sitemap/0.9"
                 ]
             );
     }
