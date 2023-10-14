@@ -4,6 +4,7 @@ namespace FreshAdvance\Sitemap\Repository;
 
 use Doctrine\DBAL\Result;
 use FreshAdvance\Sitemap\DataStructure\Url;
+use Generator;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
 class UrlRepository implements UrlRepositoryInterface
@@ -65,5 +66,32 @@ class UrlRepository implements UrlRepositoryInterface
         }
 
         return null;
+    }
+
+    public function getUrlsByType(string $objectType, int $page, int $perPage): Generator
+    {
+        $queryBuilder = $this->queryBuilderFactory->create();
+        $queryBuilder->select('*')
+            ->from('fa_sitemap')
+            ->where('object_type = :object_type')
+            ->setParameters([
+                'object_type' => $objectType,
+            ])
+            ->orderBy("id")
+            ->setFirstResult(--$page * $perPage)
+            ->setMaxResults($perPage);
+
+        /** @var Result $result */
+        $result = $queryBuilder->execute();
+
+        /** @var false|array<string, int|string|bool> $data */
+        while ($data = $result->fetchAssociative()) {
+            yield new Url(
+                location: (string)$data['location'],
+                lastModified: (string)$data['modified'],
+                changeFrequency: (string)$data['frequency'],
+                priority: (float)$data['priority'],
+            );
+        }
     }
 }
