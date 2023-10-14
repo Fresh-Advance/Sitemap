@@ -1,0 +1,8 @@
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\Service\XmlGeneratorInterface:
+    class: FreshAdvance\Sitemap\Service\XmlGenerator
