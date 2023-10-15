@@ -84,8 +84,8 @@ class UrlRepository implements UrlRepositoryInterface
         /** @var Result $result */
         $result = $queryBuilder->execute();
 
-        /** @var false|array<string, int|string|bool> $data */
         while ($data = $result->fetchAssociative()) {
+            /** @var array<string, int|string|bool> $data */
             yield new Url(
                 location: (string)$data['location'],
                 lastModified: (string)$data['modified'],

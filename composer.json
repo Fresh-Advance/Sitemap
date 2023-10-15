@@ -13,7 +13,8 @@
     "prefer-dist": true,
     "require": {
         "php": "^8.0",
-        "oxid-esales/oxideshop-ce": "*"
+        "oxid-esales/oxideshop-ce": "*",
+        "mikey179/vfsstream": "^1.6"
     },
     "conflict": {
         "oxid-esales/oxideshop-ce": "<7.0.0-rc.2"
