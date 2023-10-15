@@ -9,3 +9,9 @@ services:
 
   FreshAdvance\Sitemap\Service\Sitemap:
     class: FreshAdvance\Sitemap\Service\Sitemap
+
+  FreshAdvance\Sitemap\Service\Filesystem:
+    class: FreshAdvance\Sitemap\Service\Filesystem
+
+  FreshAdvance\Sitemap\Service\ModuleSettings:
+    class: FreshAdvance\Sitemap\Service\ModuleSettings

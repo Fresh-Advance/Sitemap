@@ -68,7 +68,7 @@ class UrlRepository implements UrlRepositoryInterface
         return null;
     }
 
-    public function getUrlsByType(string $objectType, int $page, int $perPage): Generator
+    public function getUrlsByType(string $objectType, int $page, int $perPage): iterable
     {
         $queryBuilder = $this->queryBuilderFactory->create();
         $queryBuilder->select('*')

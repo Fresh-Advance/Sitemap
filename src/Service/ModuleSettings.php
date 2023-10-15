@@ -6,6 +6,6 @@ class ModuleSettings
 {
     public function getSitemapDirectory(): string
     {
-        return './';
+        return './source/';
     }
 }

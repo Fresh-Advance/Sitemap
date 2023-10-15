@@ -11,5 +11,5 @@ interface UrlRepositoryInterface
 
     public function getUrl(string $objectId, string $objectType): ?Url;
 
-    public function getUrlsByType(string $objectType, int $page, int $perPage): Generator;
+    public function getUrlsByType(string $objectType, int $page, int $perPage): iterable;
 }
