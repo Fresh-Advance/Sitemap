@@ -6,3 +6,6 @@ services:
 
   FreshAdvance\Sitemap\Service\XmlGeneratorInterface:
     class: FreshAdvance\Sitemap\Service\XmlGenerator
+
+  FreshAdvance\Sitemap\Service\Sitemap:
+    class: FreshAdvance\Sitemap\Service\Sitemap

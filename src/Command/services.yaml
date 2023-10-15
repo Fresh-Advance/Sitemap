@@ -1,0 +1,9 @@
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\Command\GenerateSitemapCommand:
+    tags:
+      - { name: 'console.command', command: 'fa:sitemap:generate' }
