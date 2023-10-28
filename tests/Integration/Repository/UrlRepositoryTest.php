@@ -36,6 +36,12 @@ class UrlRepositoryTest extends IntegrationTestCase
         $this->assertSame(0.3, $url->getPriority());
     }
 
+    public function testNotFoundUrl(): void
+    {
+        $sut = $this->getSut();
+        $this->assertNull($sut->getUrl('someObjectId', 'someObjectType'));
+    }
+
     public function testGetUrlsByType(): void
     {
         $sut = $this->getSut();
