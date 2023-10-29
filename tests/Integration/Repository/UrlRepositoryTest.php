@@ -22,7 +22,7 @@ class UrlRepositoryTest extends IntegrationTestCase
             $objectType,
             new Url(
                 location: 'someLocation',
-                lastModified: 'modifiedDate',
+                lastModified: '2020-03-04 01:02:03',
                 changeFrequency: 'frequency',
                 priority: 0.3
             )
@@ -31,7 +31,7 @@ class UrlRepositoryTest extends IntegrationTestCase
         $url = $sut->getUrl($objectId, $objectType);
 
         $this->assertSame('someLocation', $url->getLocation());
-        $this->assertSame('modifiedDate', $url->getLastModified());
+        $this->assertSame('2020-03-04 01:02:03', $url->getLastModified());
         $this->assertSame('frequency', $url->getChangeFrequency());
         $this->assertSame(0.3, $url->getPriority());
     }

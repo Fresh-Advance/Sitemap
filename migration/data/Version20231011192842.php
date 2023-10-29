@@ -22,7 +22,7 @@ final class Version20231011192842 extends AbstractMigration
                 object_id VARCHAR(32),
                 object_type VARCHAR(32),
                 location VARCHAR(255),
-                modified VARCHAR(30),
+                modified TIMESTAMP,
                 frequency VARCHAR(10),
                 priority FLOAT,
                 added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
