@@ -1,0 +1,9 @@
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter:
+    tags:
+      - 'change_filter'
