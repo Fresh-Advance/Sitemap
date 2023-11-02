@@ -6,4 +6,4 @@ services:
 
   FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter:
     tags:
-      - 'change_filter'
+      - 'sitemap.change_filter'
