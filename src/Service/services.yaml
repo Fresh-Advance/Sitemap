@@ -16,7 +16,5 @@ services:
   FreshAdvance\Sitemap\Service\ModuleSettings:
     class: FreshAdvance\Sitemap\Service\ModuleSettings
 
-  FreshAdvance\Sitemap\Service\ChangeFilterInterface:
-    class: FreshAdvance\Sitemap\Service\ChangeFilter
-    args:
-      $filters: !tagged 'sitemap.change_filter'
+  FreshAdvance\Sitemap\Service\SynchronizerInterface:
+    class: FreshAdvance\Sitemap\Service\Synchronizer

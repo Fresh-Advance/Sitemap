@@ -7,3 +7,7 @@ services:
   FreshAdvance\Sitemap\Command\GenerateSitemapCommand:
     tags:
       - { name: 'console.command', command: 'fa:sitemap:generate' }
+
+  FreshAdvance\Sitemap\Command\UpdateTypeCommand:
+    tags:
+      - { name: 'console.command', command: 'fa:sitemap:update' }
