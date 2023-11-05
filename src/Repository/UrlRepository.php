@@ -4,7 +4,7 @@ namespace FreshAdvance\Sitemap\Repository;
 
 use Doctrine\DBAL\Result;
 use FreshAdvance\Sitemap\DataStructure\Url;
-use Generator;
+use FreshAdvance\Sitemap\DataStructure\UrlInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
 class UrlRepository implements UrlRepositoryInterface
@@ -14,7 +14,7 @@ class UrlRepository implements UrlRepositoryInterface
     ) {
     }
 
-    public function addUrl(string $objectId, string $objectType, Url $urlData): void
+    public function addUrl(string $objectId, string $objectType, UrlInterface $urlData): void
     {
         $connection = $this->queryBuilderFactory->create()->getConnection();
         $sql = "INSERT INTO fa_sitemap SET
@@ -40,7 +40,7 @@ class UrlRepository implements UrlRepositoryInterface
         ]);
     }
 
-    public function getUrl(string $objectId, string $objectType): ?Url
+    public function getUrl(string $objectId, string $objectType): ?UrlInterface
     {
         $queryBuilder = $this->queryBuilderFactory->create();
         $queryBuilder->select('*')
