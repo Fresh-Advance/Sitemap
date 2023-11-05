@@ -28,7 +28,11 @@ class SynchronizerTest extends \PHPUnit\Framework\TestCase
         $urlRepository->expects($matcher)
             ->method('addUrl')
             ->willReturnCallback(
-                function (string $objectId, string $objectType, UrlInterface $url) use (
+                function (
+                    string $objectId,
+                    string $objectType,
+                    UrlInterface $url
+                ) use (
                     $matcher,
                     $urlStub1,
                     $urlStub2

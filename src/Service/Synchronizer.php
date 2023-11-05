@@ -2,6 +2,7 @@
 
 namespace FreshAdvance\Sitemap\Service;
 
+use FreshAdvance\Sitemap\DataStructure\UrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 
 class Synchronizer implements SynchronizerInterface
@@ -15,6 +16,8 @@ class Synchronizer implements SynchronizerInterface
     public function updateTypeUrls(string $type): int
     {
         $filter = $this->filterService->getFilter($type);
+
+        /** @var iterable<string, UrlInterface> $urls */
         $urls = $filter->getUpdatedUrls(100);
 
         $count = 0;
