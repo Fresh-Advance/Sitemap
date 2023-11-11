@@ -3,6 +3,7 @@
 namespace FreshAdvance\Sitemap\Repository;
 
 use Doctrine\DBAL\Result;
+use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\Url;
 use FreshAdvance\Sitemap\DataStructure\UrlInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
@@ -14,7 +15,7 @@ class UrlRepository implements UrlRepositoryInterface
     ) {
     }
 
-    public function addUrl(string $objectId, string $objectType, UrlInterface $urlData): void
+    public function addObjectUrl(ObjectUrlInterface $objectUrl): void
     {
         $connection = $this->queryBuilderFactory->create()->getConnection();
         $sql = "INSERT INTO fa_sitemap SET
@@ -30,13 +31,14 @@ class UrlRepository implements UrlRepositoryInterface
                   frequency = :frequency,
                   priority = :priority";
 
+        $url = $objectUrl->getUrl();
         $connection->executeQuery($sql, [
-            'object_id' => $objectId,
-            'object_type' => $objectType,
-            'location' => $urlData->getLocation(),
-            'modified' => $urlData->getLastModified(),
-            'frequency' => $urlData->getChangeFrequency(),
-            'priority' => $urlData->getPriority()
+            'object_id' => $objectUrl->getObjectId(),
+            'object_type' => $objectUrl->getObjectType(),
+            'location' => $url->getLocation(),
+            'modified' => $url->getLastModified(),
+            'frequency' => $url->getChangeFrequency(),
+            'priority' => $url->getPriority()
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
 
+use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\Url;
 use FreshAdvance\Sitemap\DataStructure\UrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepository;
@@ -16,15 +17,18 @@ class UrlRepositoryTest extends IntegrationTestCase
 
         $objectId = 'exampleObjectId';
         $objectType = 'exampleObjectType';
+        $url = new Url(
+            location: 'someLocation',
+            lastModified: '2020-03-04 01:02:03',
+            changeFrequency: 'frequency',
+            priority: 0.3
+        );
 
-        $sut->addUrl(
-            $objectId,
-            $objectType,
-            new Url(
-                location: 'someLocation',
-                lastModified: '2020-03-04 01:02:03',
-                changeFrequency: 'frequency',
-                priority: 0.3
+        $sut->addObjectUrl(
+            new ObjectUrl(
+                objectId: $objectId,
+                objectType: $objectType,
+                url: $url,
             )
         );
 
@@ -48,14 +52,16 @@ class UrlRepositoryTest extends IntegrationTestCase
         $objectType = 'someType';
 
         for ($i = 1; $i <= 10; $i++) {
-            $sut->addUrl(
-                'exampleObject' . $i,
-                $objectType,
-                new Url(
-                    location: 'someLocation' . $i,
-                    lastModified: 'modifiedDate',
-                    changeFrequency: 'frequency',
-                    priority: 0.3
+            $sut->addObjectUrl(
+                new ObjectUrl(
+                    objectId: 'exampleObject' . $i,
+                    objectType: $objectType,
+                    url: new Url(
+                        location: 'someLocation' . $i,
+                        lastModified: 'modifiedDate',
+                        changeFrequency: 'frequency',
+                        priority: 0.3
+                    )
                 )
             );
         }

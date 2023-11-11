@@ -3,6 +3,7 @@
 namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
 
 use Doctrine\DBAL\Connection;
+use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\Url;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter;
@@ -39,14 +40,16 @@ class ContentChangeFilterTest extends IntegrationTestCase
     {
         /** @var UrlRepositoryInterface $urlRepository */
         $urlRepository = $this->get(UrlRepositoryInterface::class);
-        $urlRepository->addUrl(
-            objectId: 'someId',
-            objectType: $type,
-            urlData: new Url(
-                location: 'example',
-                lastModified: $date,
-                changeFrequency: 'frequency',
-                priority: 1
+        $urlRepository->addObjectUrl(
+            new ObjectUrl(
+                objectId: 'someId',
+                objectType: $type,
+                url: new Url(
+                    location: 'example',
+                    lastModified: $date,
+                    changeFrequency: 'frequency',
+                    priority: 1
+                )
             )
         );
     }

@@ -2,6 +2,7 @@
 
 namespace FreshAdvance\Sitemap\Service;
 
+use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\UrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 
@@ -23,7 +24,13 @@ class Synchronizer implements SynchronizerInterface
         $count = 0;
         foreach ($urls as $key => $oneUrl) {
             $count++;
-            $this->urlRepository->addUrl($key, $type, $oneUrl);
+            $this->urlRepository->addObjectUrl(
+                new ObjectUrl(
+                    objectId: $key,
+                    objectType: $type,
+                    url: $oneUrl
+                )
+            );
         }
 
         return $count;

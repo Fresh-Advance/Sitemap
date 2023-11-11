@@ -3,6 +3,7 @@
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
 use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
+use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\UrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\Service\FilterServiceInterface;
@@ -26,26 +27,24 @@ class SynchronizerTest extends \PHPUnit\Framework\TestCase
         $urlRepository = $this->createMock(UrlRepositoryInterface::class);
         $matcher = $this->exactly(2);
         $urlRepository->expects($matcher)
-            ->method('addUrl')
+            ->method('addObjectUrl')
             ->willReturnCallback(
                 function (
-                    string $objectId,
-                    string $objectType,
-                    UrlInterface $url
+                    ObjectUrlInterface $objectUrl
                 ) use (
                     $matcher,
                     $urlStub1,
                     $urlStub2
                 ) {
-                    $this->assertEquals('someType', $objectType);
+                    $this->assertEquals('someType', $objectUrl->getObjectType());
                     switch ($matcher->getInvocationCount()) {
                         case "1":
-                            $this->assertEquals('urlKey1', $objectId);
-                            $this->assertEquals($urlStub1, $url);
+                            $this->assertEquals('urlKey1', $objectUrl->getObjectId());
+                            $this->assertEquals($urlStub1, $objectUrl->getUrl());
                             break;
                         case "2":
-                            $this->assertEquals('urlKey2', $objectId);
-                            $this->assertEquals($urlStub2, $url);
+                            $this->assertEquals('urlKey2', $objectUrl->getObjectId());
+                            $this->assertEquals($urlStub2, $objectUrl->getUrl());
                             break;
                         default:
                             $this->fail("Fail");
