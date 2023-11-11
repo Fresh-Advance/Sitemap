@@ -2,6 +2,7 @@
 
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
+use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\UrlInterface;
 use FreshAdvance\Sitemap\Service\XmlGenerator;
 
@@ -31,8 +32,15 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
 
     public function testGenerateSitemapContent(): void
     {
+        $urlStub = $this->createStub(UrlInterface::class);
+        $objectUrlStub = $this->createStub(ObjectUrlInterface::class);
+        $objectUrlStub->method('getUrl')->willReturn($urlStub);
+
         $sut = $this->createPartialMock(XmlGenerator::class, ['generateUrlItem']);
-        $sut->expects($this->exactly(3))->method('generateUrlItem')->willReturn("ItemContent");
+        $sut->expects($this->exactly(3))
+            ->method('generateUrlItem')
+            ->with($urlStub)
+            ->willReturn("ItemContent");
 
         $expectation = implode("", [
             '<?xml version="1.0" encoding="UTF-8"?>',
@@ -44,9 +52,9 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $items = [
-            $this->createStub(UrlInterface::class),
-            $this->createStub(UrlInterface::class),
-            $this->createStub(UrlInterface::class),
+            $objectUrlStub,
+            $objectUrlStub,
+            $objectUrlStub,
         ];
 
         $this->assertSame($expectation, $sut->generateSitemapDocument($items));

@@ -3,6 +3,7 @@
 namespace FreshAdvance\Sitemap\Repository;
 
 use Doctrine\DBAL\Result;
+use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\Url;
 use FreshAdvance\Sitemap\DataStructure\UrlInterface;
@@ -88,11 +89,15 @@ class UrlRepository implements UrlRepositoryInterface
 
         while ($data = $result->fetchAssociative()) {
             /** @var array<string, int|string|bool> $data */
-            yield new Url(
-                location: (string)$data['location'],
-                lastModified: (string)$data['modified'],
-                changeFrequency: (string)$data['frequency'],
-                priority: (float)$data['priority'],
+            yield new ObjectUrl(
+                objectId: (string)$data['object_id'],
+                objectType: $objectType,
+                url: new Url(
+                    location: (string)$data['location'],
+                    lastModified: (string)$data['modified'],
+                    changeFrequency: (string)$data['frequency'],
+                    priority: (float)$data['priority'],
+                )
             );
         }
     }

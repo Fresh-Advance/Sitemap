@@ -12,7 +12,7 @@ interface UrlRepositoryInterface
     public function getUrl(string $objectId, string $objectType): ?UrlInterface;
 
     /**
-     * @return iterable<UrlInterface>
+     * @return iterable<ObjectUrlInterface>
      */
     public function getUrlsByType(string $objectType, int $page, int $perPage): iterable;
 }

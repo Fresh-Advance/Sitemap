@@ -28,13 +28,16 @@ class XmlGenerator implements XmlGeneratorInterface
         return "<{$tag}{$attributes}>" . $data . "</{$tag}>";
     }
 
+    /**
+     * @inheritDoc
+     */
     public function generateSitemapDocument(iterable $items): string
     {
         $document = '<?xml version="1.0" encoding="UTF-8"?>';
 
         $urlBlocks = [];
         foreach ($items as $oneItem) {
-            $urlBlocks[] = $this->generateUrlItem($oneItem);
+            $urlBlocks[] = $this->generateUrlItem($oneItem->getUrl());
         }
 
         return $document

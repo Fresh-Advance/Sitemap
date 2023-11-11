@@ -3,6 +3,7 @@
 namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
 
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
+use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\Url;
 use FreshAdvance\Sitemap\DataStructure\UrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepository;
@@ -70,8 +71,14 @@ class UrlRepositoryTest extends IntegrationTestCase
         $count = 0;
         /** @var UrlInterface $oneUrlItem */
         foreach ($sut->getUrlsByType($objectType, 2, 3) as $oneUrlItem) {
-            $this->assertSame('someLocation' . ($startId++), $oneUrlItem->getLocation());
+            $this->assertInstanceOf(ObjectUrlInterface::class, $oneUrlItem);
+
+            $this->assertSame('exampleObject' . $startId, $oneUrlItem->getObjectId());
+            $this->assertSame($objectType, $oneUrlItem->getObjectType());
+            $this->assertSame('someLocation' . $startId, $oneUrlItem->getUrl()->getLocation());
+
             $count++;
+            $startId++;
         }
 
         $this->assertSame(3, $count);
