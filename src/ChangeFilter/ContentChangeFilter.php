@@ -3,6 +3,7 @@
 namespace FreshAdvance\Sitemap\ChangeFilter;
 
 use Doctrine\DBAL\Connection;
+use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\Url;
 use OxidEsales\Eshop\Application\Model\Content;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
@@ -39,11 +40,15 @@ class ContentChangeFilter implements ChangeFilterInterface
             $item = oxNew(Content::class);
             $item->load((string)$data['OXID']); // @phpstan-ignore-line
 
-            yield $item->getId() => new Url(
-                location: (string)$item->getLink(),
-                lastModified: (string)$item->getFieldData('oxtimestamp'), // @phpstan-ignore-line
-                changeFrequency: 'never',
-                priority: 0.5
+            yield new ObjectUrl(
+                objectId: $item->getId(),
+                objectType: 'content',
+                url: new Url(
+                    location: (string)$item->getLink(),
+                    lastModified: (string)$item->getFieldData('oxtimestamp'), // @phpstan-ignore-line
+                    changeFrequency: 'never',
+                    priority: 0.5
+                )
             );
         }
     }

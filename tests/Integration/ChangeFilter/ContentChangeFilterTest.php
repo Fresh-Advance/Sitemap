@@ -4,6 +4,7 @@ namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
 
 use Doctrine\DBAL\Connection;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
+use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\Url;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter;
@@ -27,11 +28,13 @@ class ContentChangeFilterTest extends IntegrationTestCase
 
         /** @var ContentChangeFilter $sut */
         $sut = $this->get(ContentChangeFilter::class);
-
         $urls = $sut->getUpdatedUrls(2);
-        $this->checkCurrentUrlItem($urls, 'example1');
+
+        $this->checkCurrentUrlItem($urls->current(), 'example1');
+
         $urls->next();
-        $this->checkCurrentUrlItem($urls, 'example2');
+        $this->checkCurrentUrlItem($urls->current(), 'example2');
+
         $urls->next();
         $this->assertNull($urls->current());
     }
@@ -65,14 +68,14 @@ class ContentChangeFilterTest extends IntegrationTestCase
         $content->save();
     }
 
-    protected function checkCurrentUrlItem(\Generator $urls, string $value): void
+    protected function checkCurrentUrlItem(ObjectUrlInterface $objectUrl, string $value): void
     {
-        /** @var Url $nextUrl */
-        $nextUrl = $urls->current();
-        $this->assertSame($value, $urls->key());
-        $this->assertSame('http://localhost.local/' . $value . '/', $nextUrl->getLocation());
-        $this->assertNotEmpty($nextUrl->getLastModified());
-        $this->assertSame('never', $nextUrl->getChangeFrequency());
-        $this->assertSame(0.5, $nextUrl->getPriority());
+        $this->assertSame('content', $objectUrl->getObjectType());
+
+        $url = $objectUrl->getUrl();
+        $this->assertSame('http://localhost.local/' . $value . '/', $url->getLocation());
+        $this->assertNotEmpty($url->getLastModified());
+        $this->assertSame('never', $url->getChangeFrequency());
+        $this->assertSame(0.5, $url->getPriority());
     }
 }

@@ -16,8 +16,8 @@ class SynchronizerTest extends \PHPUnit\Framework\TestCase
         $filterStub = $this->createMock(ChangeFilterInterface::class);
         $filterStub->method('getUpdatedUrls')->willReturn(
             $this->arrayAsGenerator([
-                'urlKey1' => $urlStub1 = $this->createStub(UrlInterface::class),
-                'urlKey2' => $urlStub2 = $this->createStub(UrlInterface::class)
+                $objectUrlStub1 = $this->createStub(ObjectUrlInterface::class),
+                $objectUrlStub2 = $this->createStub(ObjectUrlInterface::class)
             ])
         );
 
@@ -33,18 +33,15 @@ class SynchronizerTest extends \PHPUnit\Framework\TestCase
                     ObjectUrlInterface $objectUrl
                 ) use (
                     $matcher,
-                    $urlStub1,
-                    $urlStub2
+                    $objectUrlStub1,
+                    $objectUrlStub2
                 ) {
-                    $this->assertEquals('someType', $objectUrl->getObjectType());
                     switch ($matcher->getInvocationCount()) {
                         case "1":
-                            $this->assertEquals('urlKey1', $objectUrl->getObjectId());
-                            $this->assertEquals($urlStub1, $objectUrl->getUrl());
+                            $this->assertEquals($objectUrlStub1, $objectUrl);
                             break;
                         case "2":
-                            $this->assertEquals('urlKey2', $objectUrl->getObjectId());
-                            $this->assertEquals($urlStub2, $objectUrl->getUrl());
+                            $this->assertEquals($objectUrlStub2, $objectUrl);
                             break;
                         default:
                             $this->fail("Fail");

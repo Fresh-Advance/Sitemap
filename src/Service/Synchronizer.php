@@ -17,20 +17,12 @@ class Synchronizer implements SynchronizerInterface
     public function updateTypeUrls(string $type): int
     {
         $filter = $this->filterService->getFilter($type);
-
-        /** @var iterable<string, UrlInterface> $urls */
         $urls = $filter->getUpdatedUrls(100);
 
         $count = 0;
-        foreach ($urls as $key => $oneUrl) {
+        foreach ($urls as $oneObjectUrl) {
+            $this->urlRepository->addObjectUrl($oneObjectUrl);
             $count++;
-            $this->urlRepository->addObjectUrl(
-                new ObjectUrl(
-                    objectId: $key,
-                    objectType: $type,
-                    url: $oneUrl
-                )
-            );
         }
 
         return $count;

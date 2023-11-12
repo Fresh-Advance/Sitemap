@@ -2,9 +2,14 @@
 
 namespace FreshAdvance\Sitemap\ChangeFilter;
 
+use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
+
 interface ChangeFilterInterface
 {
     public function getObjectType(): string;
 
-    public function getUpdatedUrls(int $limit): \Generator;
+    /**
+     * @return iterable<ObjectUrlInterface>
+     */
+    public function getUpdatedUrls(int $limit): iterable;
 }
