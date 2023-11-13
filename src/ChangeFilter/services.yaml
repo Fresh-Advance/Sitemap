@@ -4,6 +4,11 @@ services:
     public: false
     autowire: true
 
+  FreshAdvance\Sitemap\ChangeFilter\FilterServiceInterface:
+    class: FreshAdvance\Sitemap\ChangeFilter\FilterService
+    arguments:
+      $filters: !tagged 'sitemap.change_filter'
+
   FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter:
     tags:
       - 'sitemap.change_filter'

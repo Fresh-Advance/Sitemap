@@ -18,8 +18,3 @@ services:
 
   FreshAdvance\Sitemap\Service\SynchronizerInterface:
     class: FreshAdvance\Sitemap\Service\Synchronizer
-
-  FreshAdvance\Sitemap\Service\FilterServiceInterface:
-    class: FreshAdvance\Sitemap\Service\FilterService
-    arguments:
-      $filters: !tagged 'sitemap.change_filter'

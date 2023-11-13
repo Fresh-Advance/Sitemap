@@ -2,8 +2,7 @@
 
 namespace FreshAdvance\Sitemap\Service;
 
-use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
-use FreshAdvance\Sitemap\DataStructure\UrlInterface;
+use FreshAdvance\Sitemap\ChangeFilter\FilterServiceInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 
 class Synchronizer implements SynchronizerInterface

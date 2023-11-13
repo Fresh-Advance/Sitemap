@@ -6,7 +6,7 @@ use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\UrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
-use FreshAdvance\Sitemap\Service\FilterServiceInterface;
+use FreshAdvance\Sitemap\ChangeFilter\FilterServiceInterface;
 use FreshAdvance\Sitemap\Service\Synchronizer;
 
 class SynchronizerTest extends \PHPUnit\Framework\TestCase

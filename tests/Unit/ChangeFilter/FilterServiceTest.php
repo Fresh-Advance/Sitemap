@@ -1,11 +1,11 @@
 <?php
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Service;
+namespace ChangeFilter;
 
 use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
+use FreshAdvance\Sitemap\ChangeFilter\FilterService;
 use FreshAdvance\Sitemap\Exception\FilterConfigurationException;
 use FreshAdvance\Sitemap\Exception\FilterNotFoundException;
-use FreshAdvance\Sitemap\Service\FilterService;
 
 class FilterServiceTest extends \PHPUnit\Framework\TestCase
 {
@@ -28,14 +28,14 @@ class FilterServiceTest extends \PHPUnit\Framework\TestCase
     {
         $this->expectException(FilterConfigurationException::class);
 
-        new FilterService([
+        new \FreshAdvance\Sitemap\ChangeFilter\FilterService([
             new \stdClass()
         ]);
     }
 
     public function testFilterNotFound(): void
     {
-        $sut = new FilterService([]);
+        $sut = new \FreshAdvance\Sitemap\ChangeFilter\FilterService([]);
 
         $this->expectException(FilterNotFoundException::class);
         $sut->getFilter('unknown');

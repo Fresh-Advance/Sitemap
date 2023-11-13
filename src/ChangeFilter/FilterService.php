@@ -1,8 +1,7 @@
 <?php
 
-namespace FreshAdvance\Sitemap\Service;
+namespace FreshAdvance\Sitemap\ChangeFilter;
 
-use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
 use FreshAdvance\Sitemap\Exception\FilterConfigurationException;
 use FreshAdvance\Sitemap\Exception\FilterNotFoundException;
 

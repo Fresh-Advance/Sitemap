@@ -1,8 +1,6 @@
 <?php
 
-namespace FreshAdvance\Sitemap\Service;
-
-use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
+namespace FreshAdvance\Sitemap\ChangeFilter;
 
 interface FilterServiceInterface
 {
