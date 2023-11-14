@@ -4,7 +4,7 @@ namespace FreshAdvance\Sitemap\ChangeFilter;
 
 use Doctrine\DBAL\Connection;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
-use FreshAdvance\Sitemap\DataStructure\Url;
+use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use OxidEsales\Eshop\Application\Model\Content;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 
@@ -43,7 +43,7 @@ class ContentChangeFilter implements ChangeFilterInterface
             yield new ObjectUrl(
                 objectId: $item->getId(),
                 objectType: 'content',
-                url: new Url(
+                url: new PageUrl(
                     location: (string)$item->getLink(),
                     lastModified: (string)$item->getFieldData('oxtimestamp'), // @phpstan-ignore-line
                     changeFrequency: 'never',

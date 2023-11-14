@@ -4,7 +4,7 @@ namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
 use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\UrlInterface;
+use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\ChangeFilter\FilterServiceInterface;
 use FreshAdvance\Sitemap\Service\Synchronizer;

@@ -8,5 +8,5 @@ interface ObjectUrlInterface
 
     public function getObjectType(): string;
 
-    public function getUrl(): UrlInterface;
+    public function getUrl(): PageUrlInterface;
 }

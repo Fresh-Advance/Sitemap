@@ -2,15 +2,16 @@
 
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
+use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\UrlInterface;
+use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\Service\XmlGenerator;
 
 class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
 {
     public function testGenerateUrlItem(): void
     {
-        $urlStub = $this->createConfiguredMock(UrlInterface::class, [
+        $urlStub = $this->createConfiguredMock(PageUrlInterface::class, [
             'getLocation' => 'someLocation',
             'getLastModified' => 'lastModifiedDate',
             'getChangeFrequency' => 'someFrequency',
@@ -30,11 +31,27 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expectation, $sut->generateUrlItem($urlStub));
     }
 
+    public function testGenerateSitemapItem(): void
+    {
+        $urlStub = $this->createConfiguredMock(SitemapUrlInterface::class, [
+            'getLocation' => 'someLocation',
+            'getLastModified' => 'lastModifiedDate'
+        ]);
+
+        $expectation = implode("", [
+            "<sitemap>",
+            "<loc>someLocation</loc>",
+            "<lastmod>lastModifiedDate</lastmod>",
+            "</sitemap>",
+        ]);
+
+        $sut = $this->createPartialMock(XmlGenerator::class, []);
+        $this->assertSame($expectation, $sut->generateSitemapItem($urlStub));
+    }
+
     public function testGenerateSitemapContent(): void
     {
-        $urlStub = $this->createStub(UrlInterface::class);
-        $objectUrlStub = $this->createStub(ObjectUrlInterface::class);
-        $objectUrlStub->method('getUrl')->willReturn($urlStub);
+        $urlStub = $this->createStub(PageUrlInterface::class);
 
         $sut = $this->createPartialMock(XmlGenerator::class, ['generateUrlItem']);
         $sut->expects($this->exactly(3))
@@ -52,11 +69,39 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $items = [
-            $objectUrlStub,
-            $objectUrlStub,
-            $objectUrlStub,
+            $urlStub,
+            $urlStub,
+            $urlStub,
         ];
 
         $this->assertSame($expectation, $sut->generateSitemapDocument($items));
+    }
+
+    public function testGenerateSitemapIndexContent(): void
+    {
+        $sitemapUrl = $this->createStub(SitemapUrlInterface::class);
+
+        $sut = $this->createPartialMock(XmlGenerator::class, ['generateSitemapItem']);
+        $sut->expects($this->exactly(3))
+            ->method('generateSitemapItem')
+            ->with($sitemapUrl)
+            ->willReturn("SitemapItemContent");
+
+        $expectation = implode("", [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<sitemapindex xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">',
+            'SitemapItemContent',
+            'SitemapItemContent',
+            'SitemapItemContent',
+            '</sitemapindex>'
+        ]);
+
+        $items = [
+            $sitemapUrl,
+            $sitemapUrl,
+            $sitemapUrl,
+        ];
+
+        $this->assertSame($expectation, $sut->generateSitemapIndexDocument($items));
     }
 }

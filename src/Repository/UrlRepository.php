@@ -5,8 +5,8 @@ namespace FreshAdvance\Sitemap\Repository;
 use Doctrine\DBAL\Result;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\Url;
-use FreshAdvance\Sitemap\DataStructure\UrlInterface;
+use FreshAdvance\Sitemap\DataStructure\PageUrl;
+use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
 class UrlRepository implements UrlRepositoryInterface
@@ -43,7 +43,7 @@ class UrlRepository implements UrlRepositoryInterface
         ]);
     }
 
-    public function getUrl(string $objectId, string $objectType): ?UrlInterface
+    public function getUrl(string $objectId, string $objectType): ?PageUrlInterface
     {
         $queryBuilder = $this->queryBuilderFactory->create();
         $queryBuilder->select('*')
@@ -60,7 +60,7 @@ class UrlRepository implements UrlRepositoryInterface
         /** @var false|array<string, int|string|bool> $data */
         $data = $result->fetchAssociative();
         if (is_array($data)) {
-            return new Url(
+            return new PageUrl(
                 location: (string)$data['location'],
                 lastModified: (string)$data['modified'],
                 changeFrequency: (string)$data['frequency'],
@@ -89,15 +89,11 @@ class UrlRepository implements UrlRepositoryInterface
 
         while ($data = $result->fetchAssociative()) {
             /** @var array<string, int|string|bool> $data */
-            yield new ObjectUrl(
-                objectId: (string)$data['object_id'],
-                objectType: $objectType,
-                url: new Url(
-                    location: (string)$data['location'],
-                    lastModified: (string)$data['modified'],
-                    changeFrequency: (string)$data['frequency'],
-                    priority: (float)$data['priority'],
-                )
+            yield new PageUrl(
+                location: (string)$data['location'],
+                lastModified: (string)$data['modified'],
+                changeFrequency: (string)$data['frequency'],
+                priority: (float)$data['priority'],
             );
         }
     }

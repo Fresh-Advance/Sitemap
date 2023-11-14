@@ -7,7 +7,7 @@ class ObjectUrl implements ObjectUrlInterface
     public function __construct(
         private string $objectId,
         private string $objectType,
-        private UrlInterface $url
+        private PageUrlInterface $url
     ) {
     }
 
@@ -21,7 +21,7 @@ class ObjectUrl implements ObjectUrlInterface
         return $this->objectType;
     }
 
-    public function getUrl(): UrlInterface
+    public function getUrl(): PageUrlInterface
     {
         return $this->url;
     }

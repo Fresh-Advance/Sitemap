@@ -4,8 +4,8 @@ namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
 
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\Url;
-use FreshAdvance\Sitemap\DataStructure\UrlInterface;
+use FreshAdvance\Sitemap\DataStructure\PageUrl;
+use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepository;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
@@ -18,7 +18,7 @@ class UrlRepositoryTest extends IntegrationTestCase
 
         $objectId = 'exampleObjectId';
         $objectType = 'exampleObjectType';
-        $url = new Url(
+        $url = new PageUrl(
             location: 'someLocation',
             lastModified: '2020-03-04 01:02:03',
             changeFrequency: 'frequency',
@@ -57,7 +57,7 @@ class UrlRepositoryTest extends IntegrationTestCase
                 new ObjectUrl(
                     objectId: 'exampleObject' . $i,
                     objectType: $objectType,
-                    url: new Url(
+                    url: new PageUrl(
                         location: 'someLocation' . $i,
                         lastModified: 'modifiedDate',
                         changeFrequency: 'frequency',
@@ -69,13 +69,10 @@ class UrlRepositoryTest extends IntegrationTestCase
 
         $startId = 4;
         $count = 0;
-        /** @var UrlInterface $oneUrlItem */
+        /** @var PageUrlInterface $oneUrlItem */
         foreach ($sut->getUrlsByType($objectType, 2, 3) as $oneUrlItem) {
-            $this->assertInstanceOf(ObjectUrlInterface::class, $oneUrlItem);
-
-            $this->assertSame('exampleObject' . $startId, $oneUrlItem->getObjectId());
-            $this->assertSame($objectType, $oneUrlItem->getObjectType());
-            $this->assertSame('someLocation' . $startId, $oneUrlItem->getUrl()->getLocation());
+            $this->assertInstanceOf(PageUrlInterface::class, $oneUrlItem);
+            $this->assertSame('someLocation' . $startId, $oneUrlItem->getLocation());
 
             $count++;
             $startId++;

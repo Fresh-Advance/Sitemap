@@ -2,12 +2,8 @@
 
 namespace FreshAdvance\Sitemap\DataStructure;
 
-interface UrlInterface
+interface PageUrlInterface extends SitemapUrlInterface
 {
-    public function getLocation(): string;
-
-    public function getLastModified(): string;
-
     public function getChangeFrequency(): string;
 
     public function getPriority(): float;

@@ -2,9 +2,9 @@
 
 namespace FreshAdvance\Sitemap\Tests\Unit\DataStructure;
 
-use FreshAdvance\Sitemap\DataStructure\Url;
+use FreshAdvance\Sitemap\DataStructure\PageUrl;
 
-class UrlTest extends \PHPUnit\Framework\TestCase
+class PageUrlTest extends \PHPUnit\Framework\TestCase
 {
     public function testMainGetters(): void
     {
@@ -13,7 +13,7 @@ class UrlTest extends \PHPUnit\Framework\TestCase
         $changeFrequencyExample = 'someChangeFrequency';
         $examplePriority = 0.5;
 
-        $sut = new Url(
+        $sut = new PageUrl(
             location: $locationExample,
             lastModified: $lastModifiedExample,
             changeFrequency: $changeFrequencyExample,

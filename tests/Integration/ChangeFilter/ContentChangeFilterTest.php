@@ -5,7 +5,7 @@ namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
 use Doctrine\DBAL\Connection;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\Url;
+use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter;
 use OxidEsales\EshopCommunity\Application\Model\Content;
@@ -47,7 +47,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
             new ObjectUrl(
                 objectId: 'someId',
                 objectType: $type,
-                url: new Url(
+                url: new PageUrl(
                     location: 'example',
                     lastModified: $date,
                     changeFrequency: 'frequency',

@@ -2,7 +2,7 @@
 
 namespace FreshAdvance\Sitemap\DataStructure;
 
-class Url implements UrlInterface
+class PageUrl extends SitemapUrl implements PageUrlInterface
 {
     public function __construct(
         protected string $location,
@@ -10,6 +10,10 @@ class Url implements UrlInterface
         protected string $changeFrequency,
         protected float $priority
     ) {
+        parent::__construct(
+            location: $this->location,
+            lastModified: $this->lastModified
+        );
     }
 
     public function getLocation(): string
