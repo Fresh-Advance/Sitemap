@@ -6,6 +6,9 @@ use FreshAdvance\Sitemap\Command\GenerateSitemapCommand;
 use FreshAdvance\Sitemap\Service\Sitemap;
 use Symfony\Component\Console\Tester\CommandTester;
 
+/**
+ * @covers \FreshAdvance\Sitemap\Command\GenerateSitemapCommand
+ */
 class GenerateSitemapCommandTest extends \PHPUnit\Framework\TestCase
 {
     public function testCallSitemapCreationService(): void

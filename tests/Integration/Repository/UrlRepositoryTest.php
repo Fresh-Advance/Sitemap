@@ -3,13 +3,15 @@
 namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
 
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepository;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
+/**
+ * @covers \FreshAdvance\Sitemap\Repository\UrlRepository
+ */
 class UrlRepositoryTest extends IntegrationTestCase
 {
     public function testSaveAndThenGetUrl(): void

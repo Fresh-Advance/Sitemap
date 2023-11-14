@@ -2,11 +2,13 @@
 
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
-use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
+use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Service\XmlGenerator;
 
+/**
+ * @covers \FreshAdvance\Sitemap\Service\XmlGenerator
+ */
 class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
 {
     public function testGenerateUrlItem(): void

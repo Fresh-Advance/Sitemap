@@ -4,6 +4,9 @@ namespace DataStructure;
 
 use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
 
+/**
+ * @covers \FreshAdvance\Sitemap\DataStructure\SitemapUrl
+ */
 class SitemapUrlTest extends \PHPUnit\Framework\TestCase
 {
     public function testMainGetters(): void

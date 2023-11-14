@@ -7,6 +7,9 @@ use FreshAdvance\Sitemap\Service\Filesystem;
 use FreshAdvance\Sitemap\Service\Sitemap;
 use FreshAdvance\Sitemap\Service\XmlGeneratorInterface;
 
+/**
+ * @covers \FreshAdvance\Sitemap\Service\Sitemap
+ */
 class SitemapTest extends \PHPUnit\Framework\TestCase
 {
     public function testGenerateSitemap(): void

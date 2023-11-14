@@ -3,12 +3,14 @@
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
 use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
-use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\ChangeFilter\FilterServiceInterface;
+use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
+use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\Service\Synchronizer;
 
+/**
+ * @covers \FreshAdvance\Sitemap\Service\Synchronizer
+ */
 class SynchronizerTest extends \PHPUnit\Framework\TestCase
 {
     public function testUpdateIteratesOverUrlsAndUpdatesThemThroughRepository(): void

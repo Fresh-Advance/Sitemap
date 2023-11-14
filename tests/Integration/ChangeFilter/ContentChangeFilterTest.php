@@ -3,15 +3,18 @@
 namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
 
 use Doctrine\DBAL\Connection;
+use FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
-use FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter;
 use OxidEsales\EshopCommunity\Application\Model\Content;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
+/**
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter
+ */
 class ContentChangeFilterTest extends IntegrationTestCase
 {
     public function testCheckCurrentUrlItem(): void

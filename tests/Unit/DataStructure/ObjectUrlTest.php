@@ -5,6 +5,9 @@ namespace FreshAdvance\Sitemap\Tests\Unit\DataStructure;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 
+/**
+ * @covers \FreshAdvance\Sitemap\DataStructure\ObjectUrl
+ */
 class ObjectUrlTest extends \PHPUnit\Framework\TestCase
 {
     public function testMainGetters(): void

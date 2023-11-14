@@ -6,6 +6,9 @@ use FreshAdvance\Sitemap\Service\Filesystem;
 use FreshAdvance\Sitemap\Service\ModuleSettings;
 use org\bovigo\vfs\vfsStream;
 
+/**
+ * @covers \FreshAdvance\Sitemap\Service\Filesystem
+ */
 class FilesystemTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateSitemapFile(): void
