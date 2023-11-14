@@ -14,4 +14,16 @@ class Filesystem
         $filePath = $this->moduleSettings->getSitemapDirectory() . DIRECTORY_SEPARATOR . $fileName;
         file_put_contents($filePath, $content);
     }
+
+    public function cleanupSitemapFiles(): void
+    {
+        $sitemapDirectory = $this->moduleSettings->getSitemapDirectory();
+        $allFiles = scandir($sitemapDirectory);
+
+        foreach ($allFiles as $oneFile) {
+            if (preg_match("@^sitemap.*?\.xml(\.gz)?$@si", $oneFile)) {
+                unlink($sitemapDirectory . DIRECTORY_SEPARATOR . $oneFile);
+            }
+        }
+    }
 }
