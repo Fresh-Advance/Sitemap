@@ -14,5 +14,7 @@ interface UrlRepositoryInterface
     /**
      * @return iterable<PageUrlInterface>
      */
-    public function getUrlsByType(string $objectType, int $page, int $perPage): iterable;
+    public function getUrls(int $page, int $perPage): iterable;
+
+    public function getUrlsCount(): int;
 }

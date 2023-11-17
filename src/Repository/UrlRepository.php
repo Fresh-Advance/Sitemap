@@ -97,4 +97,18 @@ class UrlRepository implements UrlRepositoryInterface
             );
         }
     }
+
+    public function getUrlsCount(): int
+    {
+        $queryBuilder = $this->queryBuilderFactory->create();
+        $queryBuilder->select('count(*)')->from('fa_sitemap');
+
+        /** @var Result $queryResult */
+        $queryResult = $queryBuilder->execute();
+
+        /** @var int|string|null|false $value */
+        $value = $queryResult->fetchOne();
+
+        return (int)$value;
+    }
 }

@@ -81,6 +81,8 @@ class UrlRepositoryTest extends IntegrationTestCase
         }
 
         $this->assertSame(3, $count);
+
+        $this->assertSame(10, $sut->getUrlsCount());
     }
 
     protected function getSut(): UrlRepository
