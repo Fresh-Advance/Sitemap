@@ -2,10 +2,10 @@
 
 namespace FreshAdvance\Sitemap\Service;
 
-class ModuleSettings
+class ModuleSettings implements ModuleSettingsInterface
 {
-    public function getSitemapDirectory(): string
+    public function getSitemapInSourceDirectory(): string
     {
-        return './source/';
+        return 'sitemap';
     }
 }

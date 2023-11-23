@@ -2,11 +2,13 @@
 
 namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
 
+use Doctrine\DBAL\Connection;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepository;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
+use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
@@ -49,16 +51,18 @@ class UrlRepositoryTest extends IntegrationTestCase
         $this->assertNull($sut->getUrl('someObjectId', 'someObjectType'));
     }
 
-    public function testGetUrlsByType(): void
+    public function testGetUrlsByTypeAndUrlsCounter(): void
     {
-        $sut = $this->getSut();
-        $objectType = 'someType';
+        /** @var Connection $connection */
+        $connection = $this->get(ConnectionProviderInterface::class)->get();
+        $connection->executeQuery("delete from fa_sitemap");
 
+        $sut = $this->getSut();
         for ($i = 1; $i <= 10; $i++) {
             $sut->addObjectUrl(
                 new ObjectUrl(
                     objectId: 'exampleObject' . $i,
-                    objectType: $objectType,
+                    objectType: 'someType',
                     url: new PageUrl(
                         location: 'someLocation' . $i,
                         lastModified: 'modifiedDate',
@@ -72,7 +76,7 @@ class UrlRepositoryTest extends IntegrationTestCase
         $startId = 4;
         $count = 0;
         /** @var PageUrlInterface $oneUrlItem */
-        foreach ($sut->getUrlsByType($objectType, 2, 3) as $oneUrlItem) {
+        foreach ($sut->getUrls(2, 3) as $oneUrlItem) {
             $this->assertInstanceOf(PageUrlInterface::class, $oneUrlItem);
             $this->assertSame('someLocation' . $startId, $oneUrlItem->getLocation());
 

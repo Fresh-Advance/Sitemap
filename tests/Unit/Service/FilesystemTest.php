@@ -15,19 +15,18 @@ class FilesystemTest extends \PHPUnit\Framework\TestCase
     {
         $vfs = vfsStream::setup();
 
-        $moduleSettings = $this->createConfiguredMock(ModuleSettings::class, [
-            'getSitemapDirectory' => $vfs->url()
-        ]);
+        $fileName = 'filename.xml';
+        $directory = $vfs->url();
+        $exampleContent = 'someContent';
 
-        $sut = new Filesystem($moduleSettings);
-        $expectedContent = 'someContent';
-        $sitemapFileName = 'filePath.xml';
-        $sut->createSitemapFile($sitemapFileName, $expectedContent);
+        $sut = new Filesystem();
 
-        $fullSitemapFileName = $vfs->url() . DIRECTORY_SEPARATOR . $sitemapFileName;
-        $this->assertTrue(is_file($fullSitemapFileName), "File with sitemap is not created");
-        $realContent = file_get_contents($fullSitemapFileName);
-        $this->assertSame($expectedContent, $realContent);
+        $filePath = $sut->createSitemapFile($directory, $fileName, $exampleContent);
+
+        $this->assertSame($directory . '/' . $fileName, $filePath);
+
+        $this->assertTrue(is_file($filePath), "File with sitemap is not created");
+        $this->assertSame($exampleContent, file_get_contents($filePath));
     }
 
     public function testCleanupSitemapFiles(): void
@@ -60,16 +59,12 @@ class FilesystemTest extends \PHPUnit\Framework\TestCase
         ];
 
         $vfs = vfsStream::setup('root', 0777, $startFiles);
-        $vfsPath = $vfs->url($vfs->path());
+        $directory = $vfs->url();
 
-        $moduleSettings = $this->createConfiguredMock(ModuleSettings::class, [
-            'getSitemapDirectory' => $vfsPath
-        ]);
+        $sut = new Filesystem();
+        $sut->cleanupSitemapFiles($directory);
 
-        $sut = new Filesystem(moduleSettings: $moduleSettings);
-        $sut->cleanupSitemapFiles();
-
-        $files = scandir($vfsPath);
+        $files = scandir($directory);
 
         foreach ($toStay as $oneFile) {
             $this->assertTrue(

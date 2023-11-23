@@ -13,10 +13,11 @@ class GenerateSitemapCommandTest extends \PHPUnit\Framework\TestCase
 {
     public function testCallSitemapCreationService(): void
     {
-        $sitemapServiceMock = $this->createMock(Sitemap::class);
-        $sitemapServiceMock->expects($this->once())->method('generateSitemap');
+        $command = new GenerateSitemapCommand(
+            sitemapService: $sitemapServiceMock = $this->createMock(Sitemap::class)
+        );
 
-        $command = new GenerateSitemapCommand($sitemapServiceMock);
+        $sitemapServiceMock->expects($this->once())->method('generateSitemap');
 
         $commandTester = new CommandTester($command);
         $commandTester->execute([]);

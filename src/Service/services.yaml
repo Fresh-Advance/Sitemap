@@ -4,17 +4,23 @@ services:
     public: false
     autowire: true
 
-  FreshAdvance\Sitemap\Service\XmlGeneratorInterface:
-    class: FreshAdvance\Sitemap\Service\XmlGenerator
+  FreshAdvance\Sitemap\Service\FilesystemInterface:
+    class: FreshAdvance\Sitemap\Service\Filesystem
+
+  FreshAdvance\Sitemap\Service\LocationServiceInterface:
+    class: FreshAdvance\Sitemap\Service\LocationService
+
+  FreshAdvance\Sitemap\Service\ModuleSettingsInterface:
+    class: FreshAdvance\Sitemap\Service\ModuleSettings
+
+  FreshAdvance\Sitemap\Service\ShopSettingsInterface:
+    class: FreshAdvance\Sitemap\Service\ShopSettings
 
   FreshAdvance\Sitemap\Service\Sitemap:
     class: FreshAdvance\Sitemap\Service\Sitemap
 
-  FreshAdvance\Sitemap\Service\Filesystem:
-    class: FreshAdvance\Sitemap\Service\Filesystem
-
-  FreshAdvance\Sitemap\Service\ModuleSettings:
-    class: FreshAdvance\Sitemap\Service\ModuleSettings
-
   FreshAdvance\Sitemap\Service\SynchronizerInterface:
     class: FreshAdvance\Sitemap\Service\Synchronizer
+
+  FreshAdvance\Sitemap\Service\XmlGeneratorInterface:
+    class: FreshAdvance\Sitemap\Service\XmlGenerator

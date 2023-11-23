@@ -2,21 +2,54 @@
 
 namespace FreshAdvance\Sitemap\Service;
 
+use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 
 class Sitemap
 {
     public function __construct(
-        protected Filesystem $filesystemService,
+        protected FilesystemInterface $filesystemService,
         protected UrlRepositoryInterface $urlRepository,
-        protected XmlGeneratorInterface $xmlGeneratorService
+        protected XmlGeneratorInterface $xmlGeneratorService,
+        protected LocationServiceInterface $locationService,
     ) {
     }
 
     public function generateSitemap(): void
     {
-        $items = $this->urlRepository->getUrlsByType('', 1, 50000);
-        $xmlContent = $this->xmlGeneratorService->generateSitemapDocument($items);
-        $this->filesystemService->createSitemapFile("sitemap.xml", $xmlContent);
+        $perPage = 50000;
+
+        $pageUrls = [];
+        for ($page = 1; $page <= $this->getPagesCount($perPage); $page++) {
+            $fileName = 'sitemap_page_' . $page . '.xml';
+            $pageUrls[] = $this->generateSitemapPage($page, $fileName);
+        }
+
+        $this->filesystemService->createSitemapFile(
+            $this->locationService->getSitemapDirectoryPath(),
+            'sitemap.xml',
+            $this->xmlGeneratorService->generateSitemapIndexDocument($pageUrls)
+        );
+    }
+
+    protected function getPagesCount(int $perPage): int
+    {
+        return (int)ceil($this->urlRepository->getUrlsCount() / $perPage);
+    }
+
+    public function generateSitemapPage(int $page, string $fileName): SitemapUrlInterface
+    {
+        $perPage = 50000;
+
+        $urls = $this->urlRepository->getUrls($page, $perPage);
+        $content = $this->xmlGeneratorService->generateSitemapDocument($urls);
+
+        $this->filesystemService->createSitemapFile(
+            directory: $this->locationService->getSitemapDirectoryPath(),
+            fileName: $fileName,
+            content: $content
+        );
+
+        return $this->locationService->getSitemapFileUrl($fileName);
     }
 }

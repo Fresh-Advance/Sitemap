@@ -3,7 +3,6 @@
 namespace FreshAdvance\Sitemap\Repository;
 
 use Doctrine\DBAL\Result;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
@@ -57,7 +56,7 @@ class UrlRepository implements UrlRepositoryInterface
         /** @var Result $result */
         $result = $queryBuilder->execute();
 
-        /** @var false|array<string, int|string|bool> $data */
+        /** @var false|array<string, int|string|bool|null> $data */
         $data = $result->fetchAssociative();
         if (is_array($data)) {
             return new PageUrl(
@@ -71,15 +70,11 @@ class UrlRepository implements UrlRepositoryInterface
         return null;
     }
 
-    public function getUrlsByType(string $objectType, int $page, int $perPage): iterable
+    public function getUrls(int $page, int $perPage): iterable
     {
         $queryBuilder = $this->queryBuilderFactory->create();
         $queryBuilder->select('*')
             ->from('fa_sitemap')
-            ->where('object_type = :object_type')
-            ->setParameters([
-                'object_type' => $objectType,
-            ])
             ->orderBy("id")
             ->setFirstResult(--$page * $perPage)
             ->setMaxResults($perPage);

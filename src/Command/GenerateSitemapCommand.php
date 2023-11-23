@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GenerateSitemapCommand extends Command
 {
     public function __construct(
-        protected Sitemap $sitemapServiceMock
+        protected Sitemap $sitemapService
     ) {
         parent::__construct();
     }
@@ -19,7 +19,7 @@ class GenerateSitemapCommand extends Command
     {
         $output->writeln("Generating sitemap...");
 
-        $this->sitemapServiceMock->generateSitemap();
+        $this->sitemapService->generateSitemap();
 
         return Command::SUCCESS;
     }
