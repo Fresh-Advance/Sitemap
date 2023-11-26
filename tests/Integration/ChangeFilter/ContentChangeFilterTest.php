@@ -2,15 +2,13 @@
 
 namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
 
-use Doctrine\DBAL\Connection;
 use FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
+use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\EshopCommunity\Application\Model\Content;
-use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
-use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter
@@ -19,8 +17,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
 {
     public function testCheckCurrentUrlItem(): void
     {
-        /** @var Connection $connection */
-        $connection = $this->get(ConnectionProviderInterface::class)->get();
+        $connection = $this->getConnection();
         $connection->executeQuery("update oxcontents set oxtimestamp='2023-09-01'");
 
         $this->addConcreteDateUrl('content', date("2023-10-01"));

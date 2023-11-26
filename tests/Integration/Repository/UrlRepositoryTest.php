@@ -2,14 +2,12 @@
 
 namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
 
-use Doctrine\DBAL\Connection;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepository;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
-use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
-use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
+use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\Repository\UrlRepository
@@ -22,18 +20,17 @@ class UrlRepositoryTest extends IntegrationTestCase
 
         $objectId = 'exampleObjectId';
         $objectType = 'exampleObjectType';
-        $url = new PageUrl(
-            location: 'someLocation',
-            lastModified: '2020-03-04 01:02:03',
-            changeFrequency: 'frequency',
-            priority: 0.3
-        );
 
         $sut->addObjectUrl(
             new ObjectUrl(
                 objectId: $objectId,
                 objectType: $objectType,
-                url: $url,
+                url: new PageUrl(
+                    location: 'someLocation',
+                    lastModified: '2020-03-04 01:02:03',
+                    changeFrequency: 'frequency',
+                    priority: 0.3
+                ),
             )
         );
 
@@ -53,8 +50,7 @@ class UrlRepositoryTest extends IntegrationTestCase
 
     public function testGetUrlsByTypeAndUrlsCounter(): void
     {
-        /** @var Connection $connection */
-        $connection = $this->get(ConnectionProviderInterface::class)->get();
+        $connection = $this->getConnection();
         $connection->executeQuery("delete from fa_sitemap");
 
         $sut = $this->getSut();

@@ -25,11 +25,11 @@ class SitemapTest extends \PHPUnit\Framework\TestCase
                 'xmlGeneratorService' => $xmlGeneratorMock = $this->createMock(XmlGeneratorInterface::class),
                 'locationService' => $locationServiceStub = $this->createStub(LocationServiceInterface::class)
             ])
-            ->onlyMethods(['generateSitemapPage'])
+            ->onlyMethods(['generateOneSitemapPage'])
             ->getMock();
 
         $sut->expects($this->exactly(2))
-            ->method('generateSitemapPage')
+            ->method('generateOneSitemapPage')
             ->willReturnMap([
                 [1, 'sitemap_page_1.xml', $url1 = $this->createStub(SitemapUrlInterface::class)],
                 [2, 'sitemap_page_2.xml', $url2 = $this->createStub(SitemapUrlInterface::class)],
@@ -80,7 +80,7 @@ class SitemapTest extends \PHPUnit\Framework\TestCase
             locationService: $locationServiceMock,
         );
 
-        $this->assertSame($urlExample, $sut->generateSitemapPage(3, $sitemapFileName));
+        $this->assertSame($urlExample, $sut->generateOneSitemapPage(3, $sitemapFileName));
     }
 
     public function getSut(

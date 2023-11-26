@@ -8,7 +8,7 @@ use FreshAdvance\Sitemap\Exception\FilterConfigurationException;
 use FreshAdvance\Sitemap\Exception\FilterNotFoundException;
 
 /**
- * @covers \FreshAdvance\Sitemap\ChangeFilter\FilterService
+ * @covers FilterService
  */
 class FilterServiceTest extends \PHPUnit\Framework\TestCase
 {
@@ -31,14 +31,14 @@ class FilterServiceTest extends \PHPUnit\Framework\TestCase
     {
         $this->expectException(FilterConfigurationException::class);
 
-        new \FreshAdvance\Sitemap\ChangeFilter\FilterService([
+        new FilterService([
             new \stdClass()
         ]);
     }
 
     public function testFilterNotFound(): void
     {
-        $sut = new \FreshAdvance\Sitemap\ChangeFilter\FilterService([]);
+        $sut = new FilterService([]);
 
         $this->expectException(FilterNotFoundException::class);
         $sut->getFilter('unknown');

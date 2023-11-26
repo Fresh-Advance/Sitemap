@@ -2,11 +2,14 @@
 
 namespace FreshAdvance\Sitemap\Service;
 
+use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 
 class Sitemap
 {
+    public const URLS_PER_PAGE = 50000;
+
     public function __construct(
         protected FilesystemInterface $filesystemService,
         protected UrlRepositoryInterface $urlRepository,
@@ -17,39 +20,49 @@ class Sitemap
 
     public function generateSitemap(): void
     {
-        $perPage = 50000;
-
-        $pageUrls = [];
-        for ($page = 1; $page <= $this->getPagesCount($perPage); $page++) {
-            $fileName = 'sitemap_page_' . $page . '.xml';
-            $pageUrls[] = $this->generateSitemapPage($page, $fileName);
-        }
-
-        $this->filesystemService->createSitemapFile(
-            $this->locationService->getSitemapDirectoryPath(),
-            'sitemap.xml',
-            $this->xmlGeneratorService->generateSitemapIndexDocument($pageUrls)
-        );
+        $pageUrls = $this->generateSitemapPages();
+        $this->generateSitemapIndex($pageUrls);
     }
 
-    protected function getPagesCount(int $perPage): int
+    public function generateOneSitemapPage(int $page, string $fileName): SitemapUrlInterface
     {
-        return (int)ceil($this->urlRepository->getUrlsCount() / $perPage);
-    }
-
-    public function generateSitemapPage(int $page, string $fileName): SitemapUrlInterface
-    {
-        $perPage = 50000;
-
-        $urls = $this->urlRepository->getUrls($page, $perPage);
-        $content = $this->xmlGeneratorService->generateSitemapDocument($urls);
-
+        $urls = $this->urlRepository->getUrls($page, self::URLS_PER_PAGE);
         $this->filesystemService->createSitemapFile(
             directory: $this->locationService->getSitemapDirectoryPath(),
             fileName: $fileName,
-            content: $content
+            content: $this->xmlGeneratorService->generateSitemapDocument($urls)
         );
 
         return $this->locationService->getSitemapFileUrl($fileName);
+    }
+
+    /**
+     * @return array<SitemapUrlInterface>
+     */
+    private function generateSitemapPages(): array
+    {
+        $pageUrls = [];
+        for ($page = 1; $page <= $this->getPagesCount(); $page++) {
+            $fileName = 'sitemap_page_' . $page . '.xml';
+            $pageUrls[] = $this->generateOneSitemapPage($page, $fileName);
+        }
+        return $pageUrls;
+    }
+
+    private function getPagesCount(): int
+    {
+        return (int)ceil($this->urlRepository->getUrlsCount() / self::URLS_PER_PAGE);
+    }
+
+    /**
+     * @param array<SitemapUrlInterface> $pageUrls
+     */
+    private function generateSitemapIndex(array $pageUrls): void
+    {
+        $this->filesystemService->createSitemapFile(
+            directory: $this->locationService->getSitemapDirectoryPath(),
+            fileName: 'sitemap.xml',
+            content: $this->xmlGeneratorService->generateSitemapIndexDocument($pageUrls)
+        );
     }
 }
