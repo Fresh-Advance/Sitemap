@@ -7,15 +7,6 @@ services:
   FreshAdvance\Sitemap\Service\FilesystemInterface:
     class: FreshAdvance\Sitemap\Service\Filesystem
 
-  FreshAdvance\Sitemap\Service\LocationServiceInterface:
-    class: FreshAdvance\Sitemap\Service\LocationService
-
-  FreshAdvance\Sitemap\Service\ModuleSettingsInterface:
-    class: FreshAdvance\Sitemap\Service\ModuleSettings
-
-  FreshAdvance\Sitemap\Service\ShopSettingsInterface:
-    class: FreshAdvance\Sitemap\Service\ShopSettings
-
   FreshAdvance\Sitemap\Service\SitemapInterface:
     class: FreshAdvance\Sitemap\Service\Sitemap
 

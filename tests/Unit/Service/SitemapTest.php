@@ -7,7 +7,7 @@ use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\Service\Filesystem;
 use FreshAdvance\Sitemap\Service\FilesystemInterface;
-use FreshAdvance\Sitemap\Service\LocationServiceInterface;
+use FreshAdvance\Sitemap\Settings\LocationServiceInterface;
 use FreshAdvance\Sitemap\Service\Sitemap;
 use FreshAdvance\Sitemap\Service\XmlGeneratorInterface;
 

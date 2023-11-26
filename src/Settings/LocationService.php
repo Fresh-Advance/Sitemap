@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Service;
+namespace FreshAdvance\Sitemap\Settings;
 
 use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;

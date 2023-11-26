@@ -4,6 +4,7 @@ namespace FreshAdvance\Sitemap\Service;
 
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
+use FreshAdvance\Sitemap\Settings\LocationServiceInterface;
 
 class Sitemap implements SitemapInterface
 {

@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Service;
+namespace FreshAdvance\Sitemap\Settings;
 
-interface ShopSettingsInterface
+interface ModuleSettingsInterface
 {
-    public function getShopUrl(): string;
+    public function getSitemapInSourceDirectory(): string;
 }

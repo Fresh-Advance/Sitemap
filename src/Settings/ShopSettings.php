@@ -7,8 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Service;
+namespace FreshAdvance\Sitemap\Settings;
 
+use FreshAdvance\Sitemap\Settings\ShopSettingsInterface;
 use OxidEsales\Eshop\Core\Config;
 
 class ShopSettings implements ShopSettingsInterface

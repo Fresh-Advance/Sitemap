@@ -1,12 +1,12 @@
 <?php
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Service;
+namespace FreshAdvance\Sitemap\Tests\Unit\Settings;
 
-use FreshAdvance\Sitemap\Service\ShopSettings;
+use FreshAdvance\Sitemap\Settings\ShopSettings;
 use OxidEsales\Eshop\Core\Config;
 
 /**
- * @covers \FreshAdvance\Sitemap\Service\ShopSettings
+ * @covers \FreshAdvance\Sitemap\Settings\ShopSettings
  */
 class ShopSettingsTest extends \PHPUnit\Framework\TestCase
 {

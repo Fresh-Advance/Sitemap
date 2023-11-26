@@ -1,16 +1,16 @@
 <?php
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Service;
+namespace FreshAdvance\Sitemap\Tests\Unit\Settings;
 
 use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
-use FreshAdvance\Sitemap\Service\LocationService;
-use FreshAdvance\Sitemap\Service\ModuleSettingsInterface;
-use FreshAdvance\Sitemap\Service\ShopSettingsInterface;
+use FreshAdvance\Sitemap\Settings\LocationService;
+use FreshAdvance\Sitemap\Settings\ModuleSettingsInterface;
+use FreshAdvance\Sitemap\Settings\ShopSettingsInterface;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\BasicContextInterface;
 
 /**
- * @covers \FreshAdvance\Sitemap\Service\LocationService
+ * @covers \FreshAdvance\Sitemap\Settings\LocationService
  */
 class LocationServiceTest extends \PHPUnit\Framework\TestCase
 {

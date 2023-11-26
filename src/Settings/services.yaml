@@ -1,0 +1,14 @@
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\Settings\LocationServiceInterface:
+    class: FreshAdvance\Sitemap\Settings\LocationService
+
+  FreshAdvance\Sitemap\Settings\ModuleSettingsInterface:
+    class: FreshAdvance\Sitemap\Settings\ModuleSettings
+
+  FreshAdvance\Sitemap\Settings\ShopSettingsInterface:
+    class: FreshAdvance\Sitemap\Settings\ShopSettings

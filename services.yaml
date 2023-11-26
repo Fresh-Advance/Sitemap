@@ -3,6 +3,7 @@ imports:
   - { resource: src/Command/services.yaml }
   - { resource: src/Repository/services.yaml }
   - { resource: src/Service/services.yaml }
+  - { resource: src/Settings/services.yaml }
 
 services:
     _defaults:

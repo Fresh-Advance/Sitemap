@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Service;
+namespace FreshAdvance\Sitemap\Tests\Unit\Settings;
 
-use FreshAdvance\Sitemap\Service\ModuleSettings;
+use FreshAdvance\Sitemap\Settings\ModuleSettings;
 use PHPUnit\Framework\TestCase;
 
 class ModuleSettingsTest extends TestCase
