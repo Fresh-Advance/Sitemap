@@ -2,8 +2,8 @@
 
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
+use FreshAdvance\Sitemap\Exception\SitemapDirectoryAccessException;
 use FreshAdvance\Sitemap\Service\Filesystem;
-use FreshAdvance\Sitemap\Service\ModuleSettings;
 use org\bovigo\vfs\vfsStream;
 
 /**
@@ -19,7 +19,7 @@ class FilesystemTest extends \PHPUnit\Framework\TestCase
         $directory = $vfs->url();
         $exampleContent = 'someContent';
 
-        $sut = new Filesystem();
+        $sut = $this->getSut();
 
         $filePath = $sut->createSitemapFile($directory, $fileName, $exampleContent);
 
@@ -61,7 +61,7 @@ class FilesystemTest extends \PHPUnit\Framework\TestCase
         $vfs = vfsStream::setup('root', 0777, $startFiles);
         $directory = $vfs->url();
 
-        $sut = new Filesystem();
+        $sut = $this->getSut();
         $sut->cleanupSitemapFiles($directory);
 
         $files = scandir($directory);
@@ -79,5 +79,18 @@ class FilesystemTest extends \PHPUnit\Framework\TestCase
                 sprintf("File %s was NOT removed, but should be.", $oneFile)
             );
         }
+    }
+
+    public function testCleanupSitemapFilesThrowsExceptionOnDirectoryReadingProblem(): void
+    {
+        $sut = $this->getSut();
+
+        $this->expectException(SitemapDirectoryAccessException::class);
+        $sut->cleanupSitemapFiles('someNotExistingDirectory');
+    }
+
+    private function getSut(): Filesystem
+    {
+        return new Filesystem();
     }
 }

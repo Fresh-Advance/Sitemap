@@ -2,13 +2,10 @@
 
 namespace FreshAdvance\Sitemap\Service;
 
-// todo: ensure directory exists
+use FreshAdvance\Sitemap\Exception\SitemapDirectoryAccessException;
+
 class Filesystem implements FilesystemInterface
 {
-    public function __construct()
-    {
-    }
-
     public function createSitemapFile(string $directory, string $fileName, string $content): string
     {
         $filePath = $directory . DIRECTORY_SEPARATOR . $fileName;
@@ -22,7 +19,7 @@ class Filesystem implements FilesystemInterface
         $allFiles = scandir($directory);
 
         if (!is_array($allFiles)) {
-            return;
+            throw new SitemapDirectoryAccessException();
         }
 
         foreach ($allFiles as $oneFile) {
