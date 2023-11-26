@@ -16,7 +16,7 @@ services:
   FreshAdvance\Sitemap\Service\ShopSettingsInterface:
     class: FreshAdvance\Sitemap\Service\ShopSettings
 
-  FreshAdvance\Sitemap\Service\Sitemap:
+  FreshAdvance\Sitemap\Service\SitemapInterface:
     class: FreshAdvance\Sitemap\Service\Sitemap
 
   FreshAdvance\Sitemap\Service\SynchronizerInterface:

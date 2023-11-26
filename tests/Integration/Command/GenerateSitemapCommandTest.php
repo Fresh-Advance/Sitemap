@@ -3,7 +3,7 @@
 namespace FreshAdvance\Sitemap\Tests\Integration\Command;
 
 use FreshAdvance\Sitemap\Command\GenerateSitemapCommand;
-use FreshAdvance\Sitemap\Service\Sitemap;
+use FreshAdvance\Sitemap\Service\SitemapInterface;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
@@ -14,7 +14,7 @@ class GenerateSitemapCommandTest extends \PHPUnit\Framework\TestCase
     public function testCallSitemapCreationService(): void
     {
         $command = new GenerateSitemapCommand(
-            sitemapService: $sitemapServiceMock = $this->createMock(Sitemap::class)
+            sitemapService: $sitemapServiceMock = $this->createMock(SitemapInterface::class)
         );
 
         $sitemapServiceMock->expects($this->once())->method('generateSitemap');

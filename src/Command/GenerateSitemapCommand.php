@@ -2,7 +2,7 @@
 
 namespace FreshAdvance\Sitemap\Command;
 
-use FreshAdvance\Sitemap\Service\Sitemap;
+use FreshAdvance\Sitemap\Service\SitemapInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GenerateSitemapCommand extends Command
 {
     public function __construct(
-        protected Sitemap $sitemapService
+        protected SitemapInterface $sitemapService
     ) {
         parent::__construct();
     }

@@ -36,14 +36,13 @@ class SitemapTest extends \PHPUnit\Framework\TestCase
             ]);
 
         $urlRepositoryStub->method('getUrlsCount')->willReturn(75000);
+
         $locationServiceStub->method('getSitemapDirectoryPath')->willReturn('directoryPath');
 
         $xmlGeneratorMock->method('generateSitemapIndexDocument')
-            ->with([$url1, $url2])
-            ->willReturn('someIndexFileContent');
+            ->with([$url1, $url2])->willReturn('someIndexFileContent');
 
-        $filesystemMock->expects($this->once())
-            ->method('createSitemapFile')
+        $filesystemMock->expects($this->once())->method('createSitemapFile')
             ->with('directoryPath', 'sitemap.xml', 'someIndexFileContent');
 
         $sut->generateSitemap();
@@ -51,34 +50,30 @@ class SitemapTest extends \PHPUnit\Framework\TestCase
 
     public function testGenerateSitemapPageSavesLimitedRepositoryUrlsToFileAndReturnsItsUrl(): void
     {
+        $sut = $this->getSut(
+            filesystemService: $filesystemMock = $this->createMock(Filesystem::class),
+            urlRepository: $urlRepositoryStub = $this->createMock(UrlRepositoryInterface::class),
+            xmlGeneratorService: $xmlGeneratorMock = $this->createMock(XmlGeneratorInterface::class),
+            locationService: $locationServiceMock = $this->createMock(LocationServiceInterface::class),
+        );
+
         $repositoryResponse = [$this->createStub(PageUrlInterface::class)];
-        $urlRepositoryStub = $this->createMock(UrlRepositoryInterface::class);
         $urlRepositoryStub->method('getUrls')
             ->with(3, 50000)
             ->willReturn($repositoryResponse);
 
-        $xmlGeneratorMock = $this->createMock(XmlGeneratorInterface::class);
         $xmlGeneratorMock->method('generateSitemapDocument')
             ->with($repositoryResponse)
             ->willReturn($exampleXmlContent = 'xmlFileContent');
 
-        $locationServiceMock = $this->createMock(LocationServiceInterface::class);
         $locationServiceMock->method('getSitemapDirectoryPath')->willReturn($sitemapDirectory = 'exampleDirectory');
         $locationServiceMock->method('getSitemapFileUrl')
             ->with($sitemapFileName = 'sitemapFileName')
             ->willReturn($urlExample = $this->createStub(SitemapUrlInterface::class));
 
-        $filesystemMock = $this->createMock(Filesystem::class);
         $filesystemMock->expects($this->once())
             ->method('createSitemapFile')
             ->with($sitemapDirectory, $sitemapFileName, $exampleXmlContent);
-
-        $sut = $this->getSut(
-            filesystemService: $filesystemMock,
-            urlRepository: $urlRepositoryStub,
-            xmlGeneratorService: $xmlGeneratorMock,
-            locationService: $locationServiceMock,
-        );
 
         $this->assertSame($urlExample, $sut->generateOneSitemapPage(3, $sitemapFileName));
     }

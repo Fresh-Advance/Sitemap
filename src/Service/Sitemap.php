@@ -2,11 +2,10 @@
 
 namespace FreshAdvance\Sitemap\Service;
 
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 
-class Sitemap
+class Sitemap implements SitemapInterface
 {
     public const URLS_PER_PAGE = 50000;
 
@@ -24,18 +23,6 @@ class Sitemap
         $this->generateSitemapIndex($pageUrls);
     }
 
-    public function generateOneSitemapPage(int $page, string $fileName): SitemapUrlInterface
-    {
-        $urls = $this->urlRepository->getUrls($page, self::URLS_PER_PAGE);
-        $this->filesystemService->createSitemapFile(
-            directory: $this->locationService->getSitemapDirectoryPath(),
-            fileName: $fileName,
-            content: $this->xmlGeneratorService->generateSitemapDocument($urls)
-        );
-
-        return $this->locationService->getSitemapFileUrl($fileName);
-    }
-
     /**
      * @return array<SitemapUrlInterface>
      */
@@ -47,6 +34,18 @@ class Sitemap
             $pageUrls[] = $this->generateOneSitemapPage($page, $fileName);
         }
         return $pageUrls;
+    }
+
+    public function generateOneSitemapPage(int $page, string $fileName): SitemapUrlInterface
+    {
+        $urls = $this->urlRepository->getUrls($page, self::URLS_PER_PAGE);
+        $this->filesystemService->createSitemapFile(
+            directory: $this->locationService->getSitemapDirectoryPath(),
+            fileName: $fileName,
+            content: $this->xmlGeneratorService->generateSitemapDocument($urls)
+        );
+
+        return $this->locationService->getSitemapFileUrl($fileName);
     }
 
     private function getPagesCount(): int
