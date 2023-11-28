@@ -12,7 +12,7 @@ class SitemapUrlTest extends \PHPUnit\Framework\TestCase
     public function testMainGetters(): void
     {
         $locationExample = 'someLoc';
-        $lastModifiedExample = 'someStringDate';
+        $lastModifiedExample = new \DateTime();
 
         $sut = new SitemapUrl(
             location: $locationExample,

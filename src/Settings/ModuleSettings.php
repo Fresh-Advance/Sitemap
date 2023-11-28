@@ -2,9 +2,9 @@
 
 namespace FreshAdvance\Sitemap\Settings;
 
-// todo: make sitemap setting editable
-use FreshAdvance\Sitemap\Settings\ModuleSettingsInterface;
-
+/**
+ * @todo: make sitemap setting editable
+ */
 class ModuleSettings implements ModuleSettingsInterface
 {
     public function getSitemapInSourceDirectory(): string

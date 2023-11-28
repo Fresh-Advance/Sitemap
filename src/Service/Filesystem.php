@@ -4,7 +4,9 @@ namespace FreshAdvance\Sitemap\Service;
 
 use FreshAdvance\Sitemap\Exception\SitemapDirectoryAccessException;
 
-// todo: check directory rights functionality
+/**
+ * @todo: check directory rights functionality
+ */
 class Filesystem implements FilesystemInterface
 {
     public function createSitemapFile(string $directory, string $fileName, string $content): string

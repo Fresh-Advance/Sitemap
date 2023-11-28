@@ -6,7 +6,7 @@ class PageUrl extends SitemapUrl implements PageUrlInterface
 {
     public function __construct(
         protected string $location,
-        protected string $lastModified,
+        protected \DateTimeInterface $lastModified,
         protected string $changeFrequency,
         protected float $priority
     ) {
@@ -21,7 +21,7 @@ class PageUrl extends SitemapUrl implements PageUrlInterface
         return $this->location;
     }
 
-    public function getLastModified(): string
+    public function getLastModified(): \DateTimeInterface
     {
         return $this->lastModified;
     }

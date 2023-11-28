@@ -6,7 +6,7 @@ class SitemapUrl implements SitemapUrlInterface
 {
     public function __construct(
         protected string $location,
-        protected string $lastModified
+        protected \DateTimeInterface $lastModified
     ) {
     }
 
@@ -15,7 +15,7 @@ class SitemapUrl implements SitemapUrlInterface
         return $this->location;
     }
 
-    public function getLastModified(): string
+    public function getLastModified(): \DateTimeInterface
     {
         return $this->lastModified;
     }

@@ -20,7 +20,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
         $connection = $this->getConnection();
         $connection->executeQuery("update oxcontents set oxtimestamp='2023-09-01'");
 
-        $this->addConcreteDateUrl('content', date("2023-10-01"));
+        $this->addConcreteDateUrl('content', new \DateTime("2023-10-01"));
 
         $this->createExampleContent('example1');
         $this->createExampleContent('example2');
@@ -39,7 +39,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
         $this->assertNull($urls->current());
     }
 
-    protected function addConcreteDateUrl(string $type, string $date): void
+    protected function addConcreteDateUrl(string $type, \DateTime $dateTime): void
     {
         /** @var UrlRepositoryInterface $urlRepository */
         $urlRepository = $this->get(UrlRepositoryInterface::class);
@@ -49,7 +49,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
                 objectType: $type,
                 url: new PageUrl(
                     location: 'example',
-                    lastModified: $date,
+                    lastModified: $dateTime,
                     changeFrequency: 'frequency',
                     priority: 1
                 )

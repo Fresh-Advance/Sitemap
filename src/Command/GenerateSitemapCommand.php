@@ -15,6 +15,9 @@ class GenerateSitemapCommand extends Command
         parent::__construct();
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln("Generating sitemap...");

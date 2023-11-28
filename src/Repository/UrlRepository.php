@@ -2,6 +2,7 @@
 
 namespace FreshAdvance\Sitemap\Repository;
 
+use DateTime;
 use Doctrine\DBAL\Result;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
@@ -36,7 +37,7 @@ class UrlRepository implements UrlRepositoryInterface
             'object_id' => $objectUrl->getObjectId(),
             'object_type' => $objectUrl->getObjectType(),
             'location' => $url->getLocation(),
-            'modified' => $url->getLastModified(),
+            'modified' => $url->getLastModified()->format(\DateTimeInterface::ATOM),
             'frequency' => $url->getChangeFrequency(),
             'priority' => $url->getPriority()
         ]);
@@ -61,7 +62,7 @@ class UrlRepository implements UrlRepositoryInterface
         if (is_array($data)) {
             return new PageUrl(
                 location: (string)$data['location'],
-                lastModified: (string)$data['modified'],
+                lastModified: new DateTime((string)$data['modified']),
                 changeFrequency: (string)$data['frequency'],
                 priority: (float)$data['priority'],
             );
@@ -86,7 +87,7 @@ class UrlRepository implements UrlRepositoryInterface
             /** @var array<string, int|string|bool> $data */
             yield new PageUrl(
                 location: (string)$data['location'],
-                lastModified: (string)$data['modified'],
+                lastModified: new DateTime((string)$data['modified']),
                 changeFrequency: (string)$data['frequency'],
                 priority: (float)$data['priority'],
             );

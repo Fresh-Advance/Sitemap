@@ -2,6 +2,7 @@
 
 namespace FreshAdvance\Sitemap\ChangeFilter;
 
+use DateTime;
 use Doctrine\DBAL\Connection;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
@@ -45,7 +46,7 @@ class ContentChangeFilter implements ChangeFilterInterface
                 objectType: 'content',
                 url: new PageUrl(
                     location: (string)$item->getLink(),
-                    lastModified: (string)$item->getFieldData('oxtimestamp'), // @phpstan-ignore-line
+                    lastModified: new DateTime($item->getFieldData('oxtimestamp')), // @phpstan-ignore-line
                     changeFrequency: 'never',
                     priority: 0.5
                 )

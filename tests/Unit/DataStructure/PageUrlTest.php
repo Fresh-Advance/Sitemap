@@ -12,7 +12,7 @@ class PageUrlTest extends \PHPUnit\Framework\TestCase
     public function testMainGetters(): void
     {
         $locationExample = 'someLoc';
-        $lastModifiedExample = 'someStringDate';
+        $lastModifiedExample = new \DateTime();
         $changeFrequencyExample = 'someChangeFrequency';
         $examplePriority = 0.5;
 

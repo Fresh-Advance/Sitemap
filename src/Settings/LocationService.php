@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Settings;
 
+use DateTime;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\BasicContextInterface;
@@ -30,6 +31,9 @@ class LocationService implements LocationServiceInterface
         return $sourceDirectory . DIRECTORY_SEPARATOR . $sitemapDirectory;
     }
 
+    /**
+     * @todo: get real file change date
+     */
     public function getSitemapFileUrl(string $fileName): SitemapUrlInterface
     {
         $shopUrl = rtrim($this->shopSettings->getShopUrl(), DIRECTORY_SEPARATOR);
@@ -40,7 +44,7 @@ class LocationService implements LocationServiceInterface
 
         return new SitemapUrl(
             location: $url,
-            lastModified: ''
+            lastModified: new DateTime('today')
         );
     }
 }

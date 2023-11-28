@@ -6,7 +6,7 @@ interface PageUrlInterface
 {
     public function getLocation(): string;
 
-    public function getLastModified(): string;
+    public function getLastModified(): \DateTimeInterface;
 
     public function getChangeFrequency(): string;
 

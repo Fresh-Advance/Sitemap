@@ -6,5 +6,5 @@ interface SitemapUrlInterface
 {
     public function getLocation(): string;
 
-    public function getLastModified(): string;
+    public function getLastModified(): \DateTimeInterface;
 }

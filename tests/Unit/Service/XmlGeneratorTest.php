@@ -2,6 +2,7 @@
 
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
+use _PHPStan_adbc35a1c\Nette\Utils\DateTime;
 use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Service\XmlGenerator;
@@ -15,7 +16,7 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
     {
         $urlStub = $this->createConfiguredMock(PageUrlInterface::class, [
             'getLocation' => 'someLocation',
-            'getLastModified' => 'lastModifiedDate',
+            'getLastModified' => $exampleDate = new DateTime(),
             'getChangeFrequency' => 'someFrequency',
             'getPriority' => 0.6,
         ]);
@@ -23,7 +24,7 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
         $expectation = implode("", [
             "<url>",
             "<loc>someLocation</loc>",
-            "<lastmod>lastModifiedDate</lastmod>",
+            "<lastmod>{$exampleDate->format(\DateTimeInterface::ATOM)}</lastmod>",
             "<changefreq>someFrequency</changefreq>",
             "<priority>0.6</priority>",
             "</url>",
@@ -37,13 +38,13 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
     {
         $urlStub = $this->createConfiguredMock(SitemapUrlInterface::class, [
             'getLocation' => 'someLocation',
-            'getLastModified' => 'lastModifiedDate'
+            'getLastModified' => $exampleDate = new DateTime()
         ]);
 
         $expectation = implode("", [
             "<sitemap>",
             "<loc>someLocation</loc>",
-            "<lastmod>lastModifiedDate</lastmod>",
+            "<lastmod>{$exampleDate->format(\DateTimeInterface::ATOM)}</lastmod>",
             "</sitemap>",
         ]);
 

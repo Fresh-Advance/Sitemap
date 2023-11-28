@@ -11,7 +11,7 @@ class XmlGenerator implements XmlGeneratorInterface
     {
         $attributes = [
             $this->wrap($url->getLocation(), "loc"),
-            $this->wrap($url->getLastModified(), "lastmod"),
+            $this->wrap($url->getLastModified()->format(\DateTimeInterface::ATOM), "lastmod"),
             $this->wrap($url->getChangeFrequency(), "changefreq"),
             $this->wrap((string)$url->getPriority(), "priority"),
         ];
@@ -23,7 +23,7 @@ class XmlGenerator implements XmlGeneratorInterface
     {
         $attributes = [
             $this->wrap($url->getLocation(), "loc"),
-            $this->wrap($url->getLastModified(), "lastmod"),
+            $this->wrap($url->getLastModified()->format(\DateTimeInterface::ATOM), "lastmod"),
         ];
 
         return $this->wrap(implode("", $attributes), "sitemap");

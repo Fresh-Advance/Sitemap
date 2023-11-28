@@ -90,7 +90,7 @@ class LocationServiceTest extends \PHPUnit\Framework\TestCase
             'sitemapDirectory' => 'directory',
             'expectedValue' => new SitemapUrl(
                 location: 'exampleUrl/directory/someFile.xml',
-                lastModified: ''
+                lastModified: new \DateTime('today')
             )
         ];
 
@@ -100,7 +100,7 @@ class LocationServiceTest extends \PHPUnit\Framework\TestCase
             'sitemapDirectory' => '/directory/',
             'expectedValue' => new SitemapUrl(
                 location: 'exampleUrl/directory/someFile.xml',
-                lastModified: ''
+                lastModified: new \DateTime('today')
             )
         ];
     }
