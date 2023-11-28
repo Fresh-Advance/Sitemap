@@ -137,6 +137,12 @@ jobs:
             --db-host=mysql --db-port=3306 --db-name=example --db-user=root --db-password=root --force
           docker-compose exec -T php bin/oe-console oe:module:activate fa_sitemap
 
+      - name: Install module dependencies
+        run: |
+          docker-compose exec -T \
+            --workdir=/var/www/test-module \
+            php composer install
+
       - name: Stop containers
         run: |
           docker-compose down
@@ -175,12 +181,6 @@ jobs:
         run: |
           make up
           sleep 2
-
-      - name: Install module dependencies
-        run: |
-          docker-compose exec -T \
-            --workdir=/var/www/test-module \
-            php composer install
 
       - name: Run phpcs
         if: always()
