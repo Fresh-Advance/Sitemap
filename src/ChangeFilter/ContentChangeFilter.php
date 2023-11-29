@@ -28,14 +28,23 @@ class ContentChangeFilter implements ChangeFilterInterface
     {
         $query = "SELECT c.OXID
             FROM oxcontents c
-            WHERE c.OXTIMESTAMP > COALESCE(
+            WHERE c.OXFOLDER = :oxfolder
+                AND c.OXACTIVE = :oxactive
+                AND c.OXTIMESTAMP > COALESCE(
               (SELECT MAX(modified) FROM fa_sitemap WHERE object_type = :object_type),
               '1970-01-01'
             )
             ORDER BY c.OXTIMESTAMP ASC
             LIMIT {$limit}";
 
-        $result = $this->connection->executeQuery($query, ['object_type' => $this->getObjectType()]);
+        $result = $this->connection->executeQuery(
+            $query,
+            [
+                'object_type' => $this->getObjectType(),
+                'oxfolder' => 'CMSFOLDER_USERINFO',
+                'oxactive' => true,
+            ]
+        );
 
         while ($data = $result->fetchAssociative()) {
             $item = oxNew(Content::class);

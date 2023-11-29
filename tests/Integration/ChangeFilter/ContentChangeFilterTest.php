@@ -22,18 +22,20 @@ class ContentChangeFilterTest extends IntegrationTestCase
 
         $this->addConcreteDateUrl('content', new \DateTime("2023-10-01"));
 
-        $this->createExampleContent('example1');
-        $this->createExampleContent('example2');
-        $this->createExampleContent('example3');
+        $this->createExampleContent('example1', true, 'CMSFOLDER_USERINFO');
+        $this->createExampleContent('example2', true, 'OTHER');
+        $this->createExampleContent('example3', true, '');
+        $this->createExampleContent('example4', false, 'CMSFOLDER_USERINFO');
+        $this->createExampleContent('example5', true, 'CMSFOLDER_USERINFO');
 
         /** @var ContentChangeFilter $sut */
         $sut = $this->get(ContentChangeFilter::class);
-        $urls = $sut->getUpdatedUrls(2);
+        $urls = $sut->getUpdatedUrls(3);
 
         $this->checkCurrentUrlItem($urls->current(), 'example1');
 
         $urls->next();
-        $this->checkCurrentUrlItem($urls->current(), 'example2');
+        $this->checkCurrentUrlItem($urls->current(), 'example5');
 
         $urls->next();
         $this->assertNull($urls->current());
@@ -57,13 +59,15 @@ class ContentChangeFilterTest extends IntegrationTestCase
         );
     }
 
-    protected function createExampleContent(string $identifier): void
+    protected function createExampleContent(string $identifier, bool $active, string $folder): void
     {
         $content = oxNew(Content::class);
         $content->assign([
             'oxid' => $identifier,
+            'oxactive' => $active,
             'oxtitle' => $identifier,
-            'oxloadid' => $identifier
+            'oxloadid' => $identifier,
+            'oxfolder' => $folder
         ]);
         $content->save();
     }
