@@ -2,7 +2,7 @@
 
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
-use _PHPStan_adbc35a1c\Nette\Utils\DateTime;
+use DateTime;
 use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Service\XmlGenerator;

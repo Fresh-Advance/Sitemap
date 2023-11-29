@@ -8,7 +8,7 @@ use FreshAdvance\Sitemap\Exception\FilterConfigurationException;
 use FreshAdvance\Sitemap\Exception\FilterNotFoundException;
 
 /**
- * @covers FilterService
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\FilterService
  */
 class FilterServiceTest extends \PHPUnit\Framework\TestCase
 {
