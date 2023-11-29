@@ -41,24 +41,6 @@ class ContentChangeFilterTest extends IntegrationTestCase
         $this->assertNull($urls->current());
     }
 
-    protected function addConcreteDateUrl(string $type, \DateTime $dateTime): void
-    {
-        /** @var UrlRepositoryInterface $urlRepository */
-        $urlRepository = $this->get(UrlRepositoryInterface::class);
-        $urlRepository->addObjectUrl(
-            new ObjectUrl(
-                objectId: 'someId',
-                objectType: $type,
-                url: new PageUrl(
-                    location: 'example',
-                    lastModified: $dateTime,
-                    changeFrequency: 'frequency',
-                    priority: 1
-                )
-            )
-        );
-    }
-
     protected function createExampleContent(string $identifier, bool $active, string $folder): void
     {
         $content = oxNew(Content::class);

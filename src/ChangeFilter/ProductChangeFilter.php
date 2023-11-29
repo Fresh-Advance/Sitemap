@@ -1,15 +1,22 @@
 <?php
 
+/**
+ * Copyright © MB Arbatos Klubas. All rights reserved.
+ * See LICENSE file for license details.
+ */
+
+declare(strict_types=1);
+
 namespace FreshAdvance\Sitemap\ChangeFilter;
 
 use DateTime;
-use Doctrine\DBAL\Connection;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
-use OxidEsales\Eshop\Application\Model\Content;
+use OxidEsales\Eshop\Application\Model\Article;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
+use Doctrine\DBAL\Connection;
 
-class ContentChangeFilter implements ChangeFilterInterface
+class ProductChangeFilter implements ChangeFilterInterface
 {
     protected Connection $connection;
 
@@ -21,33 +28,31 @@ class ContentChangeFilter implements ChangeFilterInterface
 
     public function getObjectType(): string
     {
-        return 'content';
+        return 'product';
     }
 
-    public function getUpdatedUrls(int $limit): \Generator
+    public function getUpdatedUrls(int $limit): iterable
     {
-        $query = "SELECT c.OXID
-            FROM oxcontents c
-            WHERE c.OXFOLDER = :oxfolder
-                AND c.OXACTIVE = :oxactive
-                AND c.OXTIMESTAMP > COALESCE(
+        $query = "SELECT a.OXID
+            FROM oxarticles a
+            WHERE a.OXACTIVE = :oxactive
+                AND a.OXTIMESTAMP > COALESCE(
               (SELECT MAX(modified) FROM fa_sitemap WHERE object_type = :object_type),
               '1970-01-01'
             )
-            ORDER BY c.OXTIMESTAMP ASC
+            ORDER BY a.OXTIMESTAMP ASC
             LIMIT {$limit}";
 
         $result = $this->connection->executeQuery(
             $query,
             [
                 'object_type' => $this->getObjectType(),
-                'oxfolder' => 'CMSFOLDER_USERINFO',
                 'oxactive' => true,
             ]
         );
 
         while ($data = $result->fetchAssociative()) {
-            $item = oxNew(Content::class);
+            $item = oxNew(Article::class);
             $item->load((string)$data['OXID']); // @phpstan-ignore-line
 
             yield new ObjectUrl(
@@ -56,8 +61,8 @@ class ContentChangeFilter implements ChangeFilterInterface
                 url: new PageUrl(
                     location: (string)$item->getLink(),
                     lastModified: new DateTime($item->getFieldData('oxtimestamp')), // @phpstan-ignore-line
-                    changeFrequency: 'never',
-                    priority: 0.5
+                    changeFrequency: 'daily',
+                    priority: 0.7
                 )
             );
         }

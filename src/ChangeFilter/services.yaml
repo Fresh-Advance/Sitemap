@@ -12,3 +12,7 @@ services:
   FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter:
     tags:
       - 'sitemap.change_filter'
+
+  FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter:
+    tags:
+      - 'sitemap.change_filter'
