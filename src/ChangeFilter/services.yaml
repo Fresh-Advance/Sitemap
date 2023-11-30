@@ -16,3 +16,7 @@ services:
   FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter:
     tags:
       - 'sitemap.change_filter'
+
+  FreshAdvance\Sitemap\ChangeFilter\CategoryChangeFilter:
+    tags:
+      - 'sitemap.change_filter'
