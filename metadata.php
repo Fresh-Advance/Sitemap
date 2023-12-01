@@ -21,7 +21,7 @@ $aModule = [
     'description'  => [
         'en' => 'Sitemap module for OXID eShop.',
     ],
-    'version'     => '1.0.0',
+    'version'     => '0.1.0',
     'author'       => 'Anton Fedurtsya',
     'email'        => 'anton@fedurtsya.com',
     'url'         => '',
