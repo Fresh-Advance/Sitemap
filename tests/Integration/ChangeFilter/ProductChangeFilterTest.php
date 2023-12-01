@@ -13,6 +13,10 @@ use FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use OxidEsales\Eshop\Application\Model\Article;
 
+/**
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\ChangeFilterTemplate
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter
+ */
 class ProductChangeFilterTest extends \FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase
 {
     public function testSomething()
@@ -60,6 +64,6 @@ class ProductChangeFilterTest extends \FreshAdvance\Sitemap\Tests\Integration\In
         $this->assertSame('http://localhost.local/' . $value . '.html', $url->getLocation());
         $this->assertNotEmpty($url->getLastModified());
         $this->assertSame('daily', $url->getChangeFrequency());
-        $this->assertSame(0.7, $url->getPriority());
+        $this->assertSame(0.5, $url->getPriority());
     }
 }

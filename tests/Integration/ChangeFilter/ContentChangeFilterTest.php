@@ -18,6 +18,7 @@ use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\EshopCommunity\Application\Model\Content;
 
 /**
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\ChangeFilterTemplate
  * @covers \FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter
  */
 class ContentChangeFilterTest extends IntegrationTestCase
@@ -68,7 +69,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
         $url = $objectUrl->getUrl();
         $this->assertSame('http://localhost.local/' . $value . '/', $url->getLocation());
         $this->assertNotEmpty($url->getLastModified());
-        $this->assertSame('never', $url->getChangeFrequency());
-        $this->assertSame(0.5, $url->getPriority());
+        $this->assertSame('weekly', $url->getChangeFrequency());
+        $this->assertSame(0.3, $url->getPriority());
     }
 }

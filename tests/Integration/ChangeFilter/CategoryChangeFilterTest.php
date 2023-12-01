@@ -14,6 +14,10 @@ use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\Eshop\Application\Model\Category;
 
+/**
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\ChangeFilterTemplate
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\CategoryChangeFilter
+ */
 class CategoryChangeFilterTest extends IntegrationTestCase
 {
     public function testGetUpdatedUrls(): void
@@ -62,6 +66,6 @@ class CategoryChangeFilterTest extends IntegrationTestCase
         $this->assertSame('http://localhost.local/' . $value . '/', $url->getLocation());
         $this->assertNotEmpty($url->getLastModified());
         $this->assertSame('daily', $url->getChangeFrequency());
-        $this->assertSame(0.9, $url->getPriority());
+        $this->assertSame(0.7, $url->getPriority());
     }
 }

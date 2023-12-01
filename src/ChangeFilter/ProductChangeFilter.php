@@ -9,29 +9,17 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\ChangeFilter;
 
-use DateTime;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
-use FreshAdvance\Sitemap\DataStructure\PageUrl;
+use Doctrine\DBAL\ForwardCompatibility\Result;
 use OxidEsales\Eshop\Application\Model\Article;
-use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
-use Doctrine\DBAL\Connection;
 
-class ProductChangeFilter implements ChangeFilterInterface
+class ProductChangeFilter extends ChangeFilterTemplate implements ChangeFilterInterface
 {
-    protected Connection $connection;
-
-    public function __construct(
-        ConnectionProviderInterface $connectionProvider
-    ) {
-        $this->connection = $connectionProvider->get();
-    }
-
     public function getObjectType(): string
     {
         return 'product';
     }
 
-    public function getUpdatedUrls(int $limit): iterable
+    protected function filterAndQueryItems(int $limit): Result
     {
         $query = "SELECT a.OXID
             FROM oxarticles a
@@ -43,6 +31,7 @@ class ProductChangeFilter implements ChangeFilterInterface
             ORDER BY a.OXTIMESTAMP ASC
             LIMIT {$limit}";
 
+        /** @var Result $result */
         $result = $this->connection->executeQuery(
             $query,
             [
@@ -51,20 +40,21 @@ class ProductChangeFilter implements ChangeFilterInterface
             ]
         );
 
-        while ($data = $result->fetchAssociative()) {
-            $item = oxNew(Article::class);
-            $item->load((string)$data['OXID']); // @phpstan-ignore-line
+        return $result;
+    }
 
-            yield new ObjectUrl(
-                objectId: $item->getId(),
-                objectType: $this->getObjectType(),
-                url: new PageUrl(
-                    location: (string)$item->getLink(),
-                    lastModified: new DateTime($item->getFieldData('oxtimestamp')), // @phpstan-ignore-line
-                    changeFrequency: 'daily',
-                    priority: 0.7
-                )
-            );
-        }
+    protected function getModelClass(): string
+    {
+        return Article::class;
+    }
+
+    protected function getChangeFrequency(): string
+    {
+        return 'daily';
+    }
+
+    protected function getPriority(): float
+    {
+        return 0.5;
     }
 }
