@@ -35,15 +35,17 @@ abstract class ChangeFilterTemplate
         $result = $this->filterAndQueryItems($limit);
 
         while ($data = $result->fetchAssociative()) {
+            /** @var array{OXID:string} $data */
+
             /** @var IUrl&BaseModel $item */
             $item = oxNew($this->getModelClass());
-            $item->load((string)$data['OXID']); // @phpstan-ignore-line
+            $item->load($data['OXID']);
 
             yield new ObjectUrl(
                 objectId: $item->getId(),
                 objectType: $this->getObjectType(),
                 url: new PageUrl(
-                    location: (string)$item->getLink(),
+                    location: $item->getLink(),
                     lastModified: new DateTime($item->getFieldData('oxtimestamp')), // @phpstan-ignore-line
                     changeFrequency: $this->getChangeFrequency(),
                     priority: $this->getPriority()
