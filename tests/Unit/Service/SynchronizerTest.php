@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
 use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
-use FreshAdvance\Sitemap\ChangeFilter\FilterServiceInterface;
+use FreshAdvance\Sitemap\ChangeFilter\FilterFactoryInterface;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\Service\Synchronizer;
@@ -30,7 +30,7 @@ class SynchronizerTest extends \PHPUnit\Framework\TestCase
             ])
         );
 
-        $filterServiceStub = $this->createMock(FilterServiceInterface::class);
+        $filterServiceStub = $this->createMock(FilterFactoryInterface::class);
         $filterServiceStub->method('getFilter')->with('someType')->willReturn($filterStub);
 
         $urlRepository = $this->createMock(UrlRepositoryInterface::class);

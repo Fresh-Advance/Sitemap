@@ -12,7 +12,7 @@ namespace FreshAdvance\Sitemap\ChangeFilter;
 use FreshAdvance\Sitemap\Exception\FilterConfigurationException;
 use FreshAdvance\Sitemap\Exception\FilterNotFoundException;
 
-class FilterService implements FilterServiceInterface
+class FilterFactory implements FilterFactoryInterface
 {
     private array $filters = [];
 

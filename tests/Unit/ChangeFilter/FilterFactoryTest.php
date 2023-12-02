@@ -10,14 +10,14 @@ declare(strict_types=1);
 namespace ChangeFilter;
 
 use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
-use FreshAdvance\Sitemap\ChangeFilter\FilterService;
+use FreshAdvance\Sitemap\ChangeFilter\FilterFactory;
 use FreshAdvance\Sitemap\Exception\FilterConfigurationException;
 use FreshAdvance\Sitemap\Exception\FilterNotFoundException;
 
 /**
- * @covers \FreshAdvance\Sitemap\ChangeFilter\FilterService
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\FilterFactory
  */
-class FilterServiceTest extends \PHPUnit\Framework\TestCase
+class FilterFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testGetFilter(): void
     {
@@ -28,7 +28,7 @@ class FilterServiceTest extends \PHPUnit\Framework\TestCase
             $filterStub
         ];
 
-        $sut = new FilterService($filters);
+        $sut = new FilterFactory($filters);
 
         $filter = $sut->getFilter('someObjectType');
         $this->assertInstanceOf(ChangeFilterInterface::class, $filter);
@@ -38,14 +38,14 @@ class FilterServiceTest extends \PHPUnit\Framework\TestCase
     {
         $this->expectException(FilterConfigurationException::class);
 
-        new FilterService([
+        new FilterFactory([
             new \stdClass()
         ]);
     }
 
     public function testFilterNotFound(): void
     {
-        $sut = new FilterService([]);
+        $sut = new FilterFactory([]);
 
         $this->expectException(FilterNotFoundException::class);
         $sut->getFilter('unknown');

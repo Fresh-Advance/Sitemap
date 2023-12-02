@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Service;
 
-use FreshAdvance\Sitemap\ChangeFilter\FilterServiceInterface;
+use FreshAdvance\Sitemap\ChangeFilter\FilterFactoryInterface;
 use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 
 class Synchronizer implements SynchronizerInterface
 {
     public function __construct(
-        private FilterServiceInterface $filterService,
+        private FilterFactoryInterface $filterService,
         private UrlRepositoryInterface $urlRepository
     ) {
     }

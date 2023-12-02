@@ -7,7 +7,7 @@
 
 namespace FreshAdvance\Sitemap\ChangeFilter;
 
-interface FilterServiceInterface
+interface FilterFactoryInterface
 {
     public function getFilter(string $objectType): ChangeFilterInterface;
 }
