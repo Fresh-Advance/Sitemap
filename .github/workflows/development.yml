@@ -420,5 +420,3 @@ jobs:
             -Dsonar.tests=tests
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.php.coverage.reportPaths=coverage/source/unit_integration.xml
-            -Dsonar.cpd.php.minimumTokens=25
-            -Dsonar.cpd.php.minimumLines=5
