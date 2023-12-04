@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Command;
 
+use FreshAdvance\Sitemap\ChangeFilter\FilterFactoryInterface;
 use FreshAdvance\Sitemap\Command\UpdateTypeCommand;
 use FreshAdvance\Sitemap\Service\Synchronizer;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -21,7 +22,8 @@ class UpdateTypeCommandTest extends \PHPUnit\Framework\TestCase
     public function testUpdateTypeUrls(): void
     {
         $command = new UpdateTypeCommand(
-            synchronizer: $dataSynchronizerMock = $this->createMock(Synchronizer::class)
+            synchronizer: $dataSynchronizerMock = $this->createMock(Synchronizer::class),
+            filterFactory: $filterFactoryMock = $this->createMock(FilterFactoryInterface::class),
         );
 
         $dataSynchronizerMock->expects($this->once())->method('updateTypeUrls')->with('someType');

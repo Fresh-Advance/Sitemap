@@ -64,6 +64,6 @@ class ProductChangeFilterTest extends \FreshAdvance\Sitemap\Tests\Integration\In
         $this->assertSame('http://localhost.local/' . $value . '.html', $url->getLocation());
         $this->assertNotEmpty($url->getLastModified());
         $this->assertSame('daily', $url->getChangeFrequency());
-        $this->assertSame(0.5, $url->getPriority());
+        $this->assertSame(0.4, $url->getPriority());
     }
 }

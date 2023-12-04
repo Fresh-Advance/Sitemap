@@ -14,9 +14,9 @@ use OxidEsales\Eshop\Application\Model\Article;
 
 class ProductChangeFilter extends ChangeFilterTemplate implements ChangeFilterInterface
 {
-    public function getObjectType(): string
+    protected function getModelClass(): string
     {
-        return 'product';
+        return Article::class;
     }
 
     protected function filterAndQueryItems(int $limit): Result
@@ -41,20 +41,5 @@ class ProductChangeFilter extends ChangeFilterTemplate implements ChangeFilterIn
         );
 
         return $result;
-    }
-
-    protected function getModelClass(): string
-    {
-        return Article::class;
-    }
-
-    protected function getChangeFrequency(): string
-    {
-        return 'daily';
-    }
-
-    protected function getPriority(): float
-    {
-        return 0.5;
     }
 }

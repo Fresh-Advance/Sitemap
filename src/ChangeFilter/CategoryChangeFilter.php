@@ -14,24 +14,9 @@ use OxidEsales\Eshop\Application\Model\Category;
 
 class CategoryChangeFilter extends ChangeFilterTemplate implements ChangeFilterInterface
 {
-    public function getObjectType(): string
-    {
-        return 'category';
-    }
-
     protected function getModelClass(): string
     {
         return Category::class;
-    }
-
-    protected function getChangeFrequency(): string
-    {
-        return 'daily';
-    }
-
-    protected function getPriority(): float
-    {
-        return 0.7;
     }
 
     protected function filterAndQueryItems(int $limit): Result

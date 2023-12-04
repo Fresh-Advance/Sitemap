@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Command;
 
+use FreshAdvance\Sitemap\ChangeFilter\FilterFactoryInterface;
 use FreshAdvance\Sitemap\Service\SynchronizerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,7 +19,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class UpdateTypeCommand extends Command
 {
     public function __construct(
-        private SynchronizerInterface $synchronizer
+        protected SynchronizerInterface $synchronizer,
+        protected FilterFactoryInterface $filterFactory,
     ) {
         parent::__construct();
     }

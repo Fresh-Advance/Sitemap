@@ -14,6 +14,7 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ForwardCompatibility\Result;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
+use FreshAdvance\Sitemap\PageType\PageTypeConfigurationInterface;
 use OxidEsales\EshopCommunity\Core\Contract\IUrl;
 use OxidEsales\EshopCommunity\Core\Model\BaseModel;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
@@ -23,12 +24,16 @@ abstract class ChangeFilterTemplate
     protected Connection $connection;
 
     public function __construct(
-        ConnectionProviderInterface $connectionProvider
+        ConnectionProviderInterface $connectionProvider,
+        protected PageTypeConfigurationInterface $pageTypeConfiguration
     ) {
         $this->connection = $connectionProvider->get();
     }
 
-    abstract public function getObjectType(): string;
+    public function getObjectType(): string
+    {
+        return $this->pageTypeConfiguration->getObjectType();
+    }
 
     public function getUpdatedUrls(int $limit): iterable
     {
@@ -61,7 +66,13 @@ abstract class ChangeFilterTemplate
      */
     abstract protected function getModelClass(): string;
 
-    abstract protected function getChangeFrequency(): string;
+    protected function getChangeFrequency(): string
+    {
+        return $this->pageTypeConfiguration->getChangeFrequency();
+    }
 
-    abstract protected function getPriority(): float;
+    protected function getPriority(): float
+    {
+        return $this->pageTypeConfiguration->getPriority();
+    }
 }

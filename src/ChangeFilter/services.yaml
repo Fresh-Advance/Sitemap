@@ -10,13 +10,19 @@ services:
       $filters: !tagged 'sitemap.change_filter'
 
   FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter:
+    arguments:
+      $pageTypeConfiguration: '@FreshAdvance\Sitemap\PageType\ContentConfiguration'
     tags:
       - 'sitemap.change_filter'
 
   FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter:
+    arguments:
+      $pageTypeConfiguration: '@FreshAdvance\Sitemap\PageType\ProductConfiguration'
     tags:
       - 'sitemap.change_filter'
 
   FreshAdvance\Sitemap\ChangeFilter\CategoryChangeFilter:
+    arguments:
+      $pageTypeConfiguration: '@FreshAdvance\Sitemap\PageType\CategoryConfiguration'
     tags:
       - 'sitemap.change_filter'
