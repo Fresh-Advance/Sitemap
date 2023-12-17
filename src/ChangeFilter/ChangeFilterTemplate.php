@@ -45,11 +45,14 @@ abstract class ChangeFilterTemplate
 
             $item = $this->modelItemRepository->getItem($data['OXID']);
 
+            /** @var string $timestamp */
+            $timestamp = $item->getFieldData('oxtimestamp');
+
             yield new ObjectUrl(
                 objectId: $item->getId(),
                 objectType: $this->getObjectType(),
                 location: $item->getLink(),
-                modified: new DateTime($item->getFieldData('oxtimestamp'))
+                modified: new DateTime($timestamp)
             );
         }
     }

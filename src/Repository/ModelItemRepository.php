@@ -15,6 +15,9 @@ use OxidEsales\Eshop\Core\Model\BaseModel;
 
 class ModelItemRepository implements ModelItemRepositoryInterface
 {
+    /**
+     * @param class-string $model
+     */
     public function __construct(
         protected string $model
     ) {
@@ -22,6 +25,7 @@ class ModelItemRepository implements ModelItemRepositoryInterface
 
     public function getItem(string $identifier): BaseModel
     {
+        /** @var BaseModel&IUrl $item */
         $item = oxNew($this->model);
         if (!$item->load($identifier)) {
             throw new ModelItemNotFoundException();
