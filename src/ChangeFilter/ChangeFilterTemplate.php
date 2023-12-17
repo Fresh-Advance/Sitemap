@@ -15,6 +15,7 @@ use Doctrine\DBAL\ForwardCompatibility\Result;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use FreshAdvance\Sitemap\PageType\PageTypeConfigurationInterface;
+use FreshAdvance\Sitemap\Repository\ModelItemRepositoryInterface;
 use OxidEsales\EshopCommunity\Core\Contract\IUrl;
 use OxidEsales\EshopCommunity\Core\Model\BaseModel;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
@@ -25,9 +26,32 @@ abstract class ChangeFilterTemplate
 
     public function __construct(
         ConnectionProviderInterface $connectionProvider,
-        protected PageTypeConfigurationInterface $pageTypeConfiguration
+        protected PageTypeConfigurationInterface $pageTypeConfiguration,
+        protected ModelItemRepositoryInterface $modelItemRepository,
     ) {
         $this->connection = $connectionProvider->get();
+    }
+
+    public function queryAndFetchObjectUrl(string $query, array $queryParameters): \Generator
+    {
+        /** @var Result $result */
+        $result = $this->connection->executeQuery(
+            $query,
+            $queryParameters
+        );
+
+        while ($data = $result->fetchAssociative()) {
+            /** @var array{OXID:string} $data */
+
+            $item = $this->modelItemRepository->getItem($data['OXID']);
+
+            yield new ObjectUrl(
+                objectId: $item->getId(),
+                objectType: $this->getObjectType(),
+                location: $item->getLink(),
+                modified: new DateTime($item->getFieldData('oxtimestamp'))
+            );
+        }
     }
 
     public function getObjectType(): string
@@ -35,44 +59,29 @@ abstract class ChangeFilterTemplate
         return $this->pageTypeConfiguration->getObjectType();
     }
 
-    public function getUpdatedUrls(int $limit): iterable
+    protected function getQueryParameters(): array
     {
-        $result = $this->filterAndQueryItems($limit);
+        return [
+            'object_type' => $this->getObjectType(),
+            'oxactive' => true,
+        ];
+    }
 
-        while ($data = $result->fetchAssociative()) {
-            /** @var array{OXID:string} $data */
-
-            /** @var IUrl&BaseModel $item */
-            $item = oxNew($this->getModelClass());
-            $item->load($data['OXID']);
-
-            yield new ObjectUrl(
-                objectId: $item->getId(),
-                objectType: $this->getObjectType(),
-                url: new PageUrl(
-                    location: $item->getLink(),
-                    lastModified: new DateTime($item->getFieldData('oxtimestamp')), // @phpstan-ignore-line
-                    changeFrequency: $this->getChangeFrequency(),
-                    priority: $this->getPriority()
+    protected function getQuery(string $table, int $limit): string
+    {
+        $query = "SELECT c.OXID
+            FROM {$table} c
+            WHERE " . $this->getQueryCondition() . " AND c.OXTIMESTAMP > COALESCE(
+                  (SELECT MAX(modified) FROM fa_sitemap WHERE object_type = :object_type),
+                  '1970-01-01'
                 )
-            );
-        }
+            ORDER BY c.OXTIMESTAMP ASC
+            LIMIT {$limit}";
+        return $query;
     }
 
-    abstract protected function filterAndQueryItems(int $limit): Result;
-
-    /**
-     * @return class-string
-     */
-    abstract protected function getModelClass(): string;
-
-    protected function getChangeFrequency(): string
+    protected function getQueryCondition(): string
     {
-        return $this->pageTypeConfiguration->getChangeFrequency();
-    }
-
-    protected function getPriority(): float
-    {
-        return $this->pageTypeConfiguration->getPriority();
+        return "c.OXACTIVE = :oxactive";
     }
 }

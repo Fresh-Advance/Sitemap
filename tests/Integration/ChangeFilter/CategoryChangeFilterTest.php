@@ -42,8 +42,6 @@ class CategoryChangeFilterTest extends IntegrationTestCase
 
         $urls->next();
         $this->assertNull($urls->current());
-
-        $this->assertTrue(true);
     }
 
     protected function createExampleCategory(string $identifier, bool $active): void
@@ -62,10 +60,7 @@ class CategoryChangeFilterTest extends IntegrationTestCase
     {
         $this->assertSame('category', $objectUrl->getObjectType());
 
-        $url = $objectUrl->getUrl();
-        $this->assertSame('http://localhost.local/' . $value . '/', $url->getLocation());
-        $this->assertNotEmpty($url->getLastModified());
-        $this->assertSame('daily', $url->getChangeFrequency());
-        $this->assertSame(0.7, $url->getPriority());
+        $this->assertSame('http://localhost.local/' . $value . '/', $objectUrl->getLocation());
+        $this->assertNotEmpty($objectUrl->getModified());
     }
 }

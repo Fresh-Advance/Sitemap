@@ -14,7 +14,8 @@ class ObjectUrl implements ObjectUrlInterface
     public function __construct(
         private string $objectId,
         private string $objectType,
-        private PageUrlInterface $url
+        private string $location,
+        private \DateTimeInterface $modified,
     ) {
     }
 
@@ -28,8 +29,13 @@ class ObjectUrl implements ObjectUrlInterface
         return $this->objectType;
     }
 
-    public function getUrl(): PageUrlInterface
+    public function getLocation(): string
     {
-        return $this->url;
+        return $this->location;
+    }
+
+    public function getModified(): \DateTimeInterface
+    {
+        return $this->modified;
     }
 }

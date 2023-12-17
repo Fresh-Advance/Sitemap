@@ -9,39 +9,32 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\ChangeFilter;
 
-use Doctrine\DBAL\ForwardCompatibility\Result;
 use OxidEsales\Eshop\Application\Model\Content;
 
 class ContentChangeFilter extends ChangeFilterTemplate implements ChangeFilterInterface
 {
+    public function getUpdatedUrls(int $limit): iterable
+    {
+        return $this->queryAndFetchObjectUrl($this->getQuery('oxcontents', $limit), $this->getQueryParameters());
+    }
+
     protected function getModelClass(): string
     {
         return Content::class;
     }
 
-    protected function filterAndQueryItems(int $limit): Result
+    protected function getQueryParameters(): array
     {
-        $query = "SELECT c.OXID
-            FROM oxcontents c
-            WHERE c.OXFOLDER = :oxfolder
-                AND c.OXACTIVE = :oxactive
-                AND c.OXTIMESTAMP > COALESCE(
-              (SELECT MAX(modified) FROM fa_sitemap WHERE object_type = :object_type),
-              '1970-01-01'
-            )
-            ORDER BY c.OXTIMESTAMP ASC
-            LIMIT {$limit}";
+        $queryParemeters = parent::getQueryParameters();
 
-        /** @var Result $result */
-        $result = $this->connection->executeQuery(
-            $query,
-            [
-                'object_type' => $this->getObjectType(),
-                'oxfolder' => 'CMSFOLDER_USERINFO',
-                'oxactive' => true,
-            ]
-        );
+        $queryParemeters['oxfolder'] = 'CMSFOLDER_USERINFO';
+        $queryParemeters['oxactive'] = true;
 
-        return $result;
+        return $queryParemeters;
+    }
+
+    protected function getQueryCondition(): string
+    {
+        return "c.OXFOLDER = :oxfolder AND c.OXACTIVE = :oxactive";
     }
 }

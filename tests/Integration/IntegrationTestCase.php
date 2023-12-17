@@ -30,12 +30,8 @@ class IntegrationTestCase extends \OxidEsales\EshopCommunity\Tests\Integration\I
             new ObjectUrl(
                 objectId: 'someId',
                 objectType: $type,
-                url: new PageUrl(
-                    location: 'example',
-                    lastModified: $dateTime,
-                    changeFrequency: 'frequency',
-                    priority: 1
-                )
+                location: 'example',
+                modified: $dateTime
             )
         );
     }

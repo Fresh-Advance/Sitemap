@@ -19,27 +19,8 @@ class ProductChangeFilter extends ChangeFilterTemplate implements ChangeFilterIn
         return Article::class;
     }
 
-    protected function filterAndQueryItems(int $limit): Result
+    public function getUpdatedUrls(int $limit): iterable
     {
-        $query = "SELECT a.OXID
-            FROM oxarticles a
-            WHERE a.OXACTIVE = :oxactive
-                AND a.OXTIMESTAMP > COALESCE(
-              (SELECT MAX(modified) FROM fa_sitemap WHERE object_type = :object_type),
-              '1970-01-01'
-            )
-            ORDER BY a.OXTIMESTAMP ASC
-            LIMIT {$limit}";
-
-        /** @var Result $result */
-        $result = $this->connection->executeQuery(
-            $query,
-            [
-                'object_type' => $this->getObjectType(),
-                'oxactive' => true,
-            ]
-        );
-
-        return $result;
+        return $this->queryAndFetchObjectUrl($this->getQuery('oxarticles', $limit), $this->getQueryParameters());
     }
 }

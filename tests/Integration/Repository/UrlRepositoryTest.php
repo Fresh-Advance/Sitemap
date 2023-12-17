@@ -32,12 +32,8 @@ class UrlRepositoryTest extends IntegrationTestCase
             new ObjectUrl(
                 objectId: $objectId,
                 objectType: $objectType,
-                url: new PageUrl(
-                    location: 'someLocation',
-                    lastModified: new \DateTime('2020-03-04 01:02:03'),
-                    changeFrequency: 'frequency',
-                    priority: 0.3
-                ),
+                location: 'someLocation',
+                modified: new \DateTime('2020-03-04 01:02:03')
             )
         );
 
@@ -45,8 +41,6 @@ class UrlRepositoryTest extends IntegrationTestCase
 
         $this->assertSame('someLocation', $url->getLocation());
         $this->assertEquals(new \DateTime('2020-03-04 01:02:03'), $url->getLastModified());
-        $this->assertSame('frequency', $url->getChangeFrequency());
-        $this->assertSame(0.3, $url->getPriority());
     }
 
     public function testNotFoundUrl(): void
@@ -66,12 +60,8 @@ class UrlRepositoryTest extends IntegrationTestCase
                 new ObjectUrl(
                     objectId: 'exampleObject' . $i,
                     objectType: 'someType',
-                    url: new PageUrl(
-                        location: 'someLocation' . $i,
-                        lastModified: new \DateTime(),
-                        changeFrequency: 'frequency',
-                        priority: 0.3
-                    )
+                    location: 'someLocation' . $i,
+                    modified: new \DateTime()
                 )
             );
         }

@@ -66,10 +66,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
     {
         $this->assertSame('content', $objectUrl->getObjectType());
 
-        $url = $objectUrl->getUrl();
-        $this->assertSame('http://localhost.local/' . $value . '/', $url->getLocation());
-        $this->assertNotEmpty($url->getLastModified());
-        $this->assertSame('weekly', $url->getChangeFrequency());
-        $this->assertSame(0.3, $url->getPriority());
+        $this->assertSame('http://localhost.local/' . $value . '/', $objectUrl->getLocation());
+        $this->assertNotEmpty($objectUrl->getModified());
     }
 }

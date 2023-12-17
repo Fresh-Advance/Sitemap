@@ -4,5 +4,20 @@ services:
     public: false
     autowire: true
 
+  FreshAdvance\Sitemap\Repository\ProductModelItemRepository:
+    class: FreshAdvance\Sitemap\Repository\ModelItemRepository
+    arguments:
+      $model: '\OxidEsales\Eshop\Application\Model\Article'
+
+  FreshAdvance\Sitemap\Repository\CategoryModelItemRepository:
+    class: FreshAdvance\Sitemap\Repository\ModelItemRepository
+    arguments:
+      $model: '\OxidEsales\Eshop\Application\Model\Category'
+
+  FreshAdvance\Sitemap\Repository\ContentModelItemRepository:
+    class: FreshAdvance\Sitemap\Repository\ModelItemRepository
+    arguments:
+      $model: '\OxidEsales\Eshop\Application\Model\Content'
+
   FreshAdvance\Sitemap\Repository\UrlRepositoryInterface:
     class: FreshAdvance\Sitemap\Repository\UrlRepository

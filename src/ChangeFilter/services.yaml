@@ -12,17 +12,20 @@ services:
   FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter:
     arguments:
       $pageTypeConfiguration: '@FreshAdvance\Sitemap\PageType\ContentConfiguration'
+      $modelItemRepository: '@FreshAdvance\Sitemap\Repository\ContentModelItemRepository'
     tags:
       - 'sitemap.change_filter'
 
   FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter:
     arguments:
       $pageTypeConfiguration: '@FreshAdvance\Sitemap\PageType\ProductConfiguration'
+      $modelItemRepository: '@FreshAdvance\Sitemap\Repository\ProductModelItemRepository'
     tags:
       - 'sitemap.change_filter'
 
   FreshAdvance\Sitemap\ChangeFilter\CategoryChangeFilter:
     arguments:
       $pageTypeConfiguration: '@FreshAdvance\Sitemap\PageType\CategoryConfiguration'
+      $modelItemRepository: '@FreshAdvance\Sitemap\Repository\CategoryModelItemRepository'
     tags:
       - 'sitemap.change_filter'

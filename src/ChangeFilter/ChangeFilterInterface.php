@@ -13,8 +13,6 @@ interface ChangeFilterInterface
 {
     public function getObjectType(): string;
 
-    /**
-     * @return iterable<ObjectUrlInterface>
-     */
+    /** @return iterable<ObjectUrlInterface> */
     public function getUpdatedUrls(int $limit): iterable;
 }

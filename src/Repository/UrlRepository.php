@@ -30,23 +30,16 @@ class UrlRepository implements UrlRepositoryInterface
                   object_id = :object_id,
                   object_type = :object_type,
                   location = :location,
-                  modified = :modified,
-                  frequency = :frequency,
-                  priority = :priority
+                  modified = :modified
                 ON DUPLICATE KEY UPDATE
                   location = :location,
-                  modified = :modified,
-                  frequency = :frequency,
-                  priority = :priority";
+                  modified = :modified";
 
-        $url = $objectUrl->getUrl();
         $connection->executeQuery($sql, [
             'object_id' => $objectUrl->getObjectId(),
             'object_type' => $objectUrl->getObjectType(),
-            'location' => $url->getLocation(),
-            'modified' => $url->getLastModified()->format(\DateTimeInterface::ATOM),
-            'frequency' => $url->getChangeFrequency(),
-            'priority' => $url->getPriority()
+            'location' => $objectUrl->getLocation(),
+            'modified' => $objectUrl->getModified()->format(\DateTimeInterface::ATOM)
         ]);
     }
 

@@ -13,5 +13,7 @@ interface ObjectUrlInterface
 
     public function getObjectType(): string;
 
-    public function getUrl(): PageUrlInterface;
+    public function getLocation(): string;
+
+    public function getModified(): \DateTimeInterface;
 }
