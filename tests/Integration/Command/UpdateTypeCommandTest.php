@@ -23,7 +23,6 @@ class UpdateTypeCommandTest extends \PHPUnit\Framework\TestCase
     {
         $command = new UpdateTypeCommand(
             synchronizer: $dataSynchronizerMock = $this->createMock(Synchronizer::class),
-            filterFactory: $filterFactoryMock = $this->createMock(FilterFactoryInterface::class),
         );
 
         $dataSynchronizerMock->expects($this->once())->method('updateTypeUrls')->with('someType');

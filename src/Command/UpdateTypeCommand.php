@@ -20,7 +20,6 @@ class UpdateTypeCommand extends Command
 {
     public function __construct(
         protected SynchronizerInterface $synchronizer,
-        protected FilterFactoryInterface $filterFactory,
     ) {
         parent::__construct();
     }
