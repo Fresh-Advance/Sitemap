@@ -9,18 +9,11 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\ChangeFilter;
 
-use OxidEsales\Eshop\Application\Model\Content;
-
 class ContentChangeFilter extends ChangeFilterTemplate implements ChangeFilterInterface
 {
     public function getUpdatedUrls(int $limit): iterable
     {
         return $this->queryAndFetchObjectUrl($this->getQuery('oxcontents', $limit), $this->getQueryParameters());
-    }
-
-    protected function getModelClass(): string
-    {
-        return Content::class;
     }
 
     protected function getQueryParameters(): array
