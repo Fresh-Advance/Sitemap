@@ -13,5 +13,8 @@ services:
   FreshAdvance\Sitemap\Service\SynchronizerInterface:
     class: FreshAdvance\Sitemap\Service\Synchronizer
 
+  FreshAdvance\Sitemap\Service\UrlFactoryInterface:
+    class: FreshAdvance\Sitemap\Service\UrlFactory
+
   FreshAdvance\Sitemap\Service\XmlGeneratorInterface:
     class: FreshAdvance\Sitemap\Service\XmlGenerator

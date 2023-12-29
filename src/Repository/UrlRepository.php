@@ -12,14 +12,15 @@ namespace FreshAdvance\Sitemap\Repository;
 use DateTime;
 use Doctrine\DBAL\Result;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\PageUrl;
 use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
+use FreshAdvance\Sitemap\Service\UrlFactoryInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
 class UrlRepository implements UrlRepositoryInterface
 {
     public function __construct(
-        protected QueryBuilderFactoryInterface $queryBuilderFactory
+        protected QueryBuilderFactoryInterface $queryBuilderFactory,
+        protected UrlFactoryInterface $urlFactory,
     ) {
     }
 
@@ -60,11 +61,10 @@ class UrlRepository implements UrlRepositoryInterface
         /** @var false|array<string, int|string|bool|null> $data */
         $data = $result->fetchAssociative();
         if (is_array($data)) {
-            return new PageUrl(
-                location: (string)$data['location'],
-                lastModified: new DateTime((string)$data['modified']),
-                changeFrequency: (string)$data['frequency'],
-                priority: (float)$data['priority'],
+            return $this->urlFactory->createUrl(
+                type: (string)$data['object_type'],
+                url: (string)$data['location'],
+                modified: new DateTime((string)$data['modified']),
             );
         }
 
@@ -85,11 +85,10 @@ class UrlRepository implements UrlRepositoryInterface
 
         while ($data = $result->fetchAssociative()) {
             /** @var array<string, int|string|bool> $data */
-            yield new PageUrl(
-                location: (string)$data['location'],
-                lastModified: new DateTime((string)$data['modified']),
-                changeFrequency: (string)$data['frequency'],
-                priority: (float)$data['priority'],
+            yield $this->urlFactory->createUrl(
+                type: (string)$data['object_type'],
+                url: (string)$data['location'],
+                modified: new DateTime((string)$data['modified']),
             );
         }
     }
