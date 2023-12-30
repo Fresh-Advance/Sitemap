@@ -7,9 +7,8 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Service;
+namespace FreshAdvance\Sitemap\Integration\Service;
 
-use FreshAdvance\Sitemap\ChangeFilter\FilterFactoryInterface;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 
 class Synchronizer implements SynchronizerInterface

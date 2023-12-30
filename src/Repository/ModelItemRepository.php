@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Repository;
 
-use FreshAdvance\Sitemap\Exception\ModelItemNotFoundException;
+use FreshAdvance\Sitemap\Integration\Exception\ModelItemNotFoundException;
 use OxidEsales\Eshop\Core\Contract\IUrl;
 use OxidEsales\Eshop\Core\Model\BaseModel;
 

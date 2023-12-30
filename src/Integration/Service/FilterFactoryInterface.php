@@ -5,7 +5,9 @@
  * See LICENSE file for license details.
  */
 
-namespace FreshAdvance\Sitemap\ChangeFilter;
+namespace FreshAdvance\Sitemap\Integration\Service;
+
+use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
 
 interface FilterFactoryInterface
 {

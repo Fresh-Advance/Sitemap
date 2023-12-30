@@ -5,14 +5,14 @@
  * See LICENSE file for license details.
  */
 
-namespace FreshAdvance\Sitemap\ChangeFilter;
+namespace FreshAdvance\Sitemap\Integration\Contract;
 
-use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
+use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 
 interface ChangeFilterInterface
 {
     public function getObjectType(): string;
 
-    /** @return iterable<ObjectUrlInterface> */
+    /** @return iterable<\FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface> */
     public function getUpdatedUrls(int $limit): iterable;
 }

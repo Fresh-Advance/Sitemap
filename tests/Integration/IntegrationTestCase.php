@@ -11,7 +11,7 @@ namespace FreshAdvance\Sitemap\Tests\Integration;
 
 use DateTime;
 use Doctrine\DBAL\Connection;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
+use FreshAdvance\Sitemap\Integration\DataType\ObjectUrl;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 

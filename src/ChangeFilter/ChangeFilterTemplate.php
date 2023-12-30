@@ -12,7 +12,7 @@ namespace FreshAdvance\Sitemap\ChangeFilter;
 use DateTime;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ForwardCompatibility\Result;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
+use FreshAdvance\Sitemap\Integration\DataType\ObjectUrl;
 use FreshAdvance\Sitemap\Repository\ModelItemRepositoryInterface;
 use FreshAdvance\Sitemap\Url\DataType\UrlTypeInterface;
 use Generator;

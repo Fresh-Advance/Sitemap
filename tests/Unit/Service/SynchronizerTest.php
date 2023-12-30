@@ -9,16 +9,15 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
-use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
-use FreshAdvance\Sitemap\ChangeFilter\FilterFactoryInterface;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\Service\Synchronizer;
+use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
+use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
+use FreshAdvance\Sitemap\Integration\Service\FilterFactoryInterface;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Sitemap\Service\Synchronizer
+ * @covers \FreshAdvance\Sitemap\Integration\Service\Synchronizer
  */
 class SynchronizerTest extends TestCase
 {
@@ -60,7 +59,7 @@ class SynchronizerTest extends TestCase
                 }
             );
 
-        $sut = new Synchronizer(
+        $sut = new \FreshAdvance\Sitemap\Integration\Service\Synchronizer(
             filterService: $filterServiceStub,
             urlRepository: $urlRepository,
         );

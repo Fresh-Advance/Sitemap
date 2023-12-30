@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Command;
+namespace FreshAdvance\Sitemap\Integration\Command;
 
-use FreshAdvance\Sitemap\Service\SynchronizerInterface;
+use FreshAdvance\Sitemap\Integration\Service\SynchronizerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

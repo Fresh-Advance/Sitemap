@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\ChangeFilter;
 
+use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
+
 class ContentChangeFilter extends ChangeFilterTemplate implements ChangeFilterInterface
 {
     public function getUpdatedUrls(int $limit): iterable

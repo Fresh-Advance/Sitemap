@@ -7,7 +7,7 @@
 
 namespace FreshAdvance\Sitemap\Url\Repository;
 
-use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
+use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 
 interface UrlRepositoryInterface

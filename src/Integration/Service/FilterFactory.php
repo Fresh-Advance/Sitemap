@@ -7,17 +7,18 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\ChangeFilter;
+namespace FreshAdvance\Sitemap\Integration\Service;
 
-use FreshAdvance\Sitemap\Exception\FilterConfigurationException;
-use FreshAdvance\Sitemap\Exception\FilterNotFoundException;
+use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
+use FreshAdvance\Sitemap\Integration\Exception\FilterConfigurationException;
+use FreshAdvance\Sitemap\Integration\Exception\FilterNotFoundException;
 
 class FilterFactory implements FilterFactoryInterface
 {
     private array $filters = [];
 
     /**
-     * @param iterable<ChangeFilterInterface> $filters
+     * @param iterable<\FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface> $filters
      */
     public function __construct(
         iterable $filters

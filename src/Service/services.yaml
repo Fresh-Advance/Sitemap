@@ -1,8 +1,0 @@
-services:
-
-  _defaults:
-    public: false
-    autowire: true
-
-  FreshAdvance\Sitemap\Service\SynchronizerInterface:
-    class: FreshAdvance\Sitemap\Service\Synchronizer

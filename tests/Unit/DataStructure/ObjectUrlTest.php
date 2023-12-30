@@ -10,11 +10,11 @@ declare(strict_types=1);
 namespace FreshAdvance\Sitemap\Tests\Unit\DataStructure;
 
 use DateTime;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
+use FreshAdvance\Sitemap\Integration\DataType\ObjectUrl;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Sitemap\DataStructure\ObjectUrl
+ * @covers \FreshAdvance\Sitemap\Integration\DataType\ObjectUrl
  */
 class ObjectUrlTest extends TestCase
 {

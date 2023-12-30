@@ -1,9 +1,12 @@
+imports:
+  - { resource: Service/services.yaml }
+
 services:
 
   _defaults:
     public: false
     autowire: true
 
-  FreshAdvance\Sitemap\Command\UpdateTypeCommand:
+  FreshAdvance\Sitemap\Integration\Command\UpdateTypeCommand:
     tags:
       - { name: 'console.command', command: 'fa:sitemap:update' }

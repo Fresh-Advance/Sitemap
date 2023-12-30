@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
 
-use FreshAdvance\Sitemap\Exception\ModelItemNotFoundException;
+use FreshAdvance\Sitemap\Integration\Exception\ModelItemNotFoundException;
 use FreshAdvance\Sitemap\Repository\ModelItemRepository;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use Generator;

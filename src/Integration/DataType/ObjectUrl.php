@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\DataStructure;
+namespace FreshAdvance\Sitemap\Integration\DataType;
 
 use DateTimeInterface;
 

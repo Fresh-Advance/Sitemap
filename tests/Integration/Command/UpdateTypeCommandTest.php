@@ -9,19 +9,18 @@ declare(strict_types=1);
 
 namespace Command;
 
-use FreshAdvance\Sitemap\Command\UpdateTypeCommand;
-use FreshAdvance\Sitemap\Service\Synchronizer;
+use FreshAdvance\Sitemap\Integration\Service\Synchronizer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
- * @covers \FreshAdvance\Sitemap\Command\UpdateTypeCommand
+ * @covers \FreshAdvance\Sitemap\Integration\Command\UpdateTypeCommand
  */
 class UpdateTypeCommandTest extends TestCase
 {
     public function testUpdateTypeUrls(): void
     {
-        $command = new UpdateTypeCommand(
+        $command = new \FreshAdvance\Sitemap\Integration\Command\UpdateTypeCommand(
             synchronizer: $dataSynchronizerMock = $this->createMock(Synchronizer::class),
         );
 

@@ -12,7 +12,7 @@ namespace FreshAdvance\Sitemap\Url\Repository;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Result;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
+use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 use FreshAdvance\Sitemap\Url\DataTypeFactory\UrlFactoryInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;

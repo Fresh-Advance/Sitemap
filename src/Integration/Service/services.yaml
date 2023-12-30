@@ -1,0 +1,13 @@
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\Integration\Service\FilterFactoryInterface:
+    class: FreshAdvance\Sitemap\Integration\Service\FilterFactory
+    arguments:
+      $filters: !tagged 'sitemap.change_filter'
+
+  FreshAdvance\Sitemap\Integration\Service\SynchronizerInterface:
+    class: FreshAdvance\Sitemap\Integration\Service\Synchronizer

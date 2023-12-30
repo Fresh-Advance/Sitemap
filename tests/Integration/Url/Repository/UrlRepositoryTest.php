@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Sitemap\Tests\Integration\Url\Repository;
 
 use DateTime;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
+use FreshAdvance\Sitemap\Integration\DataType\ObjectUrl;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepository;

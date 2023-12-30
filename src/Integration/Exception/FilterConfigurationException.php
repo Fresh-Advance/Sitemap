@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Exception;
+namespace FreshAdvance\Sitemap\Integration\Exception;
 
 use Exception;
 
-class ModelItemNotFoundException extends Exception
+class FilterConfigurationException extends Exception
 {
 }

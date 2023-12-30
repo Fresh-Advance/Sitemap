@@ -11,7 +11,7 @@ namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
 
 use DateTime;
 use FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
+use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\Eshop\Application\Model\Article;
 
