@@ -9,17 +9,19 @@ declare(strict_types=1);
 
 namespace DataStructure;
 
+use DateTime;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\DataStructure\SitemapUrl
  */
-class SitemapUrlTest extends \PHPUnit\Framework\TestCase
+class SitemapUrlTest extends TestCase
 {
     public function testMainGetters(): void
     {
         $locationExample = 'someLoc';
-        $lastModifiedExample = new \DateTime();
+        $lastModifiedExample = new DateTime();
 
         $sut = new SitemapUrl(
             location: $locationExample,

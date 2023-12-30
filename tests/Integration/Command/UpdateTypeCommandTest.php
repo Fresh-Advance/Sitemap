@@ -9,15 +9,15 @@ declare(strict_types=1);
 
 namespace Command;
 
-use FreshAdvance\Sitemap\ChangeFilter\FilterFactoryInterface;
 use FreshAdvance\Sitemap\Command\UpdateTypeCommand;
 use FreshAdvance\Sitemap\Service\Synchronizer;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * @covers \FreshAdvance\Sitemap\Command\UpdateTypeCommand
  */
-class UpdateTypeCommandTest extends \PHPUnit\Framework\TestCase
+class UpdateTypeCommandTest extends TestCase
 {
     public function testUpdateTypeUrls(): void
     {

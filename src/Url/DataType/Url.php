@@ -7,13 +7,16 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\DataStructure;
+namespace FreshAdvance\Sitemap\Url\DataType;
 
-class PageUrl extends SitemapUrl implements PageUrlInterface
+use DateTimeInterface;
+use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
+
+class Url extends SitemapUrl implements UrlInterface
 {
     public function __construct(
         protected string $location,
-        protected \DateTimeInterface $lastModified,
+        protected DateTimeInterface $lastModified,
         protected string $changeFrequency,
         protected float $priority
     ) {
@@ -21,16 +24,6 @@ class PageUrl extends SitemapUrl implements PageUrlInterface
             location: $this->location,
             lastModified: $this->lastModified
         );
-    }
-
-    public function getLocation(): string
-    {
-        return $this->location;
-    }
-
-    public function getLastModified(): \DateTimeInterface
-    {
-        return $this->lastModified;
     }
 
     public function getChangeFrequency(): string

@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Sitemap\Service;
 
 use FreshAdvance\Sitemap\ChangeFilter\FilterFactoryInterface;
-use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
+use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 
 class Synchronizer implements SynchronizerInterface
 {

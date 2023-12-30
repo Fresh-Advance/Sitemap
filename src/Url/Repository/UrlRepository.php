@@ -7,13 +7,14 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Repository;
+namespace FreshAdvance\Sitemap\Url\Repository;
 
 use DateTime;
+use DateTimeInterface;
 use Doctrine\DBAL\Result;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
-use FreshAdvance\Sitemap\Service\UrlFactoryInterface;
+use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
+use FreshAdvance\Sitemap\Url\DataTypeFactory\UrlFactoryInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
 class UrlRepository implements UrlRepositoryInterface
@@ -40,11 +41,11 @@ class UrlRepository implements UrlRepositoryInterface
             'object_id' => $objectUrl->getObjectId(),
             'object_type' => $objectUrl->getObjectType(),
             'location' => $objectUrl->getLocation(),
-            'modified' => $objectUrl->getModified()->format(\DateTimeInterface::ATOM)
+            'modified' => $objectUrl->getModified()->format(DateTimeInterface::ATOM)
         ]);
     }
 
-    public function getUrl(string $objectId, string $objectType): ?PageUrlInterface
+    public function getUrl(string $objectId, string $objectType): ?UrlInterface
     {
         $queryBuilder = $this->queryBuilderFactory->create();
         $queryBuilder->select('*')

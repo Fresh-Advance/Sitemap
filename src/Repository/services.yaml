@@ -18,6 +18,3 @@ services:
     class: FreshAdvance\Sitemap\Repository\ModelItemRepository
     arguments:
       $model: '\OxidEsales\Eshop\Application\Model\Content'
-
-  FreshAdvance\Sitemap\Repository\UrlRepositoryInterface:
-    class: FreshAdvance\Sitemap\Repository\UrlRepository

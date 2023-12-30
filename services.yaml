@@ -1,10 +1,10 @@
 imports:
   - { resource: src/ChangeFilter/services.yaml }
   - { resource: src/Command/services.yaml }
-  - { resource: src/PageType/services.yaml }
   - { resource: src/Repository/services.yaml }
   - { resource: src/Service/services.yaml }
   - { resource: src/Settings/services.yaml }
+  - { resource: src/Url/services.yaml }
 
 services:
     _defaults:

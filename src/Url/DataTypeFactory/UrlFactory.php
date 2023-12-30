@@ -7,24 +7,24 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Service;
+namespace FreshAdvance\Sitemap\Url\DataTypeFactory;
 
-use FreshAdvance\Sitemap\DataStructure\PageUrl;
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
-use FreshAdvance\Sitemap\PageType\PageTypeConfigurationFactoryInterface;
+use DateTime;
+use FreshAdvance\Sitemap\Url\DataType\Url;
+use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 
 class UrlFactory implements UrlFactoryInterface
 {
     public function __construct(
-        private PageTypeConfigurationFactoryInterface $pageTypeConfigurationFactory
+        private UrlTypeFactoryInterface $pageTypeConfigurationFactory
     ) {
     }
 
-    public function createUrl(string $type, string $url, \DateTime $modified): PageUrlInterface
+    public function createUrl(string $type, string $url, DateTime $modified): UrlInterface
     {
         $configuration = $this->pageTypeConfigurationFactory->getConfiguration($type);
 
-        return new PageUrl(
+        return new Url(
             $url,
             $modified,
             $configuration->getChangeFrequency(),

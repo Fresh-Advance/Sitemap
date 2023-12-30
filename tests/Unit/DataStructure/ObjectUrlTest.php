@@ -11,12 +11,12 @@ namespace FreshAdvance\Sitemap\Tests\Unit\DataStructure;
 
 use DateTime;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\DataStructure\ObjectUrl
  */
-class ObjectUrlTest extends \PHPUnit\Framework\TestCase
+class ObjectUrlTest extends TestCase
 {
     public function testMainGetters(): void
     {

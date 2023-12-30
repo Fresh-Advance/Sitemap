@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\PageType;
+namespace FreshAdvance\Sitemap\Url\DataType;
 
-interface PageTypeConfigurationInterface
+interface UrlTypeInterface
 {
     public function getObjectType(): string;
 

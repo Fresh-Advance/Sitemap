@@ -9,17 +9,20 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Tests\Unit\Settings;
 
+use DateTime;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Settings\LocationService;
 use FreshAdvance\Sitemap\Settings\ModuleSettingsInterface;
 use FreshAdvance\Sitemap\Settings\ShopSettingsInterface;
+use Generator;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\BasicContextInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\Settings\LocationService
  */
-class LocationServiceTest extends \PHPUnit\Framework\TestCase
+class LocationServiceTest extends TestCase
 {
     /** @dataProvider getSitemapDirectoryPathDataProvider */
     public function testGetSitemapDirectoryPathReturnsCorrectValues(
@@ -38,7 +41,7 @@ class LocationServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expectedValue, $sut->getSitemapDirectoryPath());
     }
 
-    public function getSitemapDirectoryPathDataProvider(): \Generator
+    public function getSitemapDirectoryPathDataProvider(): Generator
     {
         yield 'simple case' => [
             'sourcePath' => 'sourcePath',
@@ -89,7 +92,7 @@ class LocationServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedValue, $sut->getSitemapFileUrl($fileName));
     }
 
-    public function getSitemapFileUrlDataProvider(): \Generator
+    public function getSitemapFileUrlDataProvider(): Generator
     {
         yield 'simple case' => [
             'shopUrl' => 'exampleUrl',
@@ -97,7 +100,7 @@ class LocationServiceTest extends \PHPUnit\Framework\TestCase
             'sitemapDirectory' => 'directory',
             'expectedValue' => new SitemapUrl(
                 location: 'exampleUrl/directory/someFile.xml',
-                lastModified: new \DateTime('today')
+                lastModified: new DateTime('today')
             )
         ];
 
@@ -107,7 +110,7 @@ class LocationServiceTest extends \PHPUnit\Framework\TestCase
             'sitemapDirectory' => '/directory/',
             'expectedValue' => new SitemapUrl(
                 location: 'exampleUrl/directory/someFile.xml',
-                lastModified: new \DateTime('today')
+                lastModified: new DateTime('today')
             )
         ];
     }

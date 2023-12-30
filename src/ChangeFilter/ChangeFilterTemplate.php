@@ -13,11 +13,9 @@ use DateTime;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ForwardCompatibility\Result;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
-use FreshAdvance\Sitemap\DataStructure\PageUrl;
-use FreshAdvance\Sitemap\PageType\PageTypeConfigurationInterface;
 use FreshAdvance\Sitemap\Repository\ModelItemRepositoryInterface;
-use OxidEsales\EshopCommunity\Core\Contract\IUrl;
-use OxidEsales\EshopCommunity\Core\Model\BaseModel;
+use FreshAdvance\Sitemap\Url\DataType\UrlTypeInterface;
+use Generator;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 
 abstract class ChangeFilterTemplate
@@ -26,13 +24,13 @@ abstract class ChangeFilterTemplate
 
     public function __construct(
         ConnectionProviderInterface $connectionProvider,
-        protected PageTypeConfigurationInterface $pageTypeConfiguration,
+        protected UrlTypeInterface $pageTypeConfiguration,
         protected ModelItemRepositoryInterface $modelItemRepository,
     ) {
         $this->connection = $connectionProvider->get();
     }
 
-    public function queryAndFetchObjectUrl(string $query, array $queryParameters): \Generator
+    public function queryAndFetchObjectUrl(string $query, array $queryParameters): Generator
     {
         /** @var Result $result */
         $result = $this->connection->executeQuery(

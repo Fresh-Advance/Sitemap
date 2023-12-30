@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace FreshAdvance\Sitemap\Service;
 
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
-use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\Settings\LocationServiceInterface;
+use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 
 class Sitemap implements SitemapInterface
 {

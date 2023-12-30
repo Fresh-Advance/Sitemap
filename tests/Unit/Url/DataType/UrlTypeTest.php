@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\PageType;
+namespace FreshAdvance\Sitemap\Tests\Unit\Url\DataType;
 
-use FreshAdvance\Sitemap\PageType\PageTypeConfiguration;
+use FreshAdvance\Sitemap\Url\DataType\UrlType;
 use PHPUnit\Framework\TestCase;
 
-class PageTypeConfigurationTest extends TestCase
+class UrlTypeTest extends TestCase
 {
     public function testGetters(): void
     {
@@ -20,7 +20,7 @@ class PageTypeConfigurationTest extends TestCase
         $changeFrequency = 'daily';
         $priority = 0.35;
 
-        $sut = new PageTypeConfiguration(
+        $sut = new UrlType(
             objectType: $objectType,
             changeFrequency: $changeFrequency,
             priority: $priority,

@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Tests\Integration;
 
+use DateTime;
 use Doctrine\DBAL\Connection;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
-use FreshAdvance\Sitemap\DataStructure\PageUrl;
-use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
+use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 
 class IntegrationTestCase extends \OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase
@@ -22,7 +22,7 @@ class IntegrationTestCase extends \OxidEsales\EshopCommunity\Tests\Integration\I
         return $this->get(ConnectionProviderInterface::class)->get();
     }
 
-    protected function addConcreteDateUrl(string $type, \DateTime $dateTime): void
+    protected function addConcreteDateUrl(string $type, DateTime $dateTime): void
     {
         /** @var UrlRepositoryInterface $urlRepository */
         $urlRepository = $this->get(UrlRepositoryInterface::class);

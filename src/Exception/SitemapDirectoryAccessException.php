@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Exception;
 
-class SitemapDirectoryAccessException extends \Exception
+use Exception;
+
+class SitemapDirectoryAccessException extends Exception
 {
 }

@@ -11,11 +11,12 @@ namespace FreshAdvance\Sitemap\Tests\Unit\Settings;
 
 use FreshAdvance\Sitemap\Settings\ShopSettings;
 use OxidEsales\Eshop\Core\Config;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\Settings\ShopSettings
  */
-class ShopSettingsTest extends \PHPUnit\Framework\TestCase
+class ShopSettingsTest extends TestCase
 {
     public function testGetShopUrl(): void
     {

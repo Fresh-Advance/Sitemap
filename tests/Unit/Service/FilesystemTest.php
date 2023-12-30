@@ -12,11 +12,12 @@ namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 use FreshAdvance\Sitemap\Exception\SitemapDirectoryAccessException;
 use FreshAdvance\Sitemap\Service\Filesystem;
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\Service\Filesystem
  */
-class FilesystemTest extends \PHPUnit\Framework\TestCase
+class FilesystemTest extends TestCase
 {
     public function testCreateSitemapFile(): void
     {

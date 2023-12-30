@@ -12,6 +12,7 @@ namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
 use FreshAdvance\Sitemap\Exception\ModelItemNotFoundException;
 use FreshAdvance\Sitemap\Repository\ModelItemRepository;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
+use Generator;
 use OxidEsales\Eshop\Application\Model\Article;
 use OxidEsales\Eshop\Application\Model\Category;
 use OxidEsales\Eshop\Application\Model\Content;
@@ -30,7 +31,7 @@ class ModelItemRepositoryTest extends IntegrationTestCase
         $this->assertTrue($item->isLoaded());
     }
 
-    public function getItemDataProvider(): \Generator
+    public function getItemDataProvider(): Generator
     {
         yield [
             'model' => Content::class,

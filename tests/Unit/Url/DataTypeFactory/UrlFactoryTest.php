@@ -7,11 +7,12 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Service;
+namespace FreshAdvance\Sitemap\Tests\Unit\Url\DataTypeFactory;
 
-use FreshAdvance\Sitemap\PageType\PageTypeConfigurationFactoryInterface;
-use FreshAdvance\Sitemap\PageType\PageTypeConfigurationInterface;
-use FreshAdvance\Sitemap\Service\UrlFactory;
+use DateTime;
+use FreshAdvance\Sitemap\Url\DataType\UrlTypeInterface;
+use FreshAdvance\Sitemap\Url\DataTypeFactory\UrlFactory;
+use FreshAdvance\Sitemap\Url\DataTypeFactory\UrlTypeFactoryInterface;
 use PHPUnit\Framework\TestCase;
 
 class UrlFactoryTest extends TestCase
@@ -19,18 +20,18 @@ class UrlFactoryTest extends TestCase
     public function testCreateUrl(): void
     {
         $sut = $this->getSut(
-            ptConfigFactory: $ptConfFactory = $this->createMock(PageTypeConfigurationFactoryInterface::class)
+            ptConfigFactory: $ptConfFactory = $this->createMock(UrlTypeFactoryInterface::class)
         );
 
         $exampleType = uniqid();
 
-        $ptConfigurationStub = $this->createMock(PageTypeConfigurationInterface::class);
+        $ptConfigurationStub = $this->createMock(UrlTypeInterface::class);
         $ptConfigurationStub->method('getPriority')->willReturn($examplePriority = rand(1, 100) / 100);
         $ptConfigurationStub->method('getChangeFrequency')->willReturn($exampleFrequency = uniqid());
 
         $ptConfFactory->method('getConfiguration')->with($exampleType)->willReturn($ptConfigurationStub);
 
-        $url = $sut->createUrl($exampleType, $exampleUrl = uniqid(), $modified = new \DateTime());
+        $url = $sut->createUrl($exampleType, $exampleUrl = uniqid(), $modified = new DateTime());
 
         $this->assertSame($exampleUrl, $url->getLocation());
         $this->assertSame($modified, $url->getLastModified());
@@ -39,10 +40,10 @@ class UrlFactoryTest extends TestCase
     }
 
     public function getSut(
-        ?PageTypeConfigurationFactoryInterface $ptConfigFactory = null
+        ?UrlTypeFactoryInterface $ptConfigFactory = null
     ): UrlFactory {
         return new UrlFactory(
-            pageTypeConfigurationFactory: $ptConfigFactory ?? $this->createStub(PageTypeConfigurationFactoryInterface::class)
+            pageTypeConfigurationFactory: $ptConfigFactory ?? $this->createStub(UrlTypeFactoryInterface::class)
         );
     }
 }

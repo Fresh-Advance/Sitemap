@@ -12,13 +12,15 @@ namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
 use FreshAdvance\Sitemap\ChangeFilter\FilterFactoryInterface;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\Service\Synchronizer;
+use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
+use Generator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\Service\Synchronizer
  */
-class SynchronizerTest extends \PHPUnit\Framework\TestCase
+class SynchronizerTest extends TestCase
 {
     public function testUpdateIteratesOverUrlsAndUpdatesThemThroughRepository(): void
     {
@@ -66,7 +68,7 @@ class SynchronizerTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(2, $sut->updateTypeUrls('someType'));
     }
 
-    protected function arrayAsGenerator(array $array): \Generator
+    protected function arrayAsGenerator(array $array): Generator
     {
         foreach ($array as $key => $item) {
             yield $key => $item;

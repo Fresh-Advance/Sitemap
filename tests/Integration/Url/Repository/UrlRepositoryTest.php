@@ -7,17 +7,17 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
+namespace FreshAdvance\Sitemap\Tests\Integration\Url\Repository;
 
+use DateTime;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
-use FreshAdvance\Sitemap\DataStructure\PageUrl;
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
-use FreshAdvance\Sitemap\Repository\UrlRepository;
-use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
+use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
+use FreshAdvance\Sitemap\Url\Repository\UrlRepository;
+use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 
 /**
- * @covers \FreshAdvance\Sitemap\Repository\UrlRepository
+ * @covers \FreshAdvance\Sitemap\Url\Repository\UrlRepository
  */
 class UrlRepositoryTest extends IntegrationTestCase
 {
@@ -33,14 +33,14 @@ class UrlRepositoryTest extends IntegrationTestCase
                 objectId: $objectId,
                 objectType: $objectType,
                 location: 'someLocation',
-                modified: new \DateTime('2020-03-04 01:02:03')
+                modified: new DateTime('2020-03-04 01:02:03')
             )
         );
 
         $url = $sut->getUrl($objectId, $objectType);
 
         $this->assertSame('someLocation', $url->getLocation());
-        $this->assertEquals(new \DateTime('2020-03-04 01:02:03'), $url->getLastModified());
+        $this->assertEquals(new DateTime('2020-03-04 01:02:03'), $url->getLastModified());
     }
 
     public function testNotFoundUrl(): void
@@ -61,16 +61,16 @@ class UrlRepositoryTest extends IntegrationTestCase
                     objectId: 'exampleObject' . $i,
                     objectType: 'someType',
                     location: 'someLocation' . $i,
-                    modified: new \DateTime()
+                    modified: new DateTime()
                 )
             );
         }
 
         $startId = 4;
         $count = 0;
-        /** @var PageUrlInterface $oneUrlItem */
+        /** @var UrlInterface $oneUrlItem */
         foreach ($sut->getUrls(2, 3) as $oneUrlItem) {
-            $this->assertInstanceOf(PageUrlInterface::class, $oneUrlItem);
+            $this->assertInstanceOf(UrlInterface::class, $oneUrlItem);
             $this->assertSame('someLocation' . $startId, $oneUrlItem->getLocation());
 
             $count++;

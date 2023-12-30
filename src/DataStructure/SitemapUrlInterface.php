@@ -7,9 +7,11 @@
 
 namespace FreshAdvance\Sitemap\DataStructure;
 
+use DateTimeInterface;
+
 interface SitemapUrlInterface
 {
     public function getLocation(): string;
 
-    public function getLastModified(): \DateTimeInterface;
+    public function getLastModified(): DateTimeInterface;
 }

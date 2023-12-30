@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\PageType;
+namespace FreshAdvance\Sitemap\Url\DataType;
 
-class PageTypeConfiguration implements PageTypeConfigurationInterface
+class UrlType implements UrlTypeInterface
 {
     public function __construct(
         protected string $objectType,

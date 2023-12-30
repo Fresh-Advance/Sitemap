@@ -5,13 +5,15 @@
  * See LICENSE file for license details.
  */
 
-namespace FreshAdvance\Sitemap\DataStructure;
+namespace FreshAdvance\Sitemap\Url\DataType;
 
-interface PageUrlInterface
+use DateTimeInterface;
+
+interface UrlInterface
 {
     public function getLocation(): string;
 
-    public function getLastModified(): \DateTimeInterface;
+    public function getLastModified(): DateTimeInterface;
 
     public function getChangeFrequency(): string;
 

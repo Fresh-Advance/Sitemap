@@ -9,11 +9,13 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\DataStructure;
 
+use DateTimeInterface;
+
 class SitemapUrl implements SitemapUrlInterface
 {
     public function __construct(
         protected string $location,
-        protected \DateTimeInterface $lastModified
+        protected DateTimeInterface $lastModified
     ) {
     }
 
@@ -22,7 +24,7 @@ class SitemapUrl implements SitemapUrlInterface
         return $this->location;
     }
 
-    public function getLastModified(): \DateTimeInterface
+    public function getLastModified(): DateTimeInterface
     {
         return $this->lastModified;
     }

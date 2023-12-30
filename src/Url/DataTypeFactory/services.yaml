@@ -1,0 +1,48 @@
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\Url\DataTypeFactory\UrlFactoryInterface:
+    class: FreshAdvance\Sitemap\Url\DataTypeFactory\UrlFactory
+
+  FreshAdvance\Sitemap\Url\DataTypeFactory\UrlTypeFactoryInterface:
+    class: FreshAdvance\Sitemap\Url\DataTypeFactory\UrlTypeFactory
+    arguments:
+      $configurations: !tagged 'sitemap.page_type_configuration'
+      $defaultConfiguration: '@FreshAdvance\Sitemap\Url\DataTypeFactory\DefaultUrlType'
+
+  FreshAdvance\Sitemap\Url\DataTypeFactory\DefaultUrlType:
+    class: FreshAdvance\Sitemap\Url\DataType\UrlType
+    arguments:
+      $objectType: 'default'
+      $changeFrequency: 'daily'
+      $priority: 0.5
+
+  FreshAdvance\Sitemap\Url\DataTypeFactory\ProductUrlType:
+    class: FreshAdvance\Sitemap\Url\DataType\UrlType
+    arguments:
+      $objectType: 'product'
+      $changeFrequency: 'daily'
+      $priority: 0.4
+    tags:
+      - 'sitemap.page_type_configuration'
+
+  FreshAdvance\Sitemap\Url\DataTypeFactory\CategoryUrlType:
+    class: FreshAdvance\Sitemap\Url\DataType\UrlType
+    arguments:
+      $objectType: 'category'
+      $changeFrequency: 'daily'
+      $priority: 0.7
+    tags:
+      - 'sitemap.page_type_configuration'
+
+  FreshAdvance\Sitemap\Url\DataTypeFactory\ContentUrlType:
+    class: FreshAdvance\Sitemap\Url\DataType\UrlType
+    arguments:
+      $objectType: 'content'
+      $changeFrequency: 'weekly'
+      $priority: 0.3
+    tags:
+      - 'sitemap.page_type_configuration'

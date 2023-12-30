@@ -7,23 +7,25 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\DataStructure;
+namespace FreshAdvance\Sitemap\Tests\Unit\Url\DataType;
 
-use FreshAdvance\Sitemap\DataStructure\PageUrl;
+use DateTime;
+use FreshAdvance\Sitemap\Url\DataType\Url;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Sitemap\DataStructure\PageUrl
+ * @covers \FreshAdvance\Sitemap\Url\DataType\Url
  */
-class PageUrlTest extends \PHPUnit\Framework\TestCase
+class UrlTest extends TestCase
 {
     public function testMainGetters(): void
     {
         $locationExample = 'someLoc';
-        $lastModifiedExample = new \DateTime();
+        $lastModifiedExample = new DateTime();
         $changeFrequencyExample = 'someChangeFrequency';
         $examplePriority = 0.5;
 
-        $sut = new PageUrl(
+        $sut = new Url(
             location: $locationExample,
             lastModified: $lastModifiedExample,
             changeFrequency: $changeFrequencyExample,

@@ -10,18 +10,20 @@ declare(strict_types=1);
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
 use DateTime;
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
+use DateTimeInterface;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Service\XmlGenerator;
+use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\Service\XmlGenerator
  */
-class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
+class XmlGeneratorTest extends TestCase
 {
     public function testGenerateUrlItem(): void
     {
-        $urlStub = $this->createConfiguredMock(PageUrlInterface::class, [
+        $urlStub = $this->createConfiguredMock(UrlInterface::class, [
             'getLocation' => 'someLocation',
             'getLastModified' => $exampleDate = new DateTime(),
             'getChangeFrequency' => 'someFrequency',
@@ -31,7 +33,7 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
         $expectation = implode("", [
             "<url>",
             "<loc>someLocation</loc>",
-            "<lastmod>{$exampleDate->format(\DateTimeInterface::ATOM)}</lastmod>",
+            "<lastmod>{$exampleDate->format(DateTimeInterface::ATOM)}</lastmod>",
             "<changefreq>someFrequency</changefreq>",
             "<priority>0.6</priority>",
             "</url>",
@@ -51,7 +53,7 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
         $expectation = implode("", [
             "<sitemap>",
             "<loc>someLocation</loc>",
-            "<lastmod>{$exampleDate->format(\DateTimeInterface::ATOM)}</lastmod>",
+            "<lastmod>{$exampleDate->format(DateTimeInterface::ATOM)}</lastmod>",
             "</sitemap>",
         ]);
 
@@ -61,7 +63,7 @@ class XmlGeneratorTest extends \PHPUnit\Framework\TestCase
 
     public function testGenerateSitemapContent(): void
     {
-        $urlStub = $this->createStub(PageUrlInterface::class);
+        $urlStub = $this->createStub(UrlInterface::class);
 
         $sut = $this->createPartialMock(XmlGenerator::class, ['generateUrlItem']);
         $sut->expects($this->exactly(3))

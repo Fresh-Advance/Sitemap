@@ -9,11 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
 
+use DateTime;
 use FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter;
-use FreshAdvance\Sitemap\DataStructure\ObjectUrl;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
-use FreshAdvance\Sitemap\DataStructure\PageUrl;
-use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\EshopCommunity\Application\Model\Content;
 
@@ -28,7 +26,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
         $connection = $this->getConnection();
         $connection->executeQuery("update oxcontents set oxtimestamp='2023-09-01'");
 
-        $this->addConcreteDateUrl('content', new \DateTime("2023-10-01"));
+        $this->addConcreteDateUrl('content', new DateTime("2023-10-01"));
 
         $this->createExampleContent('example1', true, 'CMSFOLDER_USERINFO');
         $this->createExampleContent('example2', true, 'OTHER');

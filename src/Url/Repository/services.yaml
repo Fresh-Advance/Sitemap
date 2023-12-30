@@ -1,0 +1,8 @@
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface:
+    class: FreshAdvance\Sitemap\Url\Repository\UrlRepository

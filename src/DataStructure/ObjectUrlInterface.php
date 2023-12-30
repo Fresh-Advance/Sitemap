@@ -7,6 +7,8 @@
 
 namespace FreshAdvance\Sitemap\DataStructure;
 
+use DateTimeInterface;
+
 interface ObjectUrlInterface
 {
     public function getObjectId(): string;
@@ -15,5 +17,5 @@ interface ObjectUrlInterface
 
     public function getLocation(): string;
 
-    public function getModified(): \DateTimeInterface;
+    public function getModified(): DateTimeInterface;
 }

@@ -11,12 +11,13 @@ namespace FreshAdvance\Sitemap\Tests\Integration\Command;
 
 use FreshAdvance\Sitemap\Command\GenerateSitemapCommand;
 use FreshAdvance\Sitemap\Service\SitemapInterface;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * @covers \FreshAdvance\Sitemap\Command\GenerateSitemapCommand
  */
-class GenerateSitemapCommandTest extends \PHPUnit\Framework\TestCase
+class GenerateSitemapCommandTest extends TestCase
 {
     public function testCallSitemapCreationService(): void
     {

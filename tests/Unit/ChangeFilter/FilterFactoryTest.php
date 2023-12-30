@@ -13,11 +13,13 @@ use FreshAdvance\Sitemap\ChangeFilter\ChangeFilterInterface;
 use FreshAdvance\Sitemap\ChangeFilter\FilterFactory;
 use FreshAdvance\Sitemap\Exception\FilterConfigurationException;
 use FreshAdvance\Sitemap\Exception\FilterNotFoundException;
+use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @covers \FreshAdvance\Sitemap\ChangeFilter\FilterFactory
  */
-class FilterFactoryTest extends \PHPUnit\Framework\TestCase
+class FilterFactoryTest extends TestCase
 {
     public function testGetFilter(): void
     {
@@ -39,7 +41,7 @@ class FilterFactoryTest extends \PHPUnit\Framework\TestCase
         $this->expectException(FilterConfigurationException::class);
 
         new FilterFactory([
-            new \stdClass()
+            new stdClass()
         ]);
     }
 

@@ -9,16 +9,17 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Service;
 
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
+use DateTimeInterface;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
+use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 
 class XmlGenerator implements XmlGeneratorInterface
 {
-    public function generateUrlItem(PageUrlInterface $url): string
+    public function generateUrlItem(UrlInterface $url): string
     {
         $attributes = [
             $this->wrap($url->getLocation(), "loc"),
-            $this->wrap($url->getLastModified()->format(\DateTimeInterface::ATOM), "lastmod"),
+            $this->wrap($url->getLastModified()->format(DateTimeInterface::ATOM), "lastmod"),
             $this->wrap($url->getChangeFrequency(), "changefreq"),
             $this->wrap((string)$url->getPriority(), "priority"),
         ];
@@ -30,7 +31,7 @@ class XmlGenerator implements XmlGeneratorInterface
     {
         $attributes = [
             $this->wrap($url->getLocation(), "loc"),
-            $this->wrap($url->getLastModified()->format(\DateTimeInterface::ATOM), "lastmod"),
+            $this->wrap($url->getLastModified()->format(DateTimeInterface::ATOM), "lastmod"),
         ];
 
         return $this->wrap(implode("", $attributes), "sitemap");

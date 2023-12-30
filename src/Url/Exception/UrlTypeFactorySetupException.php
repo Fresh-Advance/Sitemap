@@ -7,8 +7,10 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Exception;
+namespace FreshAdvance\Sitemap\Url\Exception;
 
-class PageTypeConfigurationFactorySetupException extends \Exception
+use Exception;
+
+class UrlTypeFactorySetupException extends Exception
 {
 }

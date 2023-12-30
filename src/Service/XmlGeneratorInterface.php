@@ -7,13 +7,13 @@
 
 namespace FreshAdvance\Sitemap\Service;
 
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
+use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 
 interface XmlGeneratorInterface
 {
     /**
-     * @param iterable<PageUrlInterface> $items
+     * @param iterable<UrlInterface> $items
      */
     public function generateSitemapDocument(iterable $items): string;
 

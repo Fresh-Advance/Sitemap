@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
 
+use DateTime;
 use FreshAdvance\Sitemap\ChangeFilter\CategoryChangeFilter;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
@@ -25,7 +26,7 @@ class CategoryChangeFilterTest extends IntegrationTestCase
         $connection = $this->getConnection();
         $connection->executeQuery("update oxcategories set oxtimestamp='2023-09-01'");
 
-        $this->addConcreteDateUrl('category', new \DateTime("2023-10-01"));
+        $this->addConcreteDateUrl('category', new DateTime("2023-10-01"));
 
         $this->createExampleCategory('example1', true);
         $this->createExampleCategory('example2', false);

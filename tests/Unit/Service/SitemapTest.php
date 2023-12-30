@@ -9,19 +9,20 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Tests\Unit\Service;
 
-use FreshAdvance\Sitemap\DataStructure\PageUrlInterface;
 use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
-use FreshAdvance\Sitemap\Repository\UrlRepositoryInterface;
 use FreshAdvance\Sitemap\Service\Filesystem;
 use FreshAdvance\Sitemap\Service\FilesystemInterface;
-use FreshAdvance\Sitemap\Settings\LocationServiceInterface;
 use FreshAdvance\Sitemap\Service\Sitemap;
 use FreshAdvance\Sitemap\Service\XmlGeneratorInterface;
+use FreshAdvance\Sitemap\Settings\LocationServiceInterface;
+use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
+use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \FreshAdvance\Sitemap\Service\Sitemap
  */
-class SitemapTest extends \PHPUnit\Framework\TestCase
+class SitemapTest extends TestCase
 {
     public function testGenerateSitemapCreatesAllPagesAndIndexFile(): void
     {
@@ -64,7 +65,7 @@ class SitemapTest extends \PHPUnit\Framework\TestCase
             locationService: $locationServiceMock = $this->createMock(LocationServiceInterface::class),
         );
 
-        $repositoryResponse = [$this->createStub(PageUrlInterface::class)];
+        $repositoryResponse = [$this->createStub(UrlInterface::class)];
         $urlRepositoryStub->method('getUrls')
             ->with(3, 50000)
             ->willReturn($repositoryResponse);

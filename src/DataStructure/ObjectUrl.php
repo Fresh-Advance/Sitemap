@@ -9,13 +9,15 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\DataStructure;
 
+use DateTimeInterface;
+
 class ObjectUrl implements ObjectUrlInterface
 {
     public function __construct(
         private string $objectId,
         private string $objectType,
         private string $location,
-        private \DateTimeInterface $modified,
+        private DateTimeInterface $modified,
     ) {
     }
 
@@ -34,7 +36,7 @@ class ObjectUrl implements ObjectUrlInterface
         return $this->location;
     }
 
-    public function getModified(): \DateTimeInterface
+    public function getModified(): DateTimeInterface
     {
         return $this->modified;
     }

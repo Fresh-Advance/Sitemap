@@ -9,22 +9,24 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
 
+use DateTime;
 use FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter;
 use FreshAdvance\Sitemap\DataStructure\ObjectUrlInterface;
+use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\Eshop\Application\Model\Article;
 
 /**
  * @covers \FreshAdvance\Sitemap\ChangeFilter\ChangeFilterTemplate
  * @covers \FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter
  */
-class ProductChangeFilterTest extends \FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase
+class ProductChangeFilterTest extends IntegrationTestCase
 {
     public function testSomething()
     {
         $connection = $this->getConnection();
         $connection->executeQuery("update oxarticles set oxtimestamp='2023-09-01'");
 
-        $this->addConcreteDateUrl('product', new \DateTime("2023-10-01"));
+        $this->addConcreteDateUrl('product', new DateTime("2023-10-01"));
 
         $this->createExampleProduct('example1', true);
         $this->createExampleProduct('example2', false);

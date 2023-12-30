@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Exception;
 
-class FilterConfigurationException extends \Exception
+use Exception;
+
+class FilterConfigurationException extends Exception
 {
 }
