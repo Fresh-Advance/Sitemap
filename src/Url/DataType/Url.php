@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Sitemap\Url\DataType;
 
 use DateTimeInterface;
-use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrl;
 
 class Url extends SitemapUrl implements UrlInterface
 {

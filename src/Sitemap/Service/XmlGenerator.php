@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Service;
+namespace FreshAdvance\Sitemap\Sitemap\Service;
 
 use DateTimeInterface;
-use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 
 class XmlGenerator implements XmlGeneratorInterface

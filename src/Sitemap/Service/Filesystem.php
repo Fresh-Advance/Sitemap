@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Service;
+namespace FreshAdvance\Sitemap\Sitemap\Service;
 
-use FreshAdvance\Sitemap\Exception\SitemapDirectoryAccessException;
+use FreshAdvance\Sitemap\Sitemap\Exception\SitemapDirectoryAccessException;
 
 /**
  * @todo: check directory rights functionality

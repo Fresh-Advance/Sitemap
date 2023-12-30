@@ -7,17 +7,17 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Service;
+namespace FreshAdvance\Sitemap\Tests\Unit\Sitemap\Service;
 
 use DateTime;
 use DateTimeInterface;
-use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
-use FreshAdvance\Sitemap\Service\XmlGenerator;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrlInterface;
+use FreshAdvance\Sitemap\Sitemap\Service\XmlGenerator;
 use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Sitemap\Service\XmlGenerator
+ * @covers \FreshAdvance\Sitemap\Sitemap\Service\XmlGenerator
  */
 class XmlGeneratorTest extends TestCase
 {

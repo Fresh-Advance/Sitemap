@@ -1,0 +1,17 @@
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\Sitemap\Service\FilesystemInterface:
+    class: FreshAdvance\Sitemap\Sitemap\Service\Filesystem
+
+  FreshAdvance\Sitemap\Sitemap\Service\LocationServiceInterface:
+    class: FreshAdvance\Sitemap\Sitemap\Service\LocationService
+
+  FreshAdvance\Sitemap\Sitemap\Service\SitemapInterface:
+    class: FreshAdvance\Sitemap\Sitemap\Service\Sitemap
+
+  FreshAdvance\Sitemap\Sitemap\Service\XmlGeneratorInterface:
+    class: FreshAdvance\Sitemap\Sitemap\Service\XmlGenerator

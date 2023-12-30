@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Exception;
+namespace FreshAdvance\Sitemap\Sitemap\Exception;
 
 use Exception;
 

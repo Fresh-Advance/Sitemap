@@ -7,20 +7,20 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Settings;
+namespace FreshAdvance\Sitemap\Tests\Unit\Sitemap\Service;
 
 use DateTime;
-use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
-use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
-use FreshAdvance\Sitemap\Settings\LocationService;
 use FreshAdvance\Sitemap\Settings\ModuleSettingsInterface;
 use FreshAdvance\Sitemap\Settings\ShopSettingsInterface;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrl;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrlInterface;
+use FreshAdvance\Sitemap\Sitemap\Service\LocationService;
 use Generator;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\BasicContextInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Sitemap\Settings\LocationService
+ * @covers \FreshAdvance\Sitemap\Sitemap\Service\LocationService
  */
 class LocationServiceTest extends TestCase
 {

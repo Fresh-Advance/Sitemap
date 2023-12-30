@@ -5,7 +5,7 @@
  * See LICENSE file for license details.
  */
 
-namespace FreshAdvance\Sitemap\DataStructure;
+namespace FreshAdvance\Sitemap\Sitemap\DataType;
 
 use DateTimeInterface;
 

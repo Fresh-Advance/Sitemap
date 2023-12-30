@@ -1,0 +1,12 @@
+imports:
+  - { resource: Service/services.yaml }
+
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\Sitemap\Command\GenerateSitemapCommand:
+    tags:
+      - { name: 'console.command', command: 'fa:sitemap:generate' }

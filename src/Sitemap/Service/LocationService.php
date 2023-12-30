@@ -7,11 +7,13 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Settings;
+namespace FreshAdvance\Sitemap\Sitemap\Service;
 
 use DateTime;
-use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
-use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
+use FreshAdvance\Sitemap\Settings\ModuleSettingsInterface;
+use FreshAdvance\Sitemap\Settings\ShopSettingsInterface;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrl;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrlInterface;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\BasicContextInterface;
 
 class LocationService implements LocationServiceInterface

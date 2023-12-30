@@ -5,7 +5,7 @@
  * See LICENSE file for license details.
  */
 
-namespace FreshAdvance\Sitemap\Service;
+namespace FreshAdvance\Sitemap\Sitemap\Service;
 
 interface FilesystemInterface
 {

@@ -7,20 +7,20 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Service;
+namespace FreshAdvance\Sitemap\Tests\Unit\Sitemap\Service;
 
-use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
-use FreshAdvance\Sitemap\Service\Filesystem;
-use FreshAdvance\Sitemap\Service\FilesystemInterface;
-use FreshAdvance\Sitemap\Service\Sitemap;
-use FreshAdvance\Sitemap\Service\XmlGeneratorInterface;
-use FreshAdvance\Sitemap\Settings\LocationServiceInterface;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrlInterface;
+use FreshAdvance\Sitemap\Sitemap\Service\Filesystem;
+use FreshAdvance\Sitemap\Sitemap\Service\FilesystemInterface;
+use FreshAdvance\Sitemap\Sitemap\Service\LocationServiceInterface;
+use FreshAdvance\Sitemap\Sitemap\Service\Sitemap;
+use FreshAdvance\Sitemap\Sitemap\Service\XmlGeneratorInterface;
 use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Sitemap\Service\Sitemap
+ * @covers \FreshAdvance\Sitemap\Sitemap\Service\Sitemap
  */
 class SitemapTest extends TestCase
 {

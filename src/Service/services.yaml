@@ -4,14 +4,5 @@ services:
     public: false
     autowire: true
 
-  FreshAdvance\Sitemap\Service\FilesystemInterface:
-    class: FreshAdvance\Sitemap\Service\Filesystem
-
-  FreshAdvance\Sitemap\Service\SitemapInterface:
-    class: FreshAdvance\Sitemap\Service\Sitemap
-
   FreshAdvance\Sitemap\Service\SynchronizerInterface:
     class: FreshAdvance\Sitemap\Service\Synchronizer
-
-  FreshAdvance\Sitemap\Service\XmlGeneratorInterface:
-    class: FreshAdvance\Sitemap\Service\XmlGenerator

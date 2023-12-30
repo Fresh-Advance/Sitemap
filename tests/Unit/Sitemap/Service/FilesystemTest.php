@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Service;
+namespace FreshAdvance\Sitemap\Tests\Unit\Sitemap\Service;
 
-use FreshAdvance\Sitemap\Exception\SitemapDirectoryAccessException;
-use FreshAdvance\Sitemap\Service\Filesystem;
+use FreshAdvance\Sitemap\Sitemap\Exception\SitemapDirectoryAccessException;
+use FreshAdvance\Sitemap\Sitemap\Service\Filesystem;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Sitemap\Service\Filesystem
+ * @covers \FreshAdvance\Sitemap\Sitemap\Service\Filesystem
  */
 class FilesystemTest extends TestCase
 {

@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Integration\Command;
+namespace FreshAdvance\Sitemap\Tests\Integration\Sitemap\Command;
 
-use FreshAdvance\Sitemap\Command\GenerateSitemapCommand;
-use FreshAdvance\Sitemap\Service\SitemapInterface;
+use FreshAdvance\Sitemap\Sitemap\Command\GenerateSitemapCommand;
+use FreshAdvance\Sitemap\Sitemap\Service\SitemapInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
- * @covers \FreshAdvance\Sitemap\Command\GenerateSitemapCommand
+ * @covers \FreshAdvance\Sitemap\Sitemap\Command\GenerateSitemapCommand
  */
 class GenerateSitemapCommandTest extends TestCase
 {

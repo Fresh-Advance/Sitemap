@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Command;
+namespace FreshAdvance\Sitemap\Sitemap\Command;
 
-use FreshAdvance\Sitemap\Service\SitemapInterface;
+use FreshAdvance\Sitemap\Sitemap\Service\SitemapInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

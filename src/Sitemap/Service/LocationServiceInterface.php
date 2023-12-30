@@ -5,9 +5,9 @@
  * See LICENSE file for license details.
  */
 
-namespace FreshAdvance\Sitemap\Settings;
+namespace FreshAdvance\Sitemap\Sitemap\Service;
 
-use FreshAdvance\Sitemap\DataStructure\SitemapUrlInterface;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrlInterface;
 
 interface LocationServiceInterface
 {

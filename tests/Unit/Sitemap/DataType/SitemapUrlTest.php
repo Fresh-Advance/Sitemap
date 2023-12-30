@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace DataStructure;
+namespace FreshAdvance\Sitemap\Tests\Unit\Sitemap\DataType;
 
 use DateTime;
-use FreshAdvance\Sitemap\DataStructure\SitemapUrl;
+use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrl;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Sitemap\DataStructure\SitemapUrl
+ * @covers \FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrl
  */
 class SitemapUrlTest extends TestCase
 {
