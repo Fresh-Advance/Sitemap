@@ -1,0 +1,17 @@
+services:
+
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Sitemap\ChangeFilter\Product\ProductChangeFilter:
+    arguments:
+      $pageTypeConfiguration: '@FreshAdvance\Sitemap\Url\DataTypeFactory\ProductUrlType'
+      $modelItemRepository: '@FreshAdvance\Sitemap\ChangeFilter\Product\ProductChangeFilterItemRepository'
+    tags:
+      - 'sitemap.change_filter'
+
+  FreshAdvance\Sitemap\ChangeFilter\Product\ProductChangeFilterItemRepository:
+    class: FreshAdvance\Sitemap\ChangeFilter\Shared\Repository\ModelItemRepository
+    arguments:
+      $model: '\OxidEsales\Eshop\Application\Model\Article'

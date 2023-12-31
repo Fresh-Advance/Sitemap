@@ -1,26 +1,4 @@
-services:
-
-  _defaults:
-    public: false
-    autowire: true
-
-  FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter:
-    arguments:
-      $pageTypeConfiguration: '@FreshAdvance\Sitemap\Url\DataTypeFactory\ContentUrlType'
-      $modelItemRepository: '@FreshAdvance\Sitemap\Repository\ContentModelItemRepository'
-    tags:
-      - 'sitemap.change_filter'
-
-  FreshAdvance\Sitemap\ChangeFilter\ProductChangeFilter:
-    arguments:
-      $pageTypeConfiguration: '@FreshAdvance\Sitemap\Url\DataTypeFactory\ProductUrlType'
-      $modelItemRepository: '@FreshAdvance\Sitemap\Repository\ProductModelItemRepository'
-    tags:
-      - 'sitemap.change_filter'
-
-  FreshAdvance\Sitemap\ChangeFilter\CategoryChangeFilter:
-    arguments:
-      $pageTypeConfiguration: '@FreshAdvance\Sitemap\Url\DataTypeFactory\CategoryUrlType'
-      $modelItemRepository: '@FreshAdvance\Sitemap\Repository\CategoryModelItemRepository'
-    tags:
-      - 'sitemap.change_filter'
+imports:
+  - { resource: Category/services.yaml }
+  - { resource: Content/services.yaml }
+  - { resource: Product/services.yaml }

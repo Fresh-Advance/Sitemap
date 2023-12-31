@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Command;
+namespace FreshAdvance\Sitemap\Tests\Integration\Integration\Command;
 
 use FreshAdvance\Sitemap\Integration\Service\Synchronizer;
 use PHPUnit\Framework\TestCase;

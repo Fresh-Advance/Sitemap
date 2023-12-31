@@ -7,8 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\ChangeFilter;
+namespace FreshAdvance\Sitemap\ChangeFilter\Category;
 
+use FreshAdvance\Sitemap\ChangeFilter\Shared\ChangeFilterTemplate;
 use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
 
 class CategoryChangeFilter extends ChangeFilterTemplate implements ChangeFilterInterface

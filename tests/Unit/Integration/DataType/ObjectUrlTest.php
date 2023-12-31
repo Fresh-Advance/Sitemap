@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\DataStructure;
+namespace FreshAdvance\Sitemap\Tests\Unit\Integration\DataType;
 
 use DateTime;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrl;

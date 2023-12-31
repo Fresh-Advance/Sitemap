@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\ChangeFilter;
+namespace FreshAdvance\Sitemap\ChangeFilter\Shared;
 
 use DateTime;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ForwardCompatibility\Result;
+use FreshAdvance\Sitemap\ChangeFilter\Shared\Repository\ModelItemRepositoryInterface;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrl;
-use FreshAdvance\Sitemap\Repository\ModelItemRepositoryInterface;
 use FreshAdvance\Sitemap\Url\DataType\UrlTypeInterface;
 use Generator;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;

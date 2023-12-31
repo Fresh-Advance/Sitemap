@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Repository;
+namespace FreshAdvance\Sitemap\ChangeFilter\Shared\Repository;
 
 use OxidEsales\Eshop\Core\Contract\IUrl;
 use OxidEsales\Eshop\Core\Model\BaseModel;

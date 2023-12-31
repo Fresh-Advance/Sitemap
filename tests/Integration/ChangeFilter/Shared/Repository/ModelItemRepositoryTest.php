@@ -7,10 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Integration\Repository;
+namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter\Shared\Repository;
 
 use FreshAdvance\Sitemap\Integration\Exception\ModelItemNotFoundException;
-use FreshAdvance\Sitemap\Repository\ModelItemRepository;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use Generator;
 use OxidEsales\Eshop\Application\Model\Article;
@@ -25,7 +24,7 @@ class ModelItemRepositoryTest extends IntegrationTestCase
         $identifier = uniqid();
         $this->$filler($identifier);
 
-        $sut = new ModelItemRepository(model: $model);
+        $sut = new \FreshAdvance\Sitemap\ChangeFilter\Shared\Repository\ModelItemRepository(model: $model);
         $item = $sut->getItem($identifier);
 
         $this->assertTrue($item->isLoaded());
@@ -51,7 +50,7 @@ class ModelItemRepositoryTest extends IntegrationTestCase
 
     public function testLoadingFailureThrowsException(): void
     {
-        $sut = new ModelItemRepository(model: Content::class);
+        $sut = new \FreshAdvance\Sitemap\ChangeFilter\Shared\Repository\ModelItemRepository(model: Content::class);
 
         $this->expectException(ModelItemNotFoundException::class);
         $sut->getItem(uniqid());

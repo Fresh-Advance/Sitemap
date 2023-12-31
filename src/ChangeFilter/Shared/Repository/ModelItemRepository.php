@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Repository;
+namespace FreshAdvance\Sitemap\ChangeFilter\Shared\Repository;
 
 use FreshAdvance\Sitemap\Integration\Exception\ModelItemNotFoundException;
 use OxidEsales\Eshop\Core\Contract\IUrl;

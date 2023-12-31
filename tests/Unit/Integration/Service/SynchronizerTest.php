@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Unit\Service;
+namespace FreshAdvance\Sitemap\Tests\Unit\Integration\Service;
 
 use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;

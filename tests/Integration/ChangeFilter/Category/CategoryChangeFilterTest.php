@@ -7,17 +7,17 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
+namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter\Category;
 
 use DateTime;
-use FreshAdvance\Sitemap\ChangeFilter\CategoryChangeFilter;
+use FreshAdvance\Sitemap\ChangeFilter\Category\CategoryChangeFilter;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\Eshop\Application\Model\Category;
 
 /**
- * @covers \FreshAdvance\Sitemap\ChangeFilter\ChangeFilterTemplate
- * @covers \FreshAdvance\Sitemap\ChangeFilter\CategoryChangeFilter
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\Shared\ChangeFilterTemplate
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\Category\CategoryChangeFilter
  */
 class CategoryChangeFilterTest extends IntegrationTestCase
 {

@@ -7,17 +7,17 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter;
+namespace FreshAdvance\Sitemap\Tests\Integration\ChangeFilter\Content;
 
 use DateTime;
-use FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter;
+use FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilter;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\EshopCommunity\Application\Model\Content;
 
 /**
- * @covers \FreshAdvance\Sitemap\ChangeFilter\ChangeFilterTemplate
- * @covers \FreshAdvance\Sitemap\ChangeFilter\ContentChangeFilter
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\Shared\ChangeFilterTemplate
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilter
  */
 class ContentChangeFilterTest extends IntegrationTestCase
 {
@@ -34,8 +34,8 @@ class ContentChangeFilterTest extends IntegrationTestCase
         $this->createExampleContent('example4', false, 'CMSFOLDER_USERINFO');
         $this->createExampleContent('example5', true, 'CMSFOLDER_USERINFO');
 
-        /** @var ContentChangeFilter $sut */
-        $sut = $this->get(ContentChangeFilter::class);
+        /** @var \FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilter $sut */
+        $sut = $this->get(\FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilter::class);
         $urls = $sut->getUpdatedUrls(3);
 
         $this->checkCurrentUrlItem($urls->current(), 'example1');
