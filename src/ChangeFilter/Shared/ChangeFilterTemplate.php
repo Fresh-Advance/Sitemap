@@ -24,7 +24,7 @@ abstract class ChangeFilterTemplate
 
     public function __construct(
         ConnectionProviderInterface $connectionProvider,
-        protected UrlTypeInterface $pageTypeConfiguration,
+        protected string $objectType,
         protected ModelItemRepositoryInterface $modelItemRepository,
     ) {
         $this->connection = $connectionProvider->get();
@@ -57,7 +57,7 @@ abstract class ChangeFilterTemplate
 
     public function getObjectType(): string
     {
-        return $this->pageTypeConfiguration->getObjectType();
+        return $this->objectType;
     }
 
     protected function getQueryParameters(): array

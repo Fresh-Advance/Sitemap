@@ -1,3 +1,6 @@
+parameters:
+  sitemap.object_type.content: 'content'
+
 services:
 
   _defaults:
@@ -6,7 +9,7 @@ services:
 
   FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilter:
     arguments:
-      $pageTypeConfiguration: '@FreshAdvance\Sitemap\Url\DataTypeFactory\ContentUrlType'
+      $objectType: '%sitemap.object_type.content%'
       $modelItemRepository: '@FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilterItemRepository'
     tags:
       - 'sitemap.change_filter'
@@ -15,3 +18,12 @@ services:
     class: FreshAdvance\Sitemap\ChangeFilter\Shared\Repository\ModelItemRepository
     arguments:
       $model: '\OxidEsales\Eshop\Application\Model\Content'
+
+  FreshAdvance\Sitemap\ChangeFilter\Content\ContentUrlType:
+    class: FreshAdvance\Sitemap\Url\DataType\UrlType
+    arguments:
+      $objectType: '%sitemap.object_type.content%'
+      $changeFrequency: 'weekly'
+      $priority: 0.3
+    tags:
+      - 'sitemap.page_type_configuration'
