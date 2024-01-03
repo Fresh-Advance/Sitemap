@@ -9,10 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\ChangeFilter\Product;
 
-use FreshAdvance\Sitemap\ChangeFilter\Shared\ChangeFilterTemplate;
-use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
+use FreshAdvance\Sitemap\ChangeFilter\Shared\DatabaseChangeFilter;
 
-class ProductChangeFilter extends ChangeFilterTemplate implements ChangeFilterInterface
+class ProductChangeFilter extends DatabaseChangeFilter
 {
     public function getUpdatedUrls(int $limit): iterable
     {

@@ -16,7 +16,7 @@ use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\Eshop\Application\Model\Article;
 
 /**
- * @covers \FreshAdvance\Sitemap\ChangeFilter\Shared\ChangeFilterTemplate
+ * @covers \FreshAdvance\Sitemap\ChangeFilter\Shared\DatabaseChangeFilter
  * @covers \FreshAdvance\Sitemap\ChangeFilter\Product\ProductChangeFilter
  */
 class ProductChangeFilterTest extends IntegrationTestCase

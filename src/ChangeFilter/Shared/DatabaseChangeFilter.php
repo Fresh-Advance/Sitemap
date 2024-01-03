@@ -14,11 +14,10 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ForwardCompatibility\Result;
 use FreshAdvance\Sitemap\ChangeFilter\Shared\Repository\ModelItemRepositoryInterface;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrl;
-use FreshAdvance\Sitemap\Url\DataType\UrlTypeInterface;
 use Generator;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 
-abstract class ChangeFilterTemplate
+abstract class DatabaseChangeFilter extends BaseChangeFilter
 {
     protected Connection $connection;
 
@@ -27,6 +26,10 @@ abstract class ChangeFilterTemplate
         protected string $objectType,
         protected ModelItemRepositoryInterface $modelItemRepository,
     ) {
+        parent::__construct(
+            objectType: $this->objectType
+        );
+
         $this->connection = $connectionProvider->get();
     }
 
@@ -53,11 +56,6 @@ abstract class ChangeFilterTemplate
                 modified: new DateTime($timestamp)
             );
         }
-    }
-
-    public function getObjectType(): string
-    {
-        return $this->objectType;
     }
 
     protected function getQueryParameters(): array

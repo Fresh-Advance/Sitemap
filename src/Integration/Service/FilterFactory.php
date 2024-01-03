@@ -25,7 +25,7 @@ class FilterFactory implements FilterFactoryInterface
     ) {
         foreach ($filters as $oneFilter) {
             if (!$oneFilter instanceof ChangeFilterInterface) {
-                throw new FilterConfigurationException();
+                throw new FilterConfigurationException($oneFilter::class);
             }
             $this->filters[$oneFilter->getObjectType()] = $oneFilter;
         }
