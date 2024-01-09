@@ -21,7 +21,7 @@ class BaseChangeFilterTest extends TestCase
     {
         $objectType = uniqid();
 
-        $sut = new class($objectType) extends BaseChangeFilter {
+        $sut = new class ($objectType) extends BaseChangeFilter {
             public function getUpdatedUrls(int $limit): iterable
             {
             }

@@ -41,8 +41,7 @@ class UpdateTypeCommandTest extends TestCase
     public function getSut(
         SynchronizerInterface $synchronizer = null,
         FilterFactoryInterface $filterFactory = null,
-    ): UpdateTypeCommand
-    {
+    ): UpdateTypeCommand {
         return new UpdateTypeCommand(
             synchronizer: $synchronizer ?? $this->createMock(SynchronizerInterface::class),
             filterFactory: $filterFactory ?? $this->createMock(FilterFactoryInterface::class),
