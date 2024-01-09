@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Integration\Command;
 
+use FreshAdvance\Sitemap\Integration\Service\FilterFactoryInterface;
 use FreshAdvance\Sitemap\Integration\Service\SynchronizerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -19,6 +20,7 @@ class UpdateTypeCommand extends Command
 {
     public function __construct(
         protected SynchronizerInterface $synchronizer,
+        protected FilterFactoryInterface $filterFactory,
     ) {
         parent::__construct();
     }
@@ -36,8 +38,9 @@ class UpdateTypeCommand extends Command
     {
         /** @var string $type */
         $type = $input->getArgument('type');
+        $filter = $this->filterFactory->getFilter($type);
 
-        $updateCount = $this->synchronizer->updateTypeUrls($type);
+        $updateCount = $this->synchronizer->updateUrlsByFilter($filter);
         $output->writeln("Updated items: " . $updateCount);
 
         return Command::SUCCESS;

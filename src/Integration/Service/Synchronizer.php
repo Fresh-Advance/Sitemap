@@ -9,20 +9,19 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\Integration\Service;
 
+use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 
 class Synchronizer implements SynchronizerInterface
 {
     public function __construct(
-        private FilterFactoryInterface $filterService,
         private UrlRepositoryInterface $urlRepository
     ) {
     }
 
-    public function updateTypeUrls(string $type): int
+    public function updateUrlsByFilter(ChangeFilterInterface $changeFilter): int
     {
-        $filter = $this->filterService->getFilter($type);
-        $urls = $filter->getUpdatedUrls(100);
+        $urls = $changeFilter->getUpdatedUrls(100);
 
         $count = 0;
         foreach ($urls as $oneObjectUrl) {

@@ -7,7 +7,9 @@
 
 namespace FreshAdvance\Sitemap\Integration\Service;
 
+use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
+
 interface SynchronizerInterface
 {
-    public function updateTypeUrls(string $type): int;
+    public function updateUrlsByFilter(ChangeFilterInterface $changeFilter): int;
 }

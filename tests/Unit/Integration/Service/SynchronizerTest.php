@@ -31,9 +31,6 @@ class SynchronizerTest extends TestCase
             ])
         );
 
-        $filterServiceStub = $this->createMock(FilterFactoryInterface::class);
-        $filterServiceStub->method('getFilter')->with('someType')->willReturn($filterStub);
-
         $urlRepository = $this->createMock(UrlRepositoryInterface::class);
         $matcher = $this->exactly(2);
         $urlRepository->expects($matcher)
@@ -60,11 +57,10 @@ class SynchronizerTest extends TestCase
             );
 
         $sut = new \FreshAdvance\Sitemap\Integration\Service\Synchronizer(
-            filterService: $filterServiceStub,
             urlRepository: $urlRepository,
         );
 
-        $this->assertSame(2, $sut->updateTypeUrls('someType'));
+        $this->assertSame(2, $sut->updateUrlsByFilter($filterStub));
     }
 
     protected function arrayAsGenerator(array $array): Generator
