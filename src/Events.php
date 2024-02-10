@@ -50,7 +50,7 @@ final class Events
 
         $output = new BufferedOutput();
         $migrations->setOutput($output);
-        $neeedsUpdate = $migrations->execute('migrations:up-to-date', 'fa_invoice');
+        $neeedsUpdate = $migrations->execute('migrations:up-to-date', Module::MODULE_ID);
 
         if ($neeedsUpdate) {
             $migrations->execute('migrations:migrate', 'fa_invoice');
