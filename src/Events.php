@@ -53,7 +53,7 @@ final class Events
         $neeedsUpdate = $migrations->execute('migrations:up-to-date', Module::MODULE_ID);
 
         if ($neeedsUpdate) {
-            $migrations->execute('migrations:migrate', 'fa_invoice');
+            $migrations->execute('migrations:migrate', Module::MODULE_ID);
         }
     }
 }
