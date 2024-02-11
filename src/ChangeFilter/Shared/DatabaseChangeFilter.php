@@ -68,15 +68,14 @@ abstract class DatabaseChangeFilter extends BaseChangeFilter
 
     protected function getQuery(string $table, int $limit): string
     {
-        $query = "SELECT c.OXID
+        return "SELECT c.OXID
             FROM {$table} c
             WHERE " . $this->getQueryCondition() . " AND c.OXTIMESTAMP > COALESCE(
                   (SELECT MAX(modified) FROM fa_sitemap WHERE object_type = :object_type),
                   '1970-01-01'
                 )
-            ORDER BY c.OXTIMESTAMP ASC
+            ORDER BY c.OXTIMESTAMP
             LIMIT {$limit}";
-        return $query;
     }
 
     protected function getQueryCondition(): string
