@@ -16,6 +16,8 @@
   * Active categories
   * Active products (variants not checked yet)
   * Active content pages from 'User information' folder
+  * Main page of the shop
+* Removal of the urls by removal of the related objects
 
 ## Compatibility
 
@@ -29,7 +31,6 @@
 * Variants selectors
 * Multilanguage support
 * Multishop support
-* Removal of the urls by removal of the related objects
 
 ## Installation
 
