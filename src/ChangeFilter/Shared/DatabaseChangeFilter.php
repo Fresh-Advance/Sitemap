@@ -90,7 +90,8 @@ abstract class DatabaseChangeFilter extends BaseChangeFilter
             where s.object_type='{$objectType}' AND c.oxid is NULL";
     }
 
-    protected function queryAndFetchDisabledSitemapObjectUrlIds(string $objectType, string $modelTable): array {
+    protected function queryAndFetchDisabledSitemapObjectUrlIds(string $objectType, string $modelTable): array
+    {
         /** @var Result $result */
         $result = $this->connection->executeQuery(
             $this->getDisabledSitemapItemsSql($objectType, $modelTable),
