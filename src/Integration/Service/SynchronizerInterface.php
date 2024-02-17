@@ -12,4 +12,6 @@ use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
 interface SynchronizerInterface
 {
     public function updateUrlsByFilter(ChangeFilterInterface $changeFilter): int;
+
+    public function cleanupUrlsByFilter(ChangeFilterInterface $changeFilter): int;
 }

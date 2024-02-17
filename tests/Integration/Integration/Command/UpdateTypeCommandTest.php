@@ -33,6 +33,7 @@ class UpdateTypeCommandTest extends TestCase
         $filterStub = $this->createStub(ChangeFilterInterface::class);
         $filterFactoryMock->method('getFilter')->with($exampleType)->willReturn($filterStub);
         $dataSynchronizerMock->expects($this->once())->method('updateUrlsByFilter')->with($filterStub);
+        $dataSynchronizerMock->expects($this->once())->method('cleanupUrlsByFilter')->with($filterStub);
 
         $commandTester = new CommandTester($command);
         $commandTester->execute(['type' => $exampleType]);

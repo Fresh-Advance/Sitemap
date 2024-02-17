@@ -12,6 +12,7 @@ namespace FreshAdvance\Sitemap\Tests\Unit\Integration\Service;
 use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Integration\Service\FilterFactoryInterface;
+use FreshAdvance\Sitemap\Integration\Service\Synchronizer;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 use Generator;
 use PHPUnit\Framework\TestCase;
@@ -61,6 +62,21 @@ class SynchronizerTest extends TestCase
         );
 
         $this->assertSame(2, $sut->updateUrlsByFilter($filterStub));
+    }
+
+    public function testCleanupTriggersUrlRepositoryCleanupsWithFilteredIds(): void
+    {
+        $ids = [3, 5];
+
+        $filterStub = $this->createMock(ChangeFilterInterface::class);
+        $filterStub->method('getDisabledUrlIds')->willReturn($ids);
+
+        $sut = new Synchronizer(
+            urlRepository: $urlRepositorySpy = $this->createMock(UrlRepositoryInterface::class)
+        );
+        $urlRepositorySpy->expects($this->once())->method('deleteByIds')->with($ids);
+
+        $this->assertSame(2, $sut->cleanupUrlsByFilter($filterStub));
     }
 
     protected function arrayAsGenerator(array $array): Generator

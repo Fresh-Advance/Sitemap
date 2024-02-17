@@ -22,4 +22,6 @@ interface UrlRepositoryInterface
     public function getUrls(int $page, int $perPage): iterable;
 
     public function getUrlsCount(): int;
+
+    public function deleteByIds(array $ids): void;
 }

@@ -11,6 +11,7 @@ namespace FreshAdvance\Sitemap\Url\Repository;
 
 use DateTime;
 use DateTimeInterface;
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Result;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
@@ -106,5 +107,15 @@ class UrlRepository implements UrlRepositoryInterface
         $value = $queryResult->fetchOne();
 
         return (int)$value;
+    }
+
+    public function deleteByIds(array $ids): void
+    {
+        $queryBuilder = $this->queryBuilderFactory->create();
+        $queryBuilder->delete('fa_sitemap')
+            ->where("id in (:ids)")
+            ->setParameter(':ids', $ids, Connection::PARAM_INT_ARRAY);
+
+        $queryBuilder->execute();
     }
 }

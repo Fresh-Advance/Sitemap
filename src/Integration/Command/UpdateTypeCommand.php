@@ -43,6 +43,9 @@ class UpdateTypeCommand extends Command
         $updateCount = $this->synchronizer->updateUrlsByFilter($filter);
         $output->writeln("Updated items: " . $updateCount);
 
+        $cleanupCount = $this->synchronizer->cleanupUrlsByFilter($filter);
+        $output->writeln("Cleaned up items: " . $cleanupCount);
+
         return Command::SUCCESS;
     }
 }

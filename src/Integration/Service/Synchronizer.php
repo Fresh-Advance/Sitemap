@@ -31,4 +31,12 @@ class Synchronizer implements SynchronizerInterface
 
         return $count;
     }
+
+    public function cleanupUrlsByFilter(ChangeFilterInterface $changeFilter): int
+    {
+        $ids = $changeFilter->getDisabledUrlIds();
+        $this->urlRepository->deleteByIds($ids);
+
+        return count($ids);
+    }
 }

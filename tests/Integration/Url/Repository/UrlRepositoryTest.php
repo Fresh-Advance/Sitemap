@@ -82,6 +82,27 @@ class UrlRepositoryTest extends IntegrationTestCase
         $this->assertSame(10, $sut->getUrlsCount());
     }
 
+    public function testDeleteByIds(): void
+    {
+        $connection = $this->getConnection();
+        $connection->executeQuery("delete from fa_sitemap");
+        $connection->executeQuery(
+            "insert into fa_sitemap (id, object_id, location, object_type) values
+            (998, 'firstobject', 'somelocation1', '{$this->objectType}'),
+            (999, 'secondobject', 'somelocation2', '{$this->objectType}'),
+            (1000, 'thirdobject', 'somelocation3', '{$this->objectType}'),
+            (1001, 'fourthobject', 'somelocation4', 'not content')"
+        );
+
+        $ids = [999, 1000];
+
+        $sut = $this->getSut();
+        $sut->deleteByIds($ids);
+
+        $idsLeft = $connection->executeQuery("select id from fa_sitemap")->fetchFirstColumn();
+        $this->assertSame([998, 1001], $idsLeft);
+    }
+
     protected function getSut(): UrlRepository
     {
         return $this->get(UrlRepositoryInterface::class);
