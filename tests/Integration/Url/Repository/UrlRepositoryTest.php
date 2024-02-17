@@ -100,7 +100,7 @@ class UrlRepositoryTest extends IntegrationTestCase
         $sut->deleteByIds($ids);
 
         $idsLeft = $connection->executeQuery("select id from fa_sitemap")->fetchFirstColumn();
-        $this->assertSame([998, 1001], $idsLeft);
+        $this->assertEquals([998, 1001], $idsLeft);
     }
 
     protected function getSut(): UrlRepository

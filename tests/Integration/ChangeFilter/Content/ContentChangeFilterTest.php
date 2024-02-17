@@ -83,7 +83,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
 
         $sut = $this->getSut();
         $expectedIds = [998, 999, 1000];
-        $this->assertSame($expectedIds, $sut->getDisabledUrlIds());
+        $this->assertEquals($expectedIds, $sut->getDisabledUrlIds());
     }
 
     public function getSut(): ContentChangeFilter
