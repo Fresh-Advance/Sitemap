@@ -35,4 +35,14 @@ class GeneralChangeFilterTest extends TestCase
 
         $this->assertTrue($count > 0);
     }
+
+    public function testGetDisabledUrls(): void
+    {
+        $sut = new GeneralChangeFilter(
+            objectType: "someObjectType",
+            shopSettings: $this->createStub(ShopSettingsInterface::class)
+        );
+
+        $this->assertSame([], $sut->getDisabledUrlIds(1000));
+    }
 }

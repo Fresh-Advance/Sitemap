@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Sitemap\ChangeFilter\General;
 
+use DateTime;
 use FreshAdvance\Sitemap\ChangeFilter\Shared\BaseChangeFilter;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrl;
 use FreshAdvance\Sitemap\Settings\ShopSettingsInterface;
@@ -28,7 +29,7 @@ class GeneralChangeFilter extends BaseChangeFilter
             objectId: "main",
             objectType: $this->getObjectType(),
             location: $this->prepareUrl('/'),
-            modified: new \DateTime()
+            modified: new DateTime()
         );
     }
 
@@ -38,5 +39,10 @@ class GeneralChangeFilter extends BaseChangeFilter
             rtrim($this->shopSettings->getShopUrl()),
             $url
         ]);
+    }
+
+    public function getDisabledUrlIds(): array
+    {
+        return [];
     }
 }

@@ -21,19 +21,20 @@ use OxidEsales\Eshop\Application\Model\Category;
  */
 class CategoryChangeFilterTest extends IntegrationTestCase
 {
+    protected string $objectType = 'category';
+
     public function testGetUpdatedUrls(): void
     {
         $connection = $this->getConnection();
         $connection->executeQuery("update oxcategories set oxtimestamp='2023-09-01'");
 
-        $this->addConcreteDateUrl('category', new DateTime("2023-10-01"));
+        $this->addConcreteDateUrl($this->objectType, new DateTime("2023-10-01"));
 
         $this->createExampleCategory('example1', true);
         $this->createExampleCategory('example2', false);
         $this->createExampleCategory('example3', true);
 
-        /** @var CategoryChangeFilter $sut */
-        $sut = $this->get(CategoryChangeFilter::class);
+        $sut = $this->getSut();
         $urls = $sut->getUpdatedUrls(3);
 
         $this->checkCurrentUrlItem($urls->current(), 'example1');
@@ -59,9 +60,31 @@ class CategoryChangeFilterTest extends IntegrationTestCase
 
     protected function checkCurrentUrlItem(ObjectUrlInterface $objectUrl, string $value): void
     {
-        $this->assertSame('category', $objectUrl->getObjectType());
+        $this->assertSame($this->objectType, $objectUrl->getObjectType());
 
         $this->assertSame('http://localhost.local/' . $value . '/', $objectUrl->getLocation());
         $this->assertNotEmpty($objectUrl->getModified());
+    }
+
+    public function testGetDisabledUrls(): void
+    {
+        $connection = $this->getConnection();
+        $connection->executeQuery("delete from fa_sitemap");
+        $connection->executeQuery(
+            "insert into fa_sitemap (id, object_id, location, object_type) values
+            (998, 'firstobject', 'somelocation1', '{$this->objectType}'),
+            (999, 'secondobject', 'somelocation2', '{$this->objectType}'),
+            (1000, 'thirdobject', 'somelocation3', '{$this->objectType}'),
+            (1001, 'fourthobject', 'somelocation4', 'not content')"
+        );
+
+        $sut = $this->getSut();
+        $expectedIds = [998, 999, 1000];
+        $this->assertSame($expectedIds, $sut->getDisabledUrlIds());
+    }
+
+    public function getSut(): CategoryChangeFilter
+    {
+        return $this->get(CategoryChangeFilter::class);
     }
 }

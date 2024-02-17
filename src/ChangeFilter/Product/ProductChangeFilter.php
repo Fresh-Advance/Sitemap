@@ -15,6 +15,14 @@ class ProductChangeFilter extends DatabaseChangeFilter
 {
     public function getUpdatedUrls(int $limit): iterable
     {
-        return $this->queryAndFetchObjectUrl($this->getQuery('oxarticles', $limit), $this->getQueryParameters());
+        return $this->queryAndFetchModelObjectUrl(
+            query: $this->getSelectModelQuery('oxarticles', $limit),
+            queryParameters: $this->getQueryParameters()
+        );
+    }
+
+    public function getDisabledUrlIds(): array
+    {
+        return $this->queryAndFetchDisabledSitemapObjectUrlIds('product', 'oxarticles');
     }
 }

@@ -7,6 +7,7 @@
 
 namespace FreshAdvance\Sitemap\Integration\Contract;
 
+use FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilter;
 use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 
 interface ChangeFilterInterface
@@ -15,4 +16,7 @@ interface ChangeFilterInterface
 
     /** @return iterable<\FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface> */
     public function getUpdatedUrls(int $limit): iterable;
+
+    /** @return array<int> */
+    public function getDisabledUrlIds(): array;
 }

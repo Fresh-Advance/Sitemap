@@ -15,7 +15,10 @@ class ContentChangeFilter extends DatabaseChangeFilter
 {
     public function getUpdatedUrls(int $limit): iterable
     {
-        return $this->queryAndFetchObjectUrl($this->getQuery('oxcontents', $limit), $this->getQueryParameters());
+        return $this->queryAndFetchModelObjectUrl(
+            $this->getSelectModelQuery('oxcontents', $limit),
+            $this->getQueryParameters()
+        );
     }
 
     protected function getQueryParameters(): array
@@ -26,6 +29,11 @@ class ContentChangeFilter extends DatabaseChangeFilter
         $queryParemeters['oxactive'] = true;
 
         return $queryParemeters;
+    }
+
+    public function getDisabledUrlIds(): array
+    {
+        return $this->queryAndFetchDisabledSitemapObjectUrlIds('content', 'oxcontents');
     }
 
     protected function getQueryCondition(): string

@@ -15,6 +15,14 @@ class CategoryChangeFilter extends DatabaseChangeFilter
 {
     public function getUpdatedUrls(int $limit): iterable
     {
-        return $this->queryAndFetchObjectUrl($this->getQuery('oxcategories', $limit), $this->getQueryParameters());
+        return $this->queryAndFetchModelObjectUrl(
+            $this->getSelectModelQuery('oxcategories', $limit),
+            $this->getQueryParameters()
+        );
+    }
+
+    public function getDisabledUrlIds(): array
+    {
+        return $this->queryAndFetchDisabledSitemapObjectUrlIds('category', 'oxcategories');
     }
 }

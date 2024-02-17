@@ -33,7 +33,7 @@ abstract class DatabaseChangeFilter extends BaseChangeFilter
         $this->connection = $connectionProvider->get();
     }
 
-    public function queryAndFetchObjectUrl(string $query, array $queryParameters): Generator
+    public function queryAndFetchModelObjectUrl(string $query, array $queryParameters): Generator
     {
         /** @var Result $result */
         $result = $this->connection->executeQuery(
@@ -66,7 +66,7 @@ abstract class DatabaseChangeFilter extends BaseChangeFilter
         ];
     }
 
-    protected function getQuery(string $table, int $limit): string
+    protected function getSelectModelQuery(string $table, int $limit): string
     {
         return "SELECT c.OXID
             FROM {$table} c
@@ -81,5 +81,22 @@ abstract class DatabaseChangeFilter extends BaseChangeFilter
     protected function getQueryCondition(): string
     {
         return "c.OXACTIVE = :oxactive";
+    }
+
+    protected function getDisabledSitemapItemsSql(string $objectType, string $table): string
+    {
+        return "select s.id from fa_sitemap s
+            left join {$table} c on s.object_id = c.oxid and " . $this->getQueryCondition() . "
+            where s.object_type='{$objectType}' AND c.oxid is NULL";
+    }
+
+    protected function queryAndFetchDisabledSitemapObjectUrlIds(string $objectType, string $modelTable): array {
+        /** @var Result $result */
+        $result = $this->connection->executeQuery(
+            $this->getDisabledSitemapItemsSql($objectType, $modelTable),
+            $this->getQueryParameters()
+        );
+
+        return $result->fetchFirstColumn();
     }
 }

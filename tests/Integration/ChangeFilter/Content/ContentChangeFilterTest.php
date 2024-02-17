@@ -21,12 +21,14 @@ use OxidEsales\EshopCommunity\Application\Model\Content;
  */
 class ContentChangeFilterTest extends IntegrationTestCase
 {
+    protected string $objectType = 'content';
+
     public function testCheckCurrentUrlItem(): void
     {
         $connection = $this->getConnection();
         $connection->executeQuery("update oxcontents set oxtimestamp='2023-09-01'");
 
-        $this->addConcreteDateUrl('content', new DateTime("2023-10-01"));
+        $this->addConcreteDateUrl($this->objectType, new DateTime("2023-10-01"));
 
         $this->createExampleContent('example1', true, 'CMSFOLDER_USERINFO');
         $this->createExampleContent('example2', true, 'OTHER');
@@ -34,8 +36,7 @@ class ContentChangeFilterTest extends IntegrationTestCase
         $this->createExampleContent('example4', false, 'CMSFOLDER_USERINFO');
         $this->createExampleContent('example5', true, 'CMSFOLDER_USERINFO');
 
-        /** @var \FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilter $sut */
-        $sut = $this->get(\FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilter::class);
+        $sut = $this->getSut();
         $urls = $sut->getUpdatedUrls(3);
 
         $this->checkCurrentUrlItem($urls->current(), 'example1');
@@ -66,5 +67,27 @@ class ContentChangeFilterTest extends IntegrationTestCase
 
         $this->assertSame('http://localhost.local/' . $value . '/', $objectUrl->getLocation());
         $this->assertNotEmpty($objectUrl->getModified());
+    }
+
+    public function testGetDisabledUrls(): void
+    {
+        $connection = $this->getConnection();
+        $connection->executeQuery("delete from fa_sitemap");
+        $connection->executeQuery(
+            "insert into fa_sitemap (id, object_id, location, object_type) values
+            (998, 'firstobject', 'somelocation1', '{$this->objectType}'),
+            (999, 'secondobject', 'somelocation2', '{$this->objectType}'),
+            (1000, 'thirdobject', 'somelocation3', '{$this->objectType}'),
+            (1001, 'fourthobject', 'somelocation4', 'not content')"
+        );
+
+        $sut = $this->getSut();
+        $expectedIds = [998, 999, 1000];
+        $this->assertSame($expectedIds, $sut->getDisabledUrlIds());
+    }
+
+    public function getSut(): ContentChangeFilter
+    {
+        return $this->get(ContentChangeFilter::class);
     }
 }

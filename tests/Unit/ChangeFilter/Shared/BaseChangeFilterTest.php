@@ -21,11 +21,7 @@ class BaseChangeFilterTest extends TestCase
     {
         $objectType = uniqid();
 
-        $sut = new class ($objectType) extends BaseChangeFilter {
-            public function getUpdatedUrls(int $limit): iterable
-            {
-            }
-        };
+        $sut = $this->getMockForAbstractClass(BaseChangeFilter::class, [$objectType]);
 
         $this->assertSame($objectType, $sut->getObjectType());
     }

@@ -22,6 +22,4 @@ abstract class BaseChangeFilter implements ChangeFilterInterface
     {
         return $this->objectType;
     }
-
-    abstract public function getUpdatedUrls(int $limit): iterable;
 }

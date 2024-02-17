@@ -21,19 +21,20 @@ use OxidEsales\Eshop\Application\Model\Article;
  */
 class ProductChangeFilterTest extends IntegrationTestCase
 {
+    protected string $objectType = 'product';
+
     public function testSomething()
     {
         $connection = $this->getConnection();
         $connection->executeQuery("update oxarticles set oxtimestamp='2023-09-01'");
 
-        $this->addConcreteDateUrl('product', new DateTime("2023-10-01"));
+        $this->addConcreteDateUrl($this->objectType, new DateTime("2023-10-01"));
 
         $this->createExampleProduct('example1', true);
         $this->createExampleProduct('example2', false);
         $this->createExampleProduct('example3', true);
 
-        /** @var ProductChangeFilter $sut */
-        $sut = $this->get(ProductChangeFilter::class);
+        $sut = $this->getSut();
         $urls = $sut->getUpdatedUrls(3);
 
         $this->checkCurrentUrlItem($urls->current(), 'example1');
@@ -60,9 +61,31 @@ class ProductChangeFilterTest extends IntegrationTestCase
 
     protected function checkCurrentUrlItem(ObjectUrlInterface $objectUrl, string $value): void
     {
-        $this->assertSame('product', $objectUrl->getObjectType());
+        $this->assertSame($this->objectType, $objectUrl->getObjectType());
 
         $this->assertSame('http://localhost.local/' . $value . '.html', $objectUrl->getLocation());
         $this->assertNotEmpty($objectUrl->getModified());
+    }
+
+    public function testGetDisabledUrls(): void
+    {
+        $connection = $this->getConnection();
+        $connection->executeQuery("delete from fa_sitemap");
+        $connection->executeQuery(
+            "insert into fa_sitemap (id, object_id, location, object_type) values
+            (998, 'firstobject', 'somelocation1', '{$this->objectType}'),
+            (999, 'secondobject', 'somelocation2', '{$this->objectType}'),
+            (1000, 'thirdobject', 'somelocation3', '{$this->objectType}'),
+            (1001, 'fourthobject', 'somelocation4', 'not content')"
+        );
+
+        $sut = $this->getSut();
+        $expectedIds = [998, 999, 1000];
+        $this->assertSame($expectedIds, $sut->getDisabledUrlIds());
+    }
+
+    public function getSut(): ProductChangeFilter
+    {
+        return $this->get(ProductChangeFilter::class);
     }
 }
