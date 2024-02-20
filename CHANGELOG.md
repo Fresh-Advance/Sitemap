@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Add outdated urls cleanup functionality
+- UpdateAll command which updates and cleanups all currently registered object types
 
 ### Fixed
 - Use correct module id during module activation migrations

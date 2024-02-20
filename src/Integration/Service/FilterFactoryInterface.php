@@ -12,4 +12,6 @@ use FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface;
 interface FilterFactoryInterface
 {
     public function getFilter(string $objectType): ChangeFilterInterface;
+
+    public function getFilters(): array;
 }

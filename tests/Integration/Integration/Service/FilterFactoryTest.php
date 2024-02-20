@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\Tests\Integration\Service;
+namespace FreshAdvance\Sitemap\Tests\Integration\Integration\Service;
 
 use FreshAdvance\Sitemap\Integration\Service\FilterFactoryInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;

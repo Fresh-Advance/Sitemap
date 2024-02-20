@@ -39,4 +39,9 @@ class FilterFactory implements FilterFactoryInterface
 
         return $this->filters[$objectType];
     }
+
+    public function getFilters(): array
+    {
+        return $this->filters;
+    }
 }

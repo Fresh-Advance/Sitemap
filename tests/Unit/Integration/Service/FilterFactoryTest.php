@@ -23,7 +23,7 @@ class FilterFactoryTest extends TestCase
 {
     public function testGetFilter(): void
     {
-        $filterStub = $this->createMock(\FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface::class);
+        $filterStub = $this->createMock(ChangeFilterInterface::class);
         $filterStub->method('getObjectType')->willReturn('someObjectType');
 
         $filters = [
@@ -51,5 +51,23 @@ class FilterFactoryTest extends TestCase
 
         $this->expectException(FilterNotFoundException::class);
         $sut->getFilter('unknown');
+    }
+
+    public function testGetFilters(): void
+    {
+        $filterStub1 = $this->createStub(ChangeFilterInterface::class);
+        $filterStub1->method('getObjectType')->willReturn('filterStubType1');
+
+        $filterStub2 = $this->createStub(ChangeFilterInterface::class);
+        $filterStub2->method('getObjectType')->willReturn('filterStubType2');
+
+        $filters = [
+            $filterStub1,
+            $filterStub2
+        ];
+
+        $sut = new \FreshAdvance\Sitemap\Integration\Service\FilterFactory($filters);
+
+        $this->assertEquals($filters, array_values($sut->getFilters()));
     }
 }

@@ -10,3 +10,7 @@ services:
   FreshAdvance\Sitemap\Integration\Command\UpdateTypeCommand:
     tags:
       - { name: 'console.command', command: 'fa:sitemap:update' }
+
+  FreshAdvance\Sitemap\Integration\Command\UpdateAllTypesCommand:
+    tags:
+      - { name: 'console.command', command: 'fa:sitemap:updateAll' }
