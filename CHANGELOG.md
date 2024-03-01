@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Use correct module id during module activation migrations
+- Fix fa_sitemap table object_id charset to fit other shop tables ids
 
 ## [v0.1.0] - 2024-02-10
 

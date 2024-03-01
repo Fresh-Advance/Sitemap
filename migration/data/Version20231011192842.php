@@ -11,7 +11,7 @@ final class Version20231011192842 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Create sitemap urls table';
     }
 
     public function up(Schema $schema): void
