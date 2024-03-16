@@ -42,7 +42,7 @@ class UrlRepository implements UrlRepositoryInterface
             'object_id' => $objectUrl->getObjectId(),
             'object_type' => $objectUrl->getObjectType(),
             'location' => $objectUrl->getLocation(),
-            'modified' => $objectUrl->getModified()->format(DateTimeInterface::ATOM)
+            'modified' => $objectUrl->getModified()->format('Y-m-d H:i:s')
         ]);
     }
 
