@@ -17,7 +17,8 @@ use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServ
  */
 class ModuleSettings implements ModuleSettingsInterface
 {
-    public const SETTING_ADDITIONAL_SITEMAP_URLS = 'additionalSitemapUrls';
+    public const SETTING_SITEMAP_DIRECTORY = 'fa_sitemap_directory';
+    public const SETTING_ADDITIONAL_SITEMAP_URLS = 'fa_sitemap_additionalSitemapUrls';
 
     public function __construct(
         protected ModuleSettingServiceInterface $shopModuleSettings
@@ -26,7 +27,9 @@ class ModuleSettings implements ModuleSettingsInterface
 
     public function getSitemapInSourceDirectory(): string
     {
-        return 'sitemap';
+        return $this->shopModuleSettings
+            ->getString(self::SETTING_SITEMAP_DIRECTORY, Module::MODULE_ID)
+            ->toString();
     }
 
     public function getAdditionalSitemapUrls(): array

@@ -30,7 +30,21 @@ $aModule = [
     'extend'      => [
     ],
     'settings' => [
+        /** Main */
+        [
+            'group' => 'fa_sitemap_main',
+            'name' => \FreshAdvance\Sitemap\Settings\ModuleSettings::SETTING_SITEMAP_DIRECTORY,
+            'type' => 'str',
+            'value' => 'sitemap'
+        ],
 
+        /** Additional */
+        [
+            'group' => 'fa_sitemap_additional',
+            'name' => \FreshAdvance\Sitemap\Settings\ModuleSettings::SETTING_ADDITIONAL_SITEMAP_URLS,
+            'type' => 'arr',
+            'value' => ['/']
+        ],
     ],
     'events' => [
         'onActivate' => '\FreshAdvance\Sitemap\Events::onActivate',

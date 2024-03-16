@@ -14,14 +14,23 @@ use FreshAdvance\Sitemap\Settings\ModuleSettings;
 use FreshAdvance\Sitemap\Settings\ModuleSettingsInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\String\UnicodeString;
 
 class ModuleSettingsTest extends TestCase
 {
     public function testSitemapDirectorySetting(): void
     {
-        $sut = $this->getSut();
+        $sut = $this->getSut(
+            shopModuleSettings: $shopModuleSettings = $this->createMock(ModuleSettingServiceInterface::class)
+        );
 
-        $this->assertSame('sitemap', $sut->getSitemapInSourceDirectory());
+        $directoryPathExample = uniqid();
+
+        $shopModuleSettings->method('getString')
+            ->with(ModuleSettings::SETTING_SITEMAP_DIRECTORY, Module::MODULE_ID)
+            ->willReturn(new UnicodeString($directoryPathExample));
+
+        $this->assertSame($directoryPathExample, $sut->getSitemapInSourceDirectory());
     }
 
     public function testGetAdditionalSitemapUrls(): void
@@ -31,8 +40,8 @@ class ModuleSettingsTest extends TestCase
         );
 
         $urlsList = [
-            'url1',
-            'url2',
+            uniqid(),
+            uniqid(),
         ];
 
         $shopModuleSettings->method('getCollection')
