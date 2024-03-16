@@ -10,4 +10,6 @@ namespace FreshAdvance\Sitemap\Settings;
 interface ModuleSettingsInterface
 {
     public function getSitemapInSourceDirectory(): string;
+
+    public function getAdditionalSitemapUrls(): array;
 }
