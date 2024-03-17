@@ -53,8 +53,7 @@ class ModuleSettingsTest extends TestCase
 
     public function getSut(
         ModuleSettingServiceInterface $shopModuleSettings = null,
-    ): ModuleSettingsInterface
-    {
+    ): ModuleSettingsInterface {
         return new ModuleSettings(
             shopModuleSettings: $shopModuleSettings ?? $this->createStub(ModuleSettingServiceInterface::class)
         );

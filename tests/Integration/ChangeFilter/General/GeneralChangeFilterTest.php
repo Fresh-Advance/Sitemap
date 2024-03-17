@@ -42,14 +42,14 @@ class GeneralChangeFilterTest extends IntegrationTestCase
         $urlToTest = $urls->current();
         $this->assertSame($this->objectType, $urlToTest->getObjectType());
         $this->assertSame($url1hash, $urlToTest->getObjectId());
-        $this->assertSame($shopUrlExample . '/' . $url1 , $urlToTest->getLocation());
+        $this->assertSame($shopUrlExample . '/' . $url1, $urlToTest->getLocation());
         $this->assertNotEmpty($urlToTest->getModified());
 
         $urls->next();
         $urlToTest = $urls->current();
         $this->assertSame($this->objectType, $urlToTest->getObjectType());
         $this->assertSame($url2hash, $urlToTest->getObjectId());
-        $this->assertSame($shopUrlExample . '/' . $url2 , $urlToTest->getLocation());
+        $this->assertSame($shopUrlExample . '/' . $url2, $urlToTest->getLocation());
         $this->assertNotEmpty($urlToTest->getModified());
 
         $urls->next();
@@ -82,8 +82,7 @@ class GeneralChangeFilterTest extends IntegrationTestCase
     public function getSut(
         ShopSettingsInterface $shopSettings = null,
         ModuleSettingsInterface $moduleSettings = null,
-    ): GeneralChangeFilter
-    {
+    ): GeneralChangeFilter {
         return new GeneralChangeFilter(
             objectType: $this->objectType,
             shopSettings: $shopSettings ?? $this->createStub(ShopSettingsInterface::class),

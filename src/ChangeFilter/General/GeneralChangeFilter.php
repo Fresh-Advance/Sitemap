@@ -69,7 +69,9 @@ class GeneralChangeFilter extends BaseChangeFilter
 
         $difference = array_diff($dbValues, $currentUrlKeys);
 
-        return array_keys($difference);
+        /** @var array<int> $idsForRemoval */
+        $idsForRemoval = array_keys($difference);
+        return $idsForRemoval;
     }
 
     protected function getAdditionalSitemapUrlKeys(): array

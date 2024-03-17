@@ -23,7 +23,7 @@ class ProductChangeFilterTest extends IntegrationTestCase
 {
     protected string $objectType = 'product';
 
-    public function testSomething()
+    public function testGetUpdatedUrls()
     {
         $connection = $this->getConnection();
         $connection->executeQuery("update oxarticles set oxtimestamp='2023-09-01'");
