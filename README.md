@@ -46,6 +46,8 @@ RewriteRule ^sitemap.xml$    sitemap/sitemap.xml   [NC,L]
 
 ## Module usage
 
+**Note: directory for sitemap should exist and have enough rights for php to modify its content.**
+
 ```shell
 ./vendor/bin/oe-console fa:sitemap:updateAll
 ./vendor/bin/oe-console fa:sitemap:generate

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Reworked the General filter to handle Additional urls from module setting. Renamed to AdditionalChangeFilter
+- One update step items limit increased from 100 to 1000, as it doesnt look too heavy for now.
 
 ### Fixed
 - Do not apply timezone on saving the url information to database.

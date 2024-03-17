@@ -21,7 +21,7 @@ class Synchronizer implements SynchronizerInterface
 
     public function updateUrlsByFilter(ChangeFilterInterface $changeFilter): int
     {
-        $urls = $changeFilter->getUpdatedUrls(100);
+        $urls = $changeFilter->getUpdatedUrls(1000);
 
         $count = 0;
         foreach ($urls as $oneObjectUrl) {
