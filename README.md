@@ -70,6 +70,7 @@ Note: Also its possible to update some concrete type of objects **IF needed** by
 * Configurable sitemap directory
 * Multilanguage support
 * Multishop support
+* Configurable step size for update run
 
 ## License
 
