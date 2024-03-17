@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [v1.0.0] - Unreleased
 
+### Added
+- Module setting for configuring the sitemap directory
+- Module setting for additional urls list for easy configuring of urls like main page and possibly others not covered by current filters
+- Variants case checked, seems our Product filter covers variants correctly, so this part added to current features
+
+### Changed
+- Reworked the General filter to handle Additional urls from module setting. Renamed to AdditionalChangeFilter
+
 ### Fixed
 - Do not apply timezone on saving the url information to database.
 
