@@ -7,17 +7,17 @@
 
 declare(strict_types=1);
 
-namespace ChangeFilter\General;
+namespace ChangeFilter\Additional;
 
-use FreshAdvance\Sitemap\ChangeFilter\General\GeneralChangeFilter;
+use FreshAdvance\Sitemap\ChangeFilter\Additional\AdditionalChangeFilter;
 use FreshAdvance\Sitemap\Settings\ModuleSettingsInterface;
 use FreshAdvance\Sitemap\Settings\ShopSettingsInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 
-class GeneralChangeFilterTest extends IntegrationTestCase
+class AdditionalChangeFilterTest extends IntegrationTestCase
 {
-    protected string $objectType = 'general';
+    protected string $objectType = 'additional';
 
     public function testGetUpdatedUrls(): void
     {
@@ -82,8 +82,8 @@ class GeneralChangeFilterTest extends IntegrationTestCase
     public function getSut(
         ShopSettingsInterface $shopSettings = null,
         ModuleSettingsInterface $moduleSettings = null,
-    ): GeneralChangeFilter {
-        return new GeneralChangeFilter(
+    ): \FreshAdvance\Sitemap\ChangeFilter\Additional\AdditionalChangeFilter {
+        return new AdditionalChangeFilter(
             objectType: $this->objectType,
             shopSettings: $shopSettings ?? $this->createStub(ShopSettingsInterface::class),
             moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class),

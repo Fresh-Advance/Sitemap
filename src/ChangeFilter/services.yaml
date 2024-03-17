@@ -1,5 +1,5 @@
 imports:
+  - { resource: Additional/services.yaml }
   - { resource: Category/services.yaml }
   - { resource: Content/services.yaml }
-  - { resource: General/services.yaml }
   - { resource: Product/services.yaml }

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Sitemap\ChangeFilter\General;
+namespace FreshAdvance\Sitemap\ChangeFilter\Additional;
 
 use DateTime;
 use Doctrine\DBAL\Connection;
@@ -18,7 +18,7 @@ use FreshAdvance\Sitemap\Settings\ShopSettingsInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 use Symfony\Component\Filesystem\Path;
 
-class GeneralChangeFilter extends BaseChangeFilter
+class AdditionalChangeFilter extends BaseChangeFilter
 {
     protected Connection $connection;
 
@@ -62,7 +62,7 @@ class GeneralChangeFilter extends BaseChangeFilter
         $queryResult = $this->connection->executeQuery(
             "select id, object_id from fa_sitemap where object_type=:object_type",
             [
-                'object_type' => 'general'
+                'object_type' => $this->getObjectType()
             ]
         );
         $dbValues = $queryResult->fetchAllKeyValue();

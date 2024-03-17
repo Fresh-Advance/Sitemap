@@ -1,5 +1,5 @@
 parameters:
-  sitemap.object_type.general: 'general'
+  sitemap.object_type.additional: 'additional'
 
 services:
 
@@ -7,16 +7,16 @@ services:
     public: false
     autowire: true
 
-  FreshAdvance\Sitemap\ChangeFilter\General\GeneralChangeFilter:
+  FreshAdvance\Sitemap\ChangeFilter\Additional\AdditionalChangeFilter:
     arguments:
-      $objectType: '%sitemap.object_type.general%'
+      $objectType: '%sitemap.object_type.additional%'
     tags:
       - 'sitemap.change_filter'
 
-  FreshAdvance\Sitemap\ChangeFilter\General\GeneralUrlType:
+  FreshAdvance\Sitemap\ChangeFilter\Additional\AdditionalUrlType:
     class: FreshAdvance\Sitemap\Url\DataType\UrlType
     arguments:
-      $objectType: '%sitemap.object_type.general%'
+      $objectType: '%sitemap.object_type.additional%'
       $changeFrequency: 'daily'
       $priority: 0.85
     tags:
