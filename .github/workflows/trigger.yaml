@@ -1,0 +1,19 @@
+name: Auto trigger on push or pull requests
+# Matrix workflow using re-usable github actions
+
+on:
+  pull_request: {}
+  push: {}
+
+jobs:
+  php81_mysql80:
+    uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yml@v4
+    with:
+      testplan: '~/defaults/7.0.x.yml,~/defaults/php8.1_mysql8.0_only.yml,~/module-sitemap.yaml'
+      runs_on: '"ubuntu-latest"'
+      defaults: 'v4'
+      plan_folder: '.github/fresh-advance'
+    secrets:
+      DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+      DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
