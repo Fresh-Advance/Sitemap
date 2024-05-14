@@ -23,7 +23,7 @@ $aModule = [
         'de' => 'Sitemap-Modul für OXID eShop.',
     ],
     'thumbnail'   => 'pictures/logo.png',
-    'version'     => '1.0.0',
+    'version'     => '1.0.1',
     'author'       => 'Anton Fedurtsya',
     'email'        => 'anton@fedurtsya.com',
     'url'         => '',
