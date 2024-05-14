@@ -14,4 +14,4 @@ use Symfony\Component\Filesystem\Path;
 require_once '/var/www/source/bootstrap.php';
 
 $helper = new \OxidEsales\Codeception\Module\FixturesHelper();
-$helper->loadRuntimeFixtures(__DIR__ . '/../_data/fixtures.php');
+$helper->loadRuntimeFixtures(__DIR__ . '/../Support/Data/fixtures.php');
