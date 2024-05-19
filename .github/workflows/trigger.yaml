@@ -3,7 +3,8 @@ name: Auto trigger on push or pull requests
 
 on:
   pull_request: {}
-  push: {}
+  push:
+    branches: {}
 
 jobs:
   php81_mysql80:
