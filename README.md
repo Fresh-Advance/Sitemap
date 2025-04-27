@@ -64,6 +64,14 @@ Note: Also its possible to update some concrete type of objects **IF needed** by
 ./vendor/bin/oe-console fa:sitemap:update product
 ```
 
+### Cron
+
+Example command for the cron for every day automatic regeneration
+
+```shell
+0 3 * * * cd /path/to/shop/root && /usr/bin/docker compose exec php vendor/bin/oe-console fa:sitemap:updateAll && /usr/bin/docker compose exec php vendor/bin/oe-console fa:sitemap:generate >> /logpath/sitemap.log 2>&1
+```
+
 ## What to expect in next versions
 
 * Sitemap access without modifying the .htaccess maybe
