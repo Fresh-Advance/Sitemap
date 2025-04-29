@@ -66,10 +66,12 @@ Note: Also its possible to update some concrete type of objects **IF needed** by
 
 ### Cron
 
-Example command for the cron for every day automatic regeneration
+Example command for the cron for every day automatic regeneration. Make sure you change the path
+to your shop and the log path. Also, docker is used in this example, please double-check it by your needs.
 
 ```shell
-0 3 * * * cd /path/to/shop/root && /usr/bin/docker compose exec php vendor/bin/oe-console fa:sitemap:updateAll && /usr/bin/docker compose exec php vendor/bin/oe-console fa:sitemap:generate >> /logpath/sitemap.log 2>&1
+0 3 * * * cd /path/to/shop/root && /usr/bin/docker compose exec php vendor/bin/oe-console fa:sitemap:updateAll >> /logpath/sitemap.log 2>&1
+10 3 * * * cd /path/to/shop/root && /usr/bin/docker compose exec php vendor/bin/oe-console fa:sitemap:generate >> /logpath/sitemap.log 2>&1
 ```
 
 ## What to expect in next versions
