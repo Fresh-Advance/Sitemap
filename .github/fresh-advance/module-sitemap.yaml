@@ -24,6 +24,10 @@ install:
     vendor/bin/oe-console oe:module:activate fa_sitemap
     vendor/bin/oe-console oe:theme:activate apex
 
+install_shop_with_modules:
+  composer:
+    root_url: ''
+
 runscript: &runscript
   matrix:
     script: |
@@ -47,7 +51,7 @@ runslim:
 sonarcloud:
   matrix:
     testplan: '["-"]'
-  strip_path: '/var/www/vendor/fresh-advance/sitemap/'
+  strip_path: '/var/www/'
   project_name: 'Sitemap'
   project_key: 'Fresh-Advance_Sitemap'
   organization: 'fresh-advance'
