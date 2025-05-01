@@ -12,16 +12,16 @@ namespace ChangeFilter\Shared;
 use FreshAdvance\Sitemap\ChangeFilter\Shared\BaseChangeFilter;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Sitemap\ChangeFilter\Shared\BaseChangeFilter
- */
 class BaseChangeFilterTest extends TestCase
 {
     public function testGetObjectType(): void
     {
         $objectType = uniqid();
 
-        $sut = $this->getMockForAbstractClass(BaseChangeFilter::class, [$objectType]);
+        $sut = $this->getMockBuilder(BaseChangeFilter::class)
+            ->setConstructorArgs([$objectType])
+            ->onlyMethods(['getUpdatedUrls', 'getDisabledUrlIds'])
+            ->getMock();
 
         $this->assertSame($objectType, $sut->getObjectType());
     }

@@ -13,9 +13,6 @@ use DateTime;
 use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrl;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrl
- */
 class SitemapUrlTest extends TestCase
 {
     public function testMainGetters(): void

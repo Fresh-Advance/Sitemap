@@ -12,9 +12,6 @@ namespace FreshAdvance\Sitemap\Tests\Integration\Url\DataTypeFactory;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use FreshAdvance\Sitemap\Url\DataTypeFactory\UrlTypeFactoryInterface;
 
-/**
- * @covers \FreshAdvance\Sitemap\Url\DataTypeFactory\UrlTypeFactory
- */
 class UrlTypeFactoryTest extends IntegrationTestCase
 {
     public function testInitialization(): void

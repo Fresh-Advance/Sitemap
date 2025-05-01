@@ -19,9 +19,6 @@ use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Sitemap\Sitemap\Service\Sitemap
- */
 class SitemapTest extends TestCase
 {
     public function testGenerateSitemapCreatesAllPagesAndIndexFile(): void

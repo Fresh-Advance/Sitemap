@@ -14,9 +14,6 @@ use FreshAdvance\Sitemap\Sitemap\Service\SitemapInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \FreshAdvance\Sitemap\Sitemap\Command\GenerateSitemapCommand
- */
 class GenerateSitemapCommandTest extends TestCase
 {
     public function testCallSitemapCreationService(): void

@@ -15,10 +15,11 @@ use Generator;
 use OxidEsales\Eshop\Application\Model\Article;
 use OxidEsales\Eshop\Application\Model\Category;
 use OxidEsales\Eshop\Application\Model\Content;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class ModelItemRepositoryTest extends IntegrationTestCase
 {
-    /** @dataProvider getItemDataProvider */
+    #[DataProvider('getItemDataProvider')]
     public function testGetItem(string $model, string $filler): void
     {
         $identifier = uniqid();
@@ -30,7 +31,7 @@ class ModelItemRepositoryTest extends IntegrationTestCase
         $this->assertTrue($item->isLoaded());
     }
 
-    public function getItemDataProvider(): Generator
+    public static function getItemDataProvider(): Generator
     {
         yield [
             'model' => Content::class,

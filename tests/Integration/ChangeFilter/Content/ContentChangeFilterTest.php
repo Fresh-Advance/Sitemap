@@ -15,10 +15,6 @@ use FreshAdvance\Sitemap\Integration\DataType\ObjectUrlInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 use OxidEsales\EshopCommunity\Application\Model\Content;
 
-/**
- * @covers \FreshAdvance\Sitemap\ChangeFilter\Shared\DatabaseChangeFilter
- * @covers \FreshAdvance\Sitemap\ChangeFilter\Content\ContentChangeFilter
- */
 class ContentChangeFilterTest extends IntegrationTestCase
 {
     protected string $objectType = 'content';

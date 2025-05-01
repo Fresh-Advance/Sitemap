@@ -12,9 +12,6 @@ namespace FreshAdvance\Sitemap\Tests\Integration\Integration\Service;
 use FreshAdvance\Sitemap\Integration\Service\FilterFactoryInterface;
 use FreshAdvance\Sitemap\Tests\Integration\IntegrationTestCase;
 
-/**
- * @covers \FreshAdvance\Sitemap\Integration\Service\FilterFactory
- */
 class FilterFactoryTest extends IntegrationTestCase
 {
     public function testInitialization(): void

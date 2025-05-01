@@ -17,14 +17,12 @@ use FreshAdvance\Sitemap\Sitemap\DataType\SitemapUrlInterface;
 use FreshAdvance\Sitemap\Sitemap\Service\LocationService;
 use Generator;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\BasicContextInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Sitemap\Sitemap\Service\LocationService
- */
 class LocationServiceTest extends TestCase
 {
-    /** @dataProvider getSitemapDirectoryPathDataProvider */
+    #[DataProvider('getSitemapDirectoryPathDataProvider')]
     public function testGetSitemapDirectoryPathReturnsCorrectValues(
         string $sourcePath,
         string $sitemapDirectory,
@@ -41,7 +39,7 @@ class LocationServiceTest extends TestCase
         $this->assertSame($expectedValue, $sut->getSitemapDirectoryPath());
     }
 
-    public function getSitemapDirectoryPathDataProvider(): Generator
+    public static function getSitemapDirectoryPathDataProvider(): Generator
     {
         yield 'simple case' => [
             'sourcePath' => 'sourcePath',
@@ -74,7 +72,7 @@ class LocationServiceTest extends TestCase
         ];
     }
 
-    /** @dataProvider getSitemapFileUrlDataProvider */
+    #[DataProvider('getSitemapFileUrlDataProvider')]
     public function testGetSitemapFileUrlReturnsCorrectValues(
         string $shopUrl,
         string $fileName,
@@ -92,7 +90,7 @@ class LocationServiceTest extends TestCase
         $this->assertEquals($expectedValue, $sut->getSitemapFileUrl($fileName));
     }
 
-    public function getSitemapFileUrlDataProvider(): Generator
+    public static function getSitemapFileUrlDataProvider(): Generator
     {
         yield 'simple case' => [
             'shopUrl' => 'exampleUrl',

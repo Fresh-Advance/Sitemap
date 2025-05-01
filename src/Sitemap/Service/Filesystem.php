@@ -26,10 +26,12 @@ class Filesystem implements FilesystemInterface
 
     public function cleanupSitemapFiles(string $directory): void
     {
-        $allFiles = scandir($directory);
+        if (is_dir($directory)) {
+            $allFiles = scandir($directory);
+        }
 
-        if (!is_array($allFiles)) {
-            throw new SitemapDirectoryAccessException();
+        if (!isset($allFiles) || !is_array($allFiles)) {
+            throw new SitemapDirectoryAccessException('Directory is not readable');
         }
 
         foreach ($allFiles as $oneFile) {

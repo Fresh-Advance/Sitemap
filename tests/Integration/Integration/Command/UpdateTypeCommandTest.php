@@ -17,9 +17,6 @@ use FreshAdvance\Sitemap\Integration\Service\SynchronizerInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \FreshAdvance\Sitemap\Integration\Command\UpdateTypeCommand
- */
 class UpdateTypeCommandTest extends TestCase
 {
     public function testUpdateTypeUrls(): void

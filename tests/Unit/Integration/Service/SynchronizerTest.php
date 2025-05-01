@@ -17,9 +17,6 @@ use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Sitemap\Integration\Service\Synchronizer
- */
 class SynchronizerTest extends TestCase
 {
     public function testUpdateIteratesOverUrlsAndUpdatesThemThroughRepository(): void
@@ -44,7 +41,7 @@ class SynchronizerTest extends TestCase
                     $objectUrlStub1,
                     $objectUrlStub2
                 ) {
-                    switch ($matcher->getInvocationCount()) {
+                    switch ($matcher->numberOfInvocations()) {
                         case "1":
                             $this->assertEquals($objectUrlStub1, $objectUrl);
                             break;

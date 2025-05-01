@@ -16,9 +16,6 @@ use FreshAdvance\Sitemap\Sitemap\Service\XmlGenerator;
 use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Sitemap\Sitemap\Service\XmlGenerator
- */
 class XmlGeneratorTest extends TestCase
 {
     public function testGenerateUrlItem(): void

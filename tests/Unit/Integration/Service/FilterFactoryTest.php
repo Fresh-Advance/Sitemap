@@ -16,9 +16,6 @@ use FreshAdvance\Sitemap\Integration\Service\FilterFactory;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-/**
- * @covers \FreshAdvance\Sitemap\Integration\Service\FilterFactory
- */
 class FilterFactoryTest extends TestCase
 {
     public function testGetFilter(): void

@@ -16,9 +16,6 @@ use FreshAdvance\Sitemap\Url\DataType\UrlInterface;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepository;
 use FreshAdvance\Sitemap\Url\Repository\UrlRepositoryInterface;
 
-/**
- * @covers \FreshAdvance\Sitemap\Url\Repository\UrlRepository
- */
 class UrlRepositoryTest extends IntegrationTestCase
 {
     public function testSaveAndThenGetUrl(): void
@@ -88,9 +85,9 @@ class UrlRepositoryTest extends IntegrationTestCase
         $connection->executeQuery("delete from fa_sitemap");
         $connection->executeQuery(
             "insert into fa_sitemap (id, object_id, location, object_type) values
-            (998, 'firstobject', 'somelocation1', '{$this->objectType}'),
-            (999, 'secondobject', 'somelocation2', '{$this->objectType}'),
-            (1000, 'thirdobject', 'somelocation3', '{$this->objectType}'),
+            (998, 'firstobject', 'somelocation1', '{uniqid()}'),
+            (999, 'secondobject', 'somelocation2', '{uniqid()}'),
+            (1000, 'thirdobject', 'somelocation3', '{uniqid()}'),
             (1001, 'fourthobject', 'somelocation4', 'not content')"
         );
 

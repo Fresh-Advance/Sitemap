@@ -14,9 +14,6 @@ use FreshAdvance\Sitemap\Sitemap\Service\Filesystem;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Sitemap\Sitemap\Service\Filesystem
- */
 class FilesystemTest extends TestCase
 {
     public function testCreateSitemapFile(): void
