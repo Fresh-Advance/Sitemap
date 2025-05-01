@@ -1,33 +1,35 @@
-install_shop_with_modules:
+install:
   cache:
     prepared_shop: false
+  git:
+    repository: 'Fresh-Advance/Sitemap'
+    ref: &ref '{{ .Github.RefName }}'
+    shop_url: 'https://github.com/Fresh-Advance/Sitemap.git'
+    shop_ref: *ref
   composer:
+    root_url: ''
     transform: |
       {
           "require": {
               "oxid-esales/oxideshop-ce": "{{ .Data.global.composer.dev_ref }}",
               "oxid-esales/twig-admin-theme": "{{ .Data.global.composer.dev_ref }}",
-              "oxid-esales/twig-theme": "{{ .Data.global.composer.dev_ref }}",
-              "oxid-esales/developer-tools": "{{ .Data.global.composer.dev_ref }}",
-              "fresh-advance/sitemap": "dev-{{ .Github.RefName }}"
-          },
-          "repositories": {
-            "fresh-advance/sitemap": {
-              "type": "git",
-              "url": "https://github.com/Fresh-Advance/Sitemap.git"
-            }
+              "oxid-esales/apex-theme": "{{ .Data.global.composer.dev_ref }}",
+              "oxid-esales/twig-component": "{{ .Data.global.composer.dev_ref }}"
           }
       }
   custom_script_container: |
     vendor/bin/oe-console oe:database:reset --db-host=mysql --db-port=3306 --db-name=example --db-user=root --db-password=root --force
+    vendor/bin/oe-console oe:module:install ./
+    vendor/bin/oe-eshop-doctrine_migration migrations:migrate
     vendor/bin/oe-console oe:module:activate fa_sitemap
-    vendor/bin/oe-console oe:theme:activate twig
+    vendor/bin/oe-console oe:theme:activate apex
 
 runscript: &runscript
   matrix:
     script: |
       [
-        "fa_sitemap:tests-clover",
+        "fa_sitemap:tests-unit",
+        "fa_sitemap:tests-integration",
       ]
   fa_sitemap:
     path: 'vendor/fresh-advance/sitemap'
