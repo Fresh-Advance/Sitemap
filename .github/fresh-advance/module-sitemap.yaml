@@ -55,7 +55,7 @@ sonarcloud:
   project_name: 'Sitemap'
   project_key: 'Fresh-Advance_Sitemap'
   organization: 'fresh-advance'
-  parameters: |
+  parameters: >
     -Dsonar.language=php
     -Dsonar.scm.provider=git
     -Dsonar.sources=src
