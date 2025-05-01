@@ -36,7 +36,7 @@ runscript: &runscript
         "fa_sitemap:tests-integration",
       ]
   fa_sitemap:
-    path: 'vendor/fresh-advance/sitemap'
+    path: ''
 
 runslim:
   <<: *runscript
