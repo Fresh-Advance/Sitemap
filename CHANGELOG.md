@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Notices if sitemap directory does not exist
 
 ### Removed
-- PHP 8.1 support
+- PHP 8.0 support
 
 ## [v1.0.3] - Unreleased
 

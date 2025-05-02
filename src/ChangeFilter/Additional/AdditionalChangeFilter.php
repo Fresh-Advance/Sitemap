@@ -74,6 +74,9 @@ class AdditionalChangeFilter extends BaseChangeFilter
         return $idsForRemoval;
     }
 
+    /**
+     * @return array<string, string>
+     */
     protected function getAdditionalSitemapUrlKeys(): array
     {
         $additionalUrlsList = $this->moduleSettings->getAdditionalSitemapUrls();

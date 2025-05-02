@@ -11,5 +11,8 @@ interface ModuleSettingsInterface
 {
     public function getSitemapInSourceDirectory(): string;
 
+    /**
+     * @return array<string>
+     */
     public function getAdditionalSitemapUrls(): array;
 }

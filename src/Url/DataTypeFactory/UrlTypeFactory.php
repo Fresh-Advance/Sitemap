@@ -14,10 +14,11 @@ use FreshAdvance\Sitemap\Url\Exception\UrlTypeFactorySetupException;
 
 class UrlTypeFactory implements UrlTypeFactoryInterface
 {
+    /** @var array<UrlTypeInterface> $configurations */
     protected array $configurations = [];
 
     /**
-     * @param iterable<UrlTypeInterface> $configurations
+     * @param iterable<UrlTypeInterface|object> $configurations
      * @throws \FreshAdvance\Sitemap\Url\Exception\UrlTypeFactorySetupException
      */
     public function __construct(

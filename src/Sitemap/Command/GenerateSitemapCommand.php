@@ -23,7 +23,7 @@ class GenerateSitemapCommand extends Command
     }
 
     /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings(PHPMD)
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

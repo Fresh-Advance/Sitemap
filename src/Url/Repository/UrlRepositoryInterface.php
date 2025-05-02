@@ -23,5 +23,8 @@ interface UrlRepositoryInterface
 
     public function getUrlsCount(): int;
 
+    /**
+     * @param array<int> $ids
+     */
     public function deleteByIds(array $ids): void;
 }

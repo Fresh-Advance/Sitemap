@@ -33,9 +33,13 @@ abstract class DatabaseChangeFilter extends BaseChangeFilter
         $this->connection = $connectionProvider->get();
     }
 
+    /**
+     * @param array<string, string|int|bool|null> $queryParameters
+     *
+     * @return Generator<ObjectUrl>
+     */
     public function queryAndFetchModelObjectUrl(string $query, array $queryParameters): Generator
     {
-        /** @var Result $result */
         $result = $this->connection->executeQuery(
             $query,
             $queryParameters
@@ -58,6 +62,9 @@ abstract class DatabaseChangeFilter extends BaseChangeFilter
         }
     }
 
+    /**
+     * @return array<string, string|int|bool|null>
+     */
     protected function getQueryParameters(): array
     {
         return [
@@ -90,14 +97,18 @@ abstract class DatabaseChangeFilter extends BaseChangeFilter
             where s.object_type='{$objectType}' AND c.oxid is NULL";
     }
 
+    /**
+     * @return array<int>
+     */
     protected function queryAndFetchDisabledSitemapObjectUrlIds(string $objectType, string $modelTable): array
     {
-        /** @var Result $result */
         $result = $this->connection->executeQuery(
             $this->getDisabledSitemapItemsSql($objectType, $modelTable),
             $this->getQueryParameters()
         );
 
-        return $result->fetchFirstColumn();
+        /** @var array<int> $ids */
+        $ids = $result->fetchFirstColumn();
+        return $ids;
     }
 }

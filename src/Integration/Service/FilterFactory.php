@@ -15,10 +15,11 @@ use FreshAdvance\Sitemap\Integration\Exception\FilterNotFoundException;
 
 class FilterFactory implements FilterFactoryInterface
 {
+    /** @var array<ChangeFilterInterface> */
     private array $filters = [];
 
     /**
-     * @param iterable<\FreshAdvance\Sitemap\Integration\Contract\ChangeFilterInterface> $filters
+     * @param iterable<ChangeFilterInterface|object> $filters
      */
     public function __construct(
         iterable $filters

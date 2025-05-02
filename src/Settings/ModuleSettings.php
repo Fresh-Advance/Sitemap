@@ -34,7 +34,7 @@ class ModuleSettings implements ModuleSettingsInterface
 
     public function getAdditionalSitemapUrls(): array
     {
-        return $this->shopModuleSettings->getCollection(
+        return $this->shopModuleSettings->getCollection( // @phpstan-ignore return.type
             self::SETTING_ADDITIONAL_SITEMAP_URLS,
             Module::MODULE_ID
         );

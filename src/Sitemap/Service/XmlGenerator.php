@@ -37,6 +37,9 @@ class XmlGenerator implements XmlGeneratorInterface
         return $this->wrap(implode("", $attributes), "sitemap");
     }
 
+    /**
+     * @param array<string,string> $tagAttributes
+     */
     protected function wrap(string $data, string $tag, array $tagAttributes = []): string
     {
         $attributes = '';

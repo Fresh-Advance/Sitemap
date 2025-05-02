@@ -13,5 +13,8 @@ interface FilterFactoryInterface
 {
     public function getFilter(string $objectType): ChangeFilterInterface;
 
+    /**
+     * @return array<ChangeFilterInterface>
+     */
     public function getFilters(): array;
 }
