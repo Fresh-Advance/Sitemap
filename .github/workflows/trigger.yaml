@@ -9,7 +9,7 @@ on:
 
 jobs:
   php81_mysql80:
-    uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yml@v4
+    uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yml@v5
     with:
       testplan: '~/defaults/7.1.x.yml,~/defaults/php8.2_mysql8.0_only.yml,~/module-sitemap.yaml'
       runs_on: '"ubuntu-latest"'
